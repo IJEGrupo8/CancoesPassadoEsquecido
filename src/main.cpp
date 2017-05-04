@@ -21,15 +21,15 @@ int main(int, char**)
 
     // Setup scenes
     GameScene gameplay("Gameplay");
-    MenuScene menu("Menu");
-    /* Menu*/
+    /*MenuScene menu("Menu");
+    
     Game::instance.add_scene(menu);
     
     GameObject playbutton("playbutton",200,200);
     ImageComponent playImage(playbutton,"assets/sprites/playbutton.png",1,1);
     playbutton.add_component(playImage);
     menu.add_game_object(playbutton);
-
+*/
 
     /* Gamescene*/
     Game::instance.add_scene(gameplay);
