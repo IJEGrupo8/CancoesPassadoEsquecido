@@ -8,6 +8,8 @@
 #include <unordered_map>
 #include "vector.hpp"
 #include "gameobject.hpp"
+#include "components/image.hpp"
+#include "instrument.hpp"
 
 using namespace engine;
 
@@ -16,7 +18,6 @@ public:
     Player() : GameObject() {}
     Player(std::string _name,int _x,int _y)
         : GameObject(_name,_x,_y) {}
-    //~Player() {}
 
     ~Player() {}
 
@@ -29,10 +30,12 @@ public:
     bool moveUp();
     bool moveRight();
     bool moveLeft();
+    bool changeInstrument(std::string instrument);
+
 private:
-    
+    std::unordered_map<std::string, Instrument> instruments;
+    std::unordered_map<std::string, ImageComponent> sprites;
+    Instrument active_instrument;
 };
-
-
 
 #endif

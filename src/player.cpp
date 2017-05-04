@@ -103,3 +103,15 @@ bool Player::moveRight(){
     xF = xFrame;
     yF = yFrame;
 }
+
+bool Player::changeInstrument(std::string instrument_name){
+    INFO("Changing Instrument");
+    Instrument instrument = instruments[instrument_name];
+    bool isInstrumentNull = true;
+    //bool isInstrumentNull = instrument* != NULL;
+    //if(!isInstrumentNull){
+        active_instrument = instrument;
+    //}
+
+    return isInstrumentNull;
+}
