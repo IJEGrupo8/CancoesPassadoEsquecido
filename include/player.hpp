@@ -34,13 +34,13 @@ public:
     bool changeSprite(std::string sprite);
     bool handlePlayer();
     void addInstrument(std::string instrument_name, Instrument instrument);
-    void addSprite(std::string instrument_name, ImageComponent sprite);
+    void addSprite(std::string instrument_name, ImageComponent* sprite);
 
 private:
     std::unordered_map<std::string, Instrument> instruments;
-    std::unordered_map<std::string, ImageComponent> sprites;
+    std::unordered_map<std::string, ImageComponent*> sprites;
     Instrument active_instrument;
-    ImageComponent active_sprite;
+    ImageComponent* active_sprite;
 };
 
 #endif

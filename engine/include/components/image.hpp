@@ -24,9 +24,9 @@ public:
     virtual void draw();
 
 
+
 protected:
     std::string m_path;
-
     SDL_Texture * m_texture;
     int i,j;
 

@@ -23,6 +23,7 @@ public:
     virtual bool shutdown() { return true; }
 
     inline State state() { return m_state; }
+    void       setState(State state)  { m_state = state; }
 
 protected:
     GameObject * m_game_object;

@@ -42,8 +42,9 @@ bool GameObject::draw()
 {
     for(auto component: m_components[std::type_index(typeid(ImageComponent))])
     {
-        if(component->state() == Component::State::enabled)
+        if(component->state() == Component::State::enabled){
             (dynamic_cast<ImageComponent *>(component))->draw();
+        }
     }
 
     for(auto component: m_components[std::type_index(typeid(TextComponent))])

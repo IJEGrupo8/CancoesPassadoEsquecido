@@ -36,6 +36,7 @@ public:
     bool change_scene(const std::string & id);
 
     inline SDL_Renderer * canvas() { return m_canvas; }
+    Scene * m_scene;       // Current Scene
 
 private:
     Game()
@@ -53,7 +54,6 @@ private:
     SDL_Color      m_background_color;
 
     std::unordered_map<std::string, Scene *> m_scenes;
-    Scene * m_scene;       // Current Scene
     Scene * m_last_scene;  // Last Scene Played
 
     bool create_window();
