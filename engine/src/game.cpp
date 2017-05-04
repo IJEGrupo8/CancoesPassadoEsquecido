@@ -128,7 +128,7 @@ void Game::run()
 {
     INFO("Game " << m_name << "Setup");
     
-    const int FPS = 30;
+    const int FPS = 15;
     const int DELAY_TIME = 1000.0f / FPS;
     Uint32 frameStart, frameTime;
 

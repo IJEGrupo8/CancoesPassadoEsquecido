@@ -37,6 +37,9 @@ class Input{
             DOWN = SDL_SCANCODE_DOWN,
             LEFT = SDL_SCANCODE_LEFT,
             RIGHT = SDL_SCANCODE_RIGHT,
+            ONE = SDL_SCANCODE_1,
+            TWO = SDL_SCANCODE_2,
+            THREE = SDL_SCANCODE_3
         };
         static bool keyPressed(int key){
             const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );

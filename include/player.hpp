@@ -31,11 +31,16 @@ public:
     bool moveRight();
     bool moveLeft();
     bool changeInstrument(std::string instrument);
+    bool changeSprite(std::string sprite);
+    bool handlePlayer();
+    void addInstrument(std::string instrument_name, Instrument instrument);
+    void addSprite(std::string instrument_name, ImageComponent sprite);
 
 private:
     std::unordered_map<std::string, Instrument> instruments;
     std::unordered_map<std::string, ImageComponent> sprites;
     Instrument active_instrument;
+    ImageComponent active_sprite;
 };
 
 #endif

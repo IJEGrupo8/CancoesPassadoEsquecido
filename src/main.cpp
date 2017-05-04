@@ -36,16 +36,27 @@ int main(int, char**)
 
     Player player("Player1",100,100);
     player.xF = 0; player.yF = 0;
-    ImageComponent playerImage(player, "assets/sprites/girl.jpg",4,4);
-    
-    
+    ImageComponent playerImage(player, "assets/sprites/girl.png",4,4);
+        
     player.add_component(playerImage);
 
     gameplay.add_game_object(player);
 
+    Instrument banjo("Banjo", 100,100);
+    Instrument eletric_guitar("Eletric Guitar", 100,100);
+    Instrument accordion("Accordion", 100,100);
 
-    
+    player.addInstrument(globals::banjo, banjo);
+    player.addInstrument(globals::eletric_guitar, eletric_guitar);
+    player.addInstrument(globals::accordion, accordion);
 
+    ImageComponent banjoImage(player, "assets/sprites/girl2.png", 4, 4);
+    ImageComponent eletricGuitarImage(player, "assets/sprites/girl3.png", 4, 4);
+    ImageComponent accordionImage(player, "assets/sprites/girl4.png", 4, 4);
+
+    player.addSprite(globals::banjo, banjoImage);
+    player.addSprite(globals::eletric_guitar, eletricGuitarImage);
+    player.addSprite(globals::accordion, accordionImage);
 
     // Game loop
     Game::instance.run();
