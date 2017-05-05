@@ -14,6 +14,11 @@ using namespace engine;
 bool Player::init()
 {
     engine::GameObject::init();
+
+    for(auto instrument : instruments){
+        instrument.second.init();
+    }
+
     active_instrument = instruments[globals::banjo];
     active_sprite = sprites[globals::banjo];
 

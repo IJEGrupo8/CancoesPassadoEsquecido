@@ -46,6 +46,17 @@ int main(int, char**)
     Spell spellQBanjo("spellQBanjo",0,0);
     Spell spellWBanjo("spellWBanjo",0,0);
     Spell spellEBanjo("spellEBanjo",0,0);
+
+    spellQBanjo.xF = 0; spellQBanjo.yF = 0;
+
+    //Adicionando imagem ao spell
+    ImageComponent explosionQImage(spellQBanjo, "assets/sprites/spell.png", 9, 8);
+    ImageComponent explosionWImage(spellWBanjo, "assets/sprites/spell.png", 9, 8);
+    ImageComponent explosionEImage(spellEBanjo, "assets/sprites/spell.png", 9, 8);
+    spellQBanjo.add_component(explosionQImage);
+    spellWBanjo.add_component(explosionWImage);
+    spellEBanjo.add_component(explosionEImage);
+
     //Adicionando spell ao instrumento
     banjo.addSpell(globals::spellQ,spellQBanjo);
     banjo.addSpell(globals::spellW,spellWBanjo);
@@ -66,6 +77,7 @@ int main(int, char**)
     player.add_component(banjoImage);
     player.add_component(eletricGuitarImage);
     player.add_component(accordionImage);
+
 
     gameplay.add_game_object(player);
 

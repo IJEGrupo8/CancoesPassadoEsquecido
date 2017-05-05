@@ -6,12 +6,14 @@
 #include "timer.hpp"
 #include "game.hpp"
 
+#define nframes 9
+
 using namespace engine;
 
 bool Spell::init()
 {
     engine::GameObject::init();
- 
+     
     return true;
 }
 
@@ -30,19 +32,28 @@ bool Spell::draw()
 
 bool Spell::update()
 {
-   if(timer.getTime()<3000){
-   	//do some
-   	INFO("Executing spell");
+  w = 100; h = 100;
+  physics.position.setX(100);
+  physics.position.setY(100);
 
-   }else{
+  if(timer.getTime()<3000){
+    
+    INFO("xF = " << xF << " - w = " << w);
+
+    int xFrame = (((xF/w)+1)%nframes)*w;
+    int yFrame = 3*h; 
+
+    xF = xFrame;
+    yF = yFrame;
+
+  }else{
    	//quita do scene
    	INFO("Finish spell");
 
    	Game::instance.m_scene->remove_game_object(name());
-
-
    }
 }
+
 bool Spell::useSpell(){
 	Game::instance.m_scene->add_game_object(*this);
 	//adicionar na cena

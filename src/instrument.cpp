@@ -11,6 +11,9 @@ using namespace engine;
 bool Instrument::init()
 {
     engine::GameObject::init();
+    for(auto spell : spells){
+    	spell.second.init();
+    }
  
     return true;
 }
