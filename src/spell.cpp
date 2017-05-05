@@ -6,7 +6,7 @@
 #include "timer.hpp"
 #include "game.hpp"
 
-#define nframes 9
+#define nframes 3
 
 using namespace engine;
 
@@ -52,11 +52,14 @@ bool Spell::update()
 
    	Game::instance.m_scene->remove_game_object(name());
    }
+   return true;
 }
 
 bool Spell::useSpell(){
 	Game::instance.m_scene->add_game_object(*this);
+  m_state = State::enabled;
 	//adicionar na cena
 	INFO("Start spell");
 	timer.startTimer();
+  return true;
 }
