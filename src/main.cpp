@@ -53,9 +53,9 @@ int main(int, char**)
 
     //Adicionando imagem ao spell
 
-    ImageComponent explosionQImage(spellQBanjo, "assets/sprites/explosion.png", 4,4);
-    ImageComponent explosionWImage(spellWBanjo, "assets/sprites/explosion.png", 3, 4);
-    ImageComponent explosionEImage(spellEBanjo, "assets/sprites/explosion.png", 3, 4);
+    ImageComponent explosionQImage(spellQBanjo, "assets/sprites/explosion.png", 4, 4);
+    ImageComponent explosionWImage(spellWBanjo, "assets/sprites/explosion.png", 4, 4);
+    ImageComponent explosionEImage(spellEBanjo, "assets/sprites/explosion.png", 4, 4);
 
     spellQBanjo.add_component(explosionQImage);
     spellWBanjo.add_component(explosionWImage);
