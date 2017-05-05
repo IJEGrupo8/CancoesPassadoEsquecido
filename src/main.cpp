@@ -50,9 +50,9 @@ int main(int, char**)
     spellQBanjo.xF = 0; spellQBanjo.yF = 0;
 
     //Adicionando imagem ao spell
-    ImageComponent explosionQImage(spellQBanjo, "assets/sprites/spell.png", 9, 8);
-    ImageComponent explosionWImage(spellWBanjo, "assets/sprites/spell.png", 9, 8);
-    ImageComponent explosionEImage(spellEBanjo, "assets/sprites/spell.png", 9, 8);
+    ImageComponent explosionQImage(spellQBanjo, "assets/sprites/q.png", 3, 4);
+    ImageComponent explosionWImage(spellWBanjo, "assets/sprites/q.png", 3, 4);
+    ImageComponent explosionEImage(spellEBanjo, "assets/sprites/q.png", 3, 4);
     spellQBanjo.add_component(explosionQImage);
     spellWBanjo.add_component(explosionWImage);
     spellEBanjo.add_component(explosionEImage);
