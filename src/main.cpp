@@ -7,6 +7,7 @@
 #include "player.hpp"
 #include "gamescene.hpp"
 #include "menuscene.hpp"
+#include "spell.hpp"
 
 
 #include "gameglobals.hpp"
@@ -36,14 +37,20 @@ int main(int, char**)
 
     Player player("Player1",100,100);
     player.xF = 0; player.yF = 0;
-    //ImageComponent playerImage(player, "assets/sprites/girl.png",4,4);
-        
-    //player.add_component(playerImage);
 
+    //Declaring instruments
     Instrument banjo("Banjo", 100,100);
     Instrument eletric_guitar("Eletric Guitar", 100,100);
     Instrument accordion("Accordion", 100,100);
-
+    //Declaring spells
+    Spell spellQBanjo("spellQBanjo",0,0);
+    Spell spellWBanjo("spellWBanjo",0,0);
+    Spell spellEBanjo("spellEBanjo",0,0);
+    //Adicionando spell ao instrumento
+    banjo.addSpell(globals::spellQ,spellQBanjo);
+    banjo.addSpell(globals::spellW,spellWBanjo);
+    banjo.addSpell(globals::spellE,spellEBanjo);
+    //spell[globals::spellQ]
     player.addInstrument(globals::banjo, banjo);
     player.addInstrument(globals::eletric_guitar, eletric_guitar);
     player.addInstrument(globals::accordion, accordion);

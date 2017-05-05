@@ -165,15 +165,32 @@ bool Player::handlePlayer(){
         moveLeft();
         keyFlag = true;
     }
-    if(Input::keyPressed(Input::ONE)){
+    if(Input::keyPressed(Input::ONE))
+    {
         changeInstrument(globals::banjo);
     }
-    if(Input::keyPressed(Input::TWO)){
+    if(Input::keyPressed(Input::TWO))
+    {
         changeInstrument(globals::eletric_guitar);
     }
-    if(Input::keyPressed(Input::THREE)){
+    if(Input::keyPressed(Input::THREE))
+    {
         changeInstrument(globals::accordion);
     }
+    if(Input::keyPressed(Input::Q))
+    {
+        active_instrument.useSpellQ();
+    }
+    if(Input::keyPressed(Input::W))
+    {
+        active_instrument.useSpellW();
+    }
+    if(Input::keyPressed(Input::E))
+    {
+        active_instrument.useSpellE();
+    }
+
+
  
     /*if(keyFlag){
         

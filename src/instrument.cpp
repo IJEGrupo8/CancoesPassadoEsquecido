@@ -3,6 +3,8 @@
 #include "log.h"
 #include "vector.hpp"
 #include "instrument.hpp"
+#include "gameglobals.hpp"
+
 
 using namespace engine;
 
@@ -28,5 +30,25 @@ bool Instrument::draw()
 
 bool Instrument::update()
 {
-   
+   return true;
+}
+bool Instrument::addSpell(std::string spell_name, Spell spell)
+{
+	spells[spell_name] = spell;
+	return true;
+}
+bool Instrument::useSpellQ(){
+	spells[globals::spellQ].useSpell();
+	INFO("Using spell Q from " << name());
+	return true;
+}
+bool Instrument::useSpellW(){
+	spells[globals::spellW].useSpell();
+	INFO("Using spell W from " << name());
+	return true;
+}
+bool Instrument::useSpellE(){
+	spells[globals::spellE].useSpell();
+	INFO("Using spell E from " << name());
+	return true;
 }

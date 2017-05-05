@@ -11,6 +11,11 @@ namespace globals {
     const std::string banjo = "banjo";
     const std::string eletric_guitar = "eletric_guitar";
     const std::string accordion = "accordion";
+    const std::string spellQ = "spellQ";
+    const std::string spellW = "spellW";
+    const std::string spellE = "spellE";
+
+
 }
 
 #endif
