@@ -44,8 +44,7 @@ bool Player::update()
 {
     handlePlayer();
 
-    physics.velocity += physics.aceleration;
-    physics.position += physics.velocity;
+    GameObject::update();
     
     int collisionAdjust = 30;
     physics.collisionBox.x = physics.position.getX() + collisionAdjust;

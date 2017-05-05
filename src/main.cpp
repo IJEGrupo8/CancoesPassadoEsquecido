@@ -43,9 +43,9 @@ int main(int, char**)
     Instrument eletric_guitar("Eletric Guitar", 100,100);
     Instrument accordion("Accordion", 100,100);
     //Declaring spells
-    Spell spellQBanjo("spellQBanjo",0,0);
-    Spell spellWBanjo("spellWBanjo",0,0);
-    Spell spellEBanjo("spellEBanjo",0,0);
+    Spell spellQBanjo("spellQBanjo",&player,0,0);
+    Spell spellWBanjo("spellWBanjo",&player,0,0);
+    Spell spellEBanjo("spellEBanjo",&player,0,0);
 
     spellQBanjo.xF = 0; spellQBanjo.yF = 0;
     spellWBanjo.xF = 0; spellWBanjo.yF = 0;

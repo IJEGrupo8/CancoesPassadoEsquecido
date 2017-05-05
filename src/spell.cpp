@@ -34,6 +34,7 @@ bool Spell::draw()
 
 bool Spell::update()
 {
+  GameObject::update();
 
   if(timer.getTime()<3000){
     
@@ -56,11 +57,12 @@ bool Spell::update()
 }
 
 bool Spell::useSpell(){
+  INFO("Start spell");
 
-	//Game::instance.m_scene->add_game_object(*this);
-	//adicionar na cena
   setState(State::enabled);
-	INFO("Start spell");
+  physics.position = player->physics.position;
+  physics.velocity = player->physics.velocity;
 	timer.startTimer();
+
   return true;
 }

@@ -66,5 +66,7 @@ bool GameObject::add_component(Component & component)
 
 bool GameObject::update()
 {
+    physics.velocity += physics.aceleration;
+    physics.position += physics.velocity;
     return true;
 }

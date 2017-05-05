@@ -15,8 +15,8 @@ using namespace engine;
 class Spell : public GameObject {
 public:
     Spell() : GameObject() {}
-    Spell(std::string _name,int _x,int _y)
-        : GameObject(_name,_x,_y) {}
+    Spell(std::string _name, GameObject * obj, int _x, int _y)
+        : GameObject(_name,_x,_y), player(obj) {}
 
     ~Spell() {}
 
