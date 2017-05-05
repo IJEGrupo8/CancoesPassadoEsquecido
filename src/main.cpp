@@ -52,17 +52,19 @@ int main(int, char**)
     spellEBanjo.xF = 0; spellEBanjo.yF = 0;
 
     //Adicionando imagem ao spell
-    ImageComponent explosionQImage(spellQBanjo, "assets/sprites/explosion.png", 3, 4);
+
+    ImageComponent explosionQImage(spellQBanjo, "assets/sprites/explosion.png", 4,4);
     ImageComponent explosionWImage(spellWBanjo, "assets/sprites/explosion.png", 3, 4);
     ImageComponent explosionEImage(spellEBanjo, "assets/sprites/explosion.png", 3, 4);
+
     spellQBanjo.add_component(explosionQImage);
     spellWBanjo.add_component(explosionWImage);
     spellEBanjo.add_component(explosionEImage);
 
     //Adicionando spell ao instrumento
-    banjo.addSpell(globals::spellQ,spellQBanjo);
-    banjo.addSpell(globals::spellW,spellWBanjo);
-    banjo.addSpell(globals::spellE,spellEBanjo);
+    banjo.addSpell(globals::spellQ,&spellQBanjo);
+    banjo.addSpell(globals::spellW,&spellWBanjo);
+    banjo.addSpell(globals::spellE,&spellEBanjo);
     //spell[globals::spellQ]
     player.addInstrument(globals::banjo, banjo);
     player.addInstrument(globals::eletric_guitar, eletric_guitar);
@@ -80,7 +82,12 @@ int main(int, char**)
     player.add_component(eletricGuitarImage);
     player.add_component(accordionImage);
 
-
+    gameplay.add_game_object(spellWBanjo);
+    gameplay.add_game_object(spellEBanjo);
+    gameplay.add_game_object(spellQBanjo);
+    gameplay.add_game_object(accordion);
+    gameplay.add_game_object(eletric_guitar);
+    gameplay.add_game_object(banjo);
     gameplay.add_game_object(player);
 
     // Game loop

@@ -11,9 +11,9 @@ using namespace engine;
 bool Instrument::init()
 {
     engine::GameObject::init();
-    for(auto spell : spells){
+    /*for(auto spell : spells){
     	spell.second.init();
-    }
+    }*/
  
     return true;
 }
@@ -35,23 +35,23 @@ bool Instrument::update()
 {
    return true;
 }
-bool Instrument::addSpell(std::string spell_name, Spell spell)
+bool Instrument::addSpell(std::string spell_name, Spell * spell)
 {
 	spells[spell_name] = spell;
 	return true;
 }
 bool Instrument::useSpellQ(){
-	spells[globals::spellQ].useSpell();
+	spells[globals::spellQ]->useSpell();
 	INFO("Using spell Q from " << name());
 	return true;
 }
 bool Instrument::useSpellW(){
-	spells[globals::spellW].useSpell();
+	spells[globals::spellW]->useSpell();
 	INFO("Using spell W from " << name());
 	return true;
 }
 bool Instrument::useSpellE(){
-	spells[globals::spellE].useSpell();
+	spells[globals::spellE]->useSpell();
 	INFO("Using spell E from " << name());
 	return true;
 }

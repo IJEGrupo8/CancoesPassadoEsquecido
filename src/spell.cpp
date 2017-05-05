@@ -6,14 +6,16 @@
 #include "timer.hpp"
 #include "game.hpp"
 
-#define nframes 3
+
+#define nframes 4
 
 using namespace engine;
 
 bool Spell::init()
 {
     engine::GameObject::init();
-     
+    setState(State::disabled);
+
     return true;
 }
 
@@ -32,16 +34,13 @@ bool Spell::draw()
 
 bool Spell::update()
 {
-  w = 100; h = 100;
-  physics.position.setX(100);
-  physics.position.setY(100);
 
   if(timer.getTime()<3000){
     
     INFO("xF = " << xF << " - w = " << w);
 
     int xFrame = (((xF/w)+1)%nframes)*w;
-    int yFrame = 3*h; 
+    int yFrame = 1*h; 
 
     xF = xFrame;
     yF = yFrame;
@@ -49,16 +48,18 @@ bool Spell::update()
   }else{
    	//quita do scene
    	INFO("Finish spell");
+    setState(State::disabled);
 
-   	Game::instance.m_scene->remove_game_object(name());
+   	//Game::instance.m_scene->remove_game_object(name());
    }
    return true;
 }
 
 bool Spell::useSpell(){
-	Game::instance.m_scene->add_game_object(*this);
-  m_state = State::enabled;
+
+	//Game::instance.m_scene->add_game_object(*this);
 	//adicionar na cena
+  setState(State::enabled);
 	INFO("Start spell");
 	timer.startTimer();
   return true;
