@@ -2,6 +2,8 @@
 
 #include "components/text.hpp"
 #include "components/image.hpp"
+#include "components/animation.hpp"
+
 #include "log.h"
 
 using namespace engine;
@@ -51,6 +53,12 @@ bool GameObject::draw()
     {
         if(component->state() == Component::State::enabled)
             (dynamic_cast<TextComponent *>(component))->draw();
+    }
+
+    for(auto component: m_components[std::type_index(typeid(AnimationComponent))])
+    {
+        if(component->state() == Component::State::enabled)
+            (dynamic_cast<AnimationComponent *>(component))->draw();
     }
 
     return true;
