@@ -7,7 +7,7 @@
 #include "game.hpp"
 
 
-#define nframes 4
+#define nframes 10
 
 using namespace engine;
 
@@ -36,16 +36,21 @@ bool Spell::update()
 {
   GameObject::update();
 
-  if(timer.getTime()<3000){
+  if(timer.getTime()<1000){
     
-    INFO("xF = " << xF << " - w = " << w);
+    if(timer2.getTime() > 1000/16)
+    {
+      m_current_frame++;
+      timer2.startTimer();
+    }
+      
+    INFO("xF = " << xF << " - yF = " << yF);
 
-    int xFrame = (((xF/w)+1)%nframes)*w;
-    int yFrame = 1*h; 
+    int col = (m_current_frame%4)*w;
+    int lin = (m_current_frame/4)*h;
 
-    xF = xFrame;
-    yF = yFrame;
-
+    xF = col;
+    yF = lin;
   }else{
    	//quita do scene
    	INFO("Finish spell");
@@ -63,6 +68,9 @@ bool Spell::useSpell(){
   physics.position = player->physics.position;
   physics.velocity = player->physics.velocity;
 	timer.startTimer();
-
+  timer2.startTimer();
+  xF = 0;
+  yF = 0;
+  m_current_frame = 0;
   return true;
 }

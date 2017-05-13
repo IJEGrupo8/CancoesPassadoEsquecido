@@ -22,6 +22,10 @@ public:
 
     GameObject * player;
     Timer timer;
+    Timer timer2;
+    int linha = 0;
+    int coluna = 0;
+    int m_current_frame = 0;
     virtual bool init();
     virtual bool shutdown();
     virtual bool update();
