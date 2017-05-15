@@ -33,6 +33,7 @@ public:
     virtual bool shutdown();
     virtual bool update();
     virtual bool draw();
+    virtual void setup();
 
 
     bool add_component(Component & component);

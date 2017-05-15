@@ -15,21 +15,23 @@ using namespace engine;
 class Spell : public GameObject {
 public:
     Spell() : GameObject() {}
-    Spell(std::string _name, GameObject * obj, int _x, int _y)
-        : GameObject(_name,_x,_y), player(obj) {}
+    Spell(std::string _name, GameObject * obj, int _x, int _y,int _countdown,int _duration)
+        : GameObject(_name,_x,_y), player(obj),countdown(_countdown),duration(_duration)  {}
 
     ~Spell() {}
 
     GameObject * player;
-    Timer timer;
-    Timer timer2;
-    int linha = 0;
-    int coluna = 0;
-    int m_current_frame = 0;
-    virtual bool init();
-    virtual bool shutdown();
-    virtual bool update();
-    virtual bool draw();
+    Timer durationTimer;
+    Timer countdownTimer;
+    int countdown;
+    int lastTimeUsed;
+    int duration;
+    
+    bool init();
+    bool shutdown();
+    bool update();
+    bool draw();
+    void setup();
     bool useSpell();
 private:
     

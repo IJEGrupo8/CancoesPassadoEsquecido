@@ -36,21 +36,9 @@ bool Spell::update()
 {
   GameObject::update();
 
-  if(timer.getTime()<1000){
+  if(durationTimer.getTime()< duration){
     
-    if(timer2.getTime() > 1000/16)
-    {
-      m_current_frame++;
-      timer2.startTimer();
-    }
-      
-    INFO("xF = " << xF << " - yF = " << yF);
-
-    int col = (m_current_frame%4)*w;
-    int lin = (m_current_frame/4)*h;
-
-    xF = col;
-    yF = lin;
+    
   }else{
    	//quita do scene
    	INFO("Finish spell");
@@ -61,16 +49,26 @@ bool Spell::update()
    return true;
 }
 
-bool Spell::useSpell(){
-  INFO("Start spell");
+bool Spell::useSpell()
+{
+  if(countdownTimer.getTime() > countdown){
+    INFO("Start spell");
 
-  setState(State::enabled);
-  physics.position = player->physics.position;
-  physics.velocity = player->physics.velocity;
-	timer.startTimer();
-  timer2.startTimer();
+    setState(State::enabled);
+    physics.position = player->physics.position;
+    physics.velocity = player->physics.velocity;
+  	durationTimer.startTimer();
+    countdownTimer.startTimer();
+    //timer2.startTimer();
+    setup();
+  }else{
+    INFO("on countdown");
+  }
+  return true;
+}
+void Spell::setup()
+{
   xF = 0;
   yF = 0;
-  m_current_frame = 0;
-  return true;
+  GameObject::setup();
 }

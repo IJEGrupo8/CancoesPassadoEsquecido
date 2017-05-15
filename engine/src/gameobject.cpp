@@ -63,7 +63,15 @@ bool GameObject::draw()
 
     return true;
 }
+void GameObject::setup()
+{
+    for(auto component: m_components[std::type_index(typeid(AnimationComponent))])
+    {
+        if(component->state() == Component::State::enabled)
+            (dynamic_cast<AnimationComponent *>(component))->setup();
+    }
 
+}
 bool GameObject::add_component(Component & component)
 {
     INFO("Adding component to game object " << m_name);
@@ -78,3 +86,4 @@ bool GameObject::update()
     physics.position += physics.velocity;
     return true;
 }
+
