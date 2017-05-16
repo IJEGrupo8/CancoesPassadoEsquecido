@@ -10,8 +10,9 @@ namespace engine {
 class GameObject;
 class AnimationComponent : public ImageComponent {
 public:
-    AnimationComponent(GameObject & game_object, std::string path,int m_i, int m_j)
-        : ImageComponent(game_object,path,m_i,m_j) {}
+    AnimationComponent(GameObject & game_object, std::string path,int m_i, int m_j, int _n_frames,int _duration,int _start,int _end,int _loop = -1)
+        : ImageComponent(game_object,path,m_i,m_j), n_lines(m_i), n_cols(m_j), n_frames(_n_frames), duration(_duration),
+        start_frame(_start), end_frame(_end),animationFrameTime(_duration/_n_frames),loop(_loop),m_loop(_loop) {}
 
     AnimationComponent() : ImageComponent() {}
 
@@ -22,11 +23,15 @@ public:
     void draw();
     bool setup();
 
-	Timer timer2;
-	
-    int linha = 0;
-    int coluna = 0;
+	Timer clock;
+
+	int duration;
+	int n_lines, n_cols;
+	int n_frames;
     int m_current_frame = 0;
+    int start_frame, end_frame;
+    int animationFrameTime;
+    int loop, m_loop;
 };
 
 }

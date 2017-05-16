@@ -44,8 +44,8 @@ int main(int, char**)
     Instrument eletric_guitar("Eletric Guitar", 100,100);
     Instrument accordion("Accordion", 100,100);
     //Declaring spells
-    Spell spellQBanjo("spellQBanjo",&player,0,0,5000,1000);
-    Spell spellWBanjo("spellWBanjo",&player,0,0,5000,1000);
+    Spell spellQBanjo("spellQBanjo",&player,0,0,5000,5000);
+    Spell spellWBanjo("spellWBanjo",&player,0,0,5000,5000);
     Spell spellEBanjo("spellEBanjo",&player,0,0,5000,1000);
 
     spellQBanjo.xF = 0; spellQBanjo.yF = 0;
@@ -54,9 +54,9 @@ int main(int, char**)
 
     //Adicionando imagem ao spell
 
-    AnimationComponent explosionQImage(spellQBanjo, "assets/sprites/explosion.png", 4, 4);
-    AnimationComponent explosionWImage(spellWBanjo, "assets/sprites/explosion.png", 4, 4);
-    AnimationComponent explosionEImage(spellEBanjo, "assets/sprites/explosion.png", 4, 4);
+    AnimationComponent explosionQImage(spellQBanjo, "assets/sprites/explosion.png", 4, 4, 16,5000,0,15);
+    AnimationComponent explosionWImage(spellWBanjo, "assets/sprites/explosion.png", 4, 4, 16,500,0,15,4);
+    AnimationComponent explosionEImage(spellEBanjo, "assets/sprites/explosion.png", 4, 4, 16,1000,0,15);
 
     spellQBanjo.add_component(explosionQImage);
     spellWBanjo.add_component(explosionWImage);
