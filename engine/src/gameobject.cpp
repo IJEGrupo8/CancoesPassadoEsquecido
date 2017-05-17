@@ -3,6 +3,7 @@
 #include "components/text.hpp"
 #include "components/image.hpp"
 #include "components/animation.hpp"
+#include "components/code.hpp"
 
 #include "log.h"
 
@@ -84,6 +85,14 @@ bool GameObject::update()
 {
     physics.velocity += physics.aceleration;
     physics.position += physics.velocity;
+
+    for(auto component: m_components[std::type_index(typeid(CodeComponent))])
+    {
+        if(component->state() == Component::State::enabled)
+            (dynamic_cast<CodeComponent *>(component))->update();
+    }
+
+
     return true;
 }
 
