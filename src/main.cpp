@@ -5,6 +5,7 @@
 #include "components/text.hpp"
 #include "components/audio.hpp"
 #include "components/animation.hpp"
+#include "components/moveDirectionals.hpp"
 #include "player.hpp"
 #include "gamescene.hpp"
 #include "menuscene.hpp"
@@ -38,6 +39,8 @@ int main(int, char**)
 
     Player player("Player1",100,100);
     player.xF = 0; player.yF = 0;
+
+    MoveDirectionals move(player);
 
     //Declaring instruments
     Instrument banjo("Banjo", 100,100);
@@ -82,7 +85,8 @@ int main(int, char**)
     player.add_component(banjoImage);
     player.add_component(eletricGuitarImage);
     player.add_component(accordionImage);
-
+    player.add_component(move);
+    
     gameplay.add_game_object(spellWBanjo);
     gameplay.add_game_object(spellEBanjo);
     gameplay.add_game_object(spellQBanjo);

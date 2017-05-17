@@ -86,10 +86,13 @@ bool GameObject::update()
     physics.velocity += physics.aceleration;
     physics.position += physics.velocity;
 
-    for(auto component: m_components[std::type_index(typeid(CodeComponent))])
+    for(auto componentList: m_components)//fazer para todos os components
     {
-        if(component->state() == Component::State::enabled)
-            (dynamic_cast<CodeComponent *>(component))->update();
+        for(auto component : componentList.second)
+        {
+            if(component->state() == Component::State::enabled)
+                component->update();
+        }
     }
 
 

@@ -17,9 +17,6 @@ public:
 
     virtual bool update(){ return true;}
 
-
-protected:
-
 };
 
 }

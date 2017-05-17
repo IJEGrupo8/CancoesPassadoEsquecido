@@ -147,28 +147,7 @@ bool Player::changeSprite(std::string sprite_name){
 }
 
 bool Player::handlePlayer(){
-    bool keyFlag = false;
-    //bool collision = player1->physics.detectColision(player2);
-    if(Input::keyPressed(Input::UP))
-    {
-        moveUp();
-        keyFlag = true;
-    }
-    if(Input::keyPressed(Input::DOWN))
-    {
-        moveDown();
-        keyFlag = true;
-    }
-    if(Input::keyPressed(Input::RIGHT))
-    {
-        moveRight();
-        keyFlag = true;
-    }
-    if(Input::keyPressed(Input::LEFT))
-    {
-        moveLeft();
-        keyFlag = true;
-    }
+    
     if(Input::keyPressed(Input::ONE))
     {
         changeInstrument(globals::banjo);
@@ -204,10 +183,7 @@ bool Player::handlePlayer(){
         }
         
     }*/
-    if(!keyFlag){
-        Vector2D nulo(0,0);
-        physics.velocity = nulo;
-    }
+    
     return true;
 }
 
