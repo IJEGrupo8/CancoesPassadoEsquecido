@@ -8,27 +8,16 @@
 
 using namespace engine;
 
-TileMap::TileMap(std::string image_path, std::string map_path, int width, int height,
-        std::string game_object_name,int _x,int _y){
-	m_name = game_object_name;
-	xF = (int)_x;
-	yF = (int)_y;
-	m_map_path = map_path;
-	m_state = State::enabled;
-	TileSet tileset(width, height, *this, image_path, 0, 0);
-	setTileSet(&tileset);
-	add_component(tileset);
-	//Aqui ta mais enabled
-    if(m_tileset->state() == Component::State::enabled)
-    	INFO("OOOOOOOOOOOOOOOOOOOOOOOOOO");
-}
-
-TileMap::~TileMap(){
+/*TileMap::~TileMap(){
 	delete(m_tileset);
-}
+}*/
 
 bool TileMap::init(){
 	//Aqui ja nao ta mais enabled
+	TileSet tileset(m_width, m_height, *this, m_map_path, 1, 1);
+	setTileSet(&tileset);
+	add_component(tileset);
+
     if(m_tileset->state() == Component::State::enabled)
     	INFO("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	INFO("Init Tilemap");
@@ -90,8 +79,9 @@ void TileMap::renderLayer(int layer, int camera_x, int camera_y){
 }
 
 bool TileMap::draw(){
-	INFO("Draw Tilemap");
+	INFO("Draw Tilemap  ");
 	for(int layer = 0; layer < map_depth; layer++){
+		INFO("Draw LAYER " << layer);
 		renderLayer(layer, 0, 0);
 	}
 
