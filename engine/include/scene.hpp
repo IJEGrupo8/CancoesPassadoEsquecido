@@ -24,7 +24,7 @@ public:
     virtual ~Scene() {}
 
     bool add_game_object(GameObject & obj);
-    GameObject & get_game_object(const std::string & id);
+    GameObject * get_game_object(const std::string & id);
     bool remove_game_object(const std::string & id);
 
     virtual bool init();

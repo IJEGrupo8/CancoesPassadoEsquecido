@@ -21,15 +21,15 @@ bool Scene::add_game_object(GameObject & obj)
     return true;
 }
 
-GameObject & Scene::get_game_object(const std::string & id)
+GameObject * Scene::get_game_object(const std::string & id)
 {
-    if (m_objects.find(id) == m_objects.end())
+    /*if (m_objects.find(id) == m_objects.end())
     {
         WARN("Could not find game object " << id);
         return INVALID_GAME_OBJECT;
-    }
+    }*/
 
-    return *m_objects[id];
+    return m_objects[id];
 }
 
 bool Scene::remove_game_object(const std::string & id)
