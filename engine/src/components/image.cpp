@@ -50,7 +50,6 @@ bool ImageComponent::shutdown()
 
 void ImageComponent::draw()
 {
-
     SDL_Rect renderQuad = {
         (int) m_game_object->physics.position.getX(),
         (int) m_game_object->physics.position.getY(),

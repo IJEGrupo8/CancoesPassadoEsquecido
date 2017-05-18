@@ -3,20 +3,23 @@
 
 #include "sdl2include.h"
 #include "components/code.hpp"
-#include "player.hpp"
+#include "gameobject.hpp"
+#include "timer.hpp"
+
 using namespace engine;
 
 class MoveSSDirectionals : public CodeComponent {
 public:
-    MoveSSDirectionals(Player & game_object)
+    MoveSSDirectionals(GameObject & game_object)
         : CodeComponent(game_object) {}
         
     MoveSSDirectionals() : CodeComponent() {}
 
     ~MoveSSDirectionals() {}
-
+    
     virtual bool update();
-
+    virtual bool init();
+    Timer timer;
 };
 
 

@@ -4,7 +4,7 @@
 #include "vector.hpp"
 
 bool MoveDirectionals::update(){
-	INFO("TO DANDO UPDATE");
+
 	bool keyFlag = false;
     //bool collision = player1->physics.detectColision(player2);
     if(Input::keyPressed(Input::UP))

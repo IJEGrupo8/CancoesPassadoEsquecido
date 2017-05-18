@@ -6,16 +6,16 @@
 #include "components/audio.hpp"
 #include "components/animation.hpp"
 #include "components/moveDirectionals.hpp"
+#include "components/moveSS.hpp"
 #include "player.hpp"
 #include "gamescene.hpp"
 #include "menuscene.hpp"
 #include "spell.hpp"
 
-
 #include "gameglobals.hpp"
+
 using namespace std;
 using namespace engine;
-
 
 int main(int, char**)
 {
@@ -86,7 +86,15 @@ int main(int, char**)
     player.add_component(eletricGuitarImage);
     player.add_component(accordionImage);
     player.add_component(move);
-    
+
+    GameObject ghost("ghost",800,200);
+    ghost.xF = 0; ghost.yF = 0;
+    ImageComponent ghostI(ghost,"assets/sprites/ghost.png",4,4);
+    MoveSSDirectionals moveGhost(ghost);
+
+    ghost.add_component(ghostI);
+    ghost.add_component(moveGhost);
+
     gameplay.add_game_object(spellWBanjo);
     gameplay.add_game_object(spellEBanjo);
     gameplay.add_game_object(spellQBanjo);
@@ -94,6 +102,7 @@ int main(int, char**)
     gameplay.add_game_object(eletric_guitar);
     gameplay.add_game_object(banjo);
     gameplay.add_game_object(player);
+    gameplay.add_game_object(ghost);
 
     // Game loop
     Game::instance.run();
