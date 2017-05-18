@@ -14,6 +14,9 @@ bool GameObject::init()
     {
         for (auto component: id_componentlist.second)
         {
+            //Isso nao printa pro gameobject mapa pois o componente nao esta enabled
+            if(component->state() == Component::State::enabled)
+                INFO("aaaaaaaaaaaaaaaaaaaaaaaa " << m_name);
             if(component->state() == Component::State::enabled &&
                component->init() == false) return false;
         }
@@ -60,6 +63,8 @@ bool GameObject::add_component(Component & component)
 {
     INFO("Adding component to game object " << m_name);
     m_components[std::type_index(typeid(component))].push_back(&component);
+
+    INFO("Game object " << m_name << " added");
 
     return true;
 }
