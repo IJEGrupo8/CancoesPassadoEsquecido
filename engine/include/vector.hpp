@@ -3,7 +3,6 @@
 
 #include <math.h>
 
-
 namespace engine {
 
 class Vector2D
