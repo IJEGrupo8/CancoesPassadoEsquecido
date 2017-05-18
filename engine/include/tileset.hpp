@@ -12,9 +12,10 @@ class GameObject;
 class TileSet : public ImageComponent{
 public:
 
-    TileSet(int width, int height, GameObject & game_object, std::string path,int m_i, int m_j);
+    TileSet(int width, int height, GameObject & game_object, std::string path,int m_i, int m_j):
+    ImageComponent(game_object, path,m_i,m_j), m_width(width), m_height(height){}
 
-    virtual ~TileSet();
+    virtual ~TileSet(){}
 
     void render(int index, int x, int y);
     int getWidth();

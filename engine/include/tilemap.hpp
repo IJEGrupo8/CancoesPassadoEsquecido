@@ -12,18 +12,21 @@ namespace engine {
 class TileMap : public GameObject {
 public:
 
-    TileMap(std::string image_path, std::string map_path, int width, int height, std::string game_object_name,int _x,int _y);
+    TileMap(std::string image_path, std::string map_path, int width, int height, std::string game_object_name,int _x,int _y):
+    GameObject(game_object_name,_x,_y),m_map_path(image_path),m_width(width),m_height(height){}
         
-    virtual ~TileMap();
+    virtual ~TileMap(){}
 
     bool init();
     void setTileSet(TileSet *tileset);
     int& at(int x, int y, int z);
     void renderLayer(int layer, int camera_x = 0, int camera_y = 0);
     bool draw();
+    
 
 private:
     std::vector<int> tile_matrix;
+    int m_width, m_height;
     int map_depth;
     int map_height;
     int map_width;
