@@ -7,6 +7,7 @@
 #include "components/animation.hpp"
 #include "components/moveDirectionals.hpp"
 #include "components/moveSS.hpp"
+#include "components/follow.hpp"
 #include "player.hpp"
 #include "gamescene.hpp"
 #include "menuscene.hpp"
@@ -90,7 +91,7 @@ int main(int, char**)
     GameObject ghost("ghost",800,200);
     ghost.xF = 0; ghost.yF = 0;
     ImageComponent ghostI(ghost,"assets/sprites/ghost.png",4,4);
-    MoveSSDirectionals moveGhost(ghost);
+    FollowPlayer moveGhost(ghost);
 
     ghost.add_component(ghostI);
     ghost.add_component(moveGhost);
