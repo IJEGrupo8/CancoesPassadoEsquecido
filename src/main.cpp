@@ -14,6 +14,9 @@
 #include "gamescene.hpp"
 #include "menuscene.hpp"
 #include "spell.hpp"
+#include "tilemap.hpp"
+#include "tileset.hpp"
+#include "log.h"
 
 #include "gameglobals.hpp"
 
@@ -140,6 +143,9 @@ int main(int, char**)
     room2.add_game_object(player);
     room2.add_game_object(goLeftRoom2);
     room2.add_game_object(tree);
+
+    TileMap tilemap("assets/sprites/tileset.png", "assets/tileMap.txt", 64, 64, "mapa", 0, 0);
+    gameplay.add_game_object(tilemap);
 
     // Game loop
     Game::instance.run();
