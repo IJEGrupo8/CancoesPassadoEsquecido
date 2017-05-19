@@ -8,6 +8,7 @@
 #include "components/moveDirectionals.hpp"
 #include "components/moveSS.hpp"
 #include "components/follow.hpp"
+#include "components/animationcontroller.hpp"
 #include "player.hpp"
 #include "gamescene.hpp"
 #include "menuscene.hpp"
@@ -61,6 +62,8 @@ int main(int, char**)
     AnimationComponent explosionQImage(spellQBanjo, "assets/sprites/explosion.png", 4, 4, 16,5000,0,15);
     AnimationComponent explosionWImage(spellWBanjo, "assets/sprites/explosion.png", 4, 4, 16,500,0,15,4);
     AnimationComponent explosionEImage(spellEBanjo, "assets/sprites/explosion.png", 4, 4, 16,1000,0,15);
+
+    //AnimationControllerComponent explosionController();
 
     spellQBanjo.add_component(explosionQImage);
     spellWBanjo.add_component(explosionWImage);
