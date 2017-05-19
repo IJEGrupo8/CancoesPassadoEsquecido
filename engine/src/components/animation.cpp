@@ -36,6 +36,8 @@ void AnimationComponent::draw()
 		    int col = (m_current_frame%n_lines)*m_game_object->w;
 		    int lin = (m_current_frame/n_cols)*m_game_object->h;
 
+			INFO("W = " << m_game_object->w << " - H = " << m_game_object->h);
+
 		    m_game_object->xF = col;
 		    m_game_object->yF = lin;
 

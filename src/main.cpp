@@ -91,12 +91,15 @@ int main(int, char**)
     player.add_component(accordionImage);
     player.add_component(move);
 
-    GameObject ghost("ghost",800,200);
+    GameObject ghost("ghost", 800, 200);
     ghost.xF = 0; ghost.yF = 0;
-    ImageComponent ghostI(ghost,"assets/sprites/ghost.png",4,4);
+    AnimationComponent ghostI(ghost, "assets/sprites/ghost.png", 4, 4, 4, 1000, 0, 4, -1);
     FollowPlayer moveGhost(ghost);
 
-    ghost.add_component(ghostI);
+    AnimationControllerComponent ghostController(ghost, "assets/sprites/ghost.png", 1, 1);
+    ghostController.addAnimation("moveDown", ghostI);
+    ghost.add_component(ghostController);
+    //ghost.add_component(ghostI);
     ghost.add_component(moveGhost);
 
     gameplay.add_game_object(spellWBanjo);

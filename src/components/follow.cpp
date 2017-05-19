@@ -20,6 +20,6 @@ bool FollowPlayer::update(){
     m_game_object->physics.velocity = pos - m_game_object->physics.position;
     m_game_object->physics.velocity.normalize();
     //m_game_object->physics.velocity *= 2;
-    INFO("VEL = " << m_game_object->physics.velocity.getX() << "  " << m_game_object->physics.velocity.getY());
+   // INFO("VEL = " << m_game_object->physics.velocity.getX() << "  " << m_game_object->physics.velocity.getY());
     return true;
 }

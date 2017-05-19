@@ -5,6 +5,8 @@ using namespace engine;
 
 bool AnimationControllerComponent::init()
 {
+		INFO("INIT AC");
+
 	for(auto animation : animations){
 		animation.second.init();
 	}
@@ -13,6 +15,8 @@ bool AnimationControllerComponent::init()
 
 bool AnimationControllerComponent::shutdown()
 {
+		INFO("SD AC");
+
 	for(auto animation : animations) {
 		animation.second.shutdown();
 	}
@@ -21,21 +25,27 @@ bool AnimationControllerComponent::shutdown()
 
 bool AnimationControllerComponent::setup()
 {
-	return activeAnimation.setup();
+		INFO("SETUP AC");
+
+	return activeAnimation->setup();
 }
 
 void AnimationControllerComponent::draw(){
-	activeAnimation.draw();
+	INFO("DRAW AC");
+	activeAnimation->draw();
 }
 
 void AnimationControllerComponent::addAnimation(std::string name, AnimationComponent animation)
 {
 	INFO("Add a animação" << name);
+	if(animations.size() == 0) {
+		activeAnimation = &animation;
+	}
 	animations[name] = animation;
 }
 void AnimationControllerComponent::changeAnimation(std::string name)
 {
 	INFO("Trocando para a animação" << name);
-	activeAnimation = animations[name];
+	activeAnimation = &animations[name];
 	setup();
 }

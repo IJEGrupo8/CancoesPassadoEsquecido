@@ -4,6 +4,7 @@
 #include "components/image.hpp"
 #include "components/animation.hpp"
 #include "components/code.hpp"
+#include "components/animationcontroller.hpp"
 
 #include "log.h"
 
@@ -56,20 +57,20 @@ bool GameObject::draw()
             (dynamic_cast<TextComponent *>(component))->draw();
     }
 
-    for(auto component: m_components[std::type_index(typeid(AnimationComponent))])
+    for(auto component: m_components[std::type_index(typeid(AnimationControllerComponent))])
     {
         if(component->state() == Component::State::enabled)
-            (dynamic_cast<AnimationComponent *>(component))->draw();
+            (dynamic_cast<AnimationControllerComponent *>(component))->draw();
     }
 
     return true;
 }
 void GameObject::setup()
 {
-    for(auto component: m_components[std::type_index(typeid(AnimationComponent))])
+    for(auto component: m_components[std::type_index(typeid(AnimationControllerComponent))])
     {
         if(component->state() == Component::State::enabled)
-            (dynamic_cast<AnimationComponent *>(component))->setup();
+            (dynamic_cast<AnimationControllerComponent *>(component))->setup();
     }
 
 }

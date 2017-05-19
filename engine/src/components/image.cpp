@@ -50,12 +50,21 @@ bool ImageComponent::shutdown()
 
 void ImageComponent::draw()
 {
+
+          INFO((int) m_game_object->physics.position.getX() << " " <<
+        (int) m_game_object->physics.position.getY());
+
     SDL_Rect renderQuad = {
         (int) m_game_object->physics.position.getX(),
         (int) m_game_object->physics.position.getY(),
         m_game_object->w,
         m_game_object->h
     };
+      INFO(m_game_object->xF << " " <<
+        m_game_object->yF << " " <<
+        m_game_object->w << " " <<
+        m_game_object->h);
+
     SDL_Rect frameQuad = {
         m_game_object->xF,
         m_game_object->yF,

@@ -26,7 +26,7 @@ public:
     void addAnimation(std::string name, AnimationComponent animation);
     void changeAnimation(std::string name);
 
-    AnimationComponent activeAnimation;
+    AnimationComponent *activeAnimation;
     std::unordered_map<std::string, AnimationComponent > animations;
 };
 
