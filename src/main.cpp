@@ -59,15 +59,15 @@ int main(int, char**)
 
     //Adicionando imagem ao spell
 
-    /*AnimationComponent explosionQImage(spellQBanjo, "assets/sprites/explosion.png", 4, 4, 16,5000,0,15);
-    AnimationComponent explosionWImage(spellWBanjo, "assets/sprites/explosion.png", 4, 4, 16,500,0,15,4);
-    AnimationComponent explosionEImage(spellEBanjo, "assets/sprites/explosion.png", 4, 4, 16,1000,0,15);
+    AnimationComponent explosionQImage(spellQBanjo, "assets/sprites/explosion.png", 4, 4,5000,0,15);
+    AnimationComponent explosionWImage(spellWBanjo, "assets/sprites/explosion.png", 4, 4,500,0,15,4);
+    AnimationComponent explosionEImage(spellEBanjo, "assets/sprites/explosion.png", 4, 4,1000,0,15);
 
     //AnimationControllerComponent explosionController();
 
     spellQBanjo.add_component(explosionQImage);
     spellWBanjo.add_component(explosionWImage);
-    spellEBanjo.add_component(explosionEImage);*/   
+    spellEBanjo.add_component(explosionEImage);  
 
     //Adicionando spell ao instrumento
     banjo.addSpell(globals::spellQ,&spellQBanjo);
