@@ -10,12 +10,12 @@
 
 namespace engine {
 class GameObject;
-class AnimationControllerComponent : public ImageComponent {
+class AnimationControllerComponent : public Component {
 public:
-    AnimationControllerComponent(GameObject & game_object, std::string path, int m_i, int m_j)
-        : ImageComponent(game_object, path, m_i, m_j) {}
+    AnimationControllerComponent(GameObject & game_object)
+        : Component(game_object) {}
 
-    AnimationControllerComponent() : ImageComponent() {}
+    AnimationControllerComponent() : Component() {}
 
     ~AnimationControllerComponent() {}
 
@@ -23,11 +23,11 @@ public:
     bool shutdown();
     void draw();
     bool setup();
-    void addAnimation(std::string name, AnimationComponent animation);
+    void addAnimation(std::string name, AnimationComponent & animation);
     void changeAnimation(std::string name);
 
-    AnimationComponent *activeAnimation;
-    std::unordered_map<std::string, AnimationComponent > animations;
+    AnimationComponent * activeAnimation;
+    std::unordered_map<std::string, AnimationComponent *> animations;
 };
 
 }

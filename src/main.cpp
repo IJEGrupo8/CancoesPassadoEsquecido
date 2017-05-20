@@ -59,7 +59,7 @@ int main(int, char**)
 
     //Adicionando imagem ao spell
 
-    AnimationComponent explosionQImage(spellQBanjo, "assets/sprites/explosion.png", 4, 4, 16,5000,0,15);
+    /*AnimationComponent explosionQImage(spellQBanjo, "assets/sprites/explosion.png", 4, 4, 16,5000,0,15);
     AnimationComponent explosionWImage(spellWBanjo, "assets/sprites/explosion.png", 4, 4, 16,500,0,15,4);
     AnimationComponent explosionEImage(spellEBanjo, "assets/sprites/explosion.png", 4, 4, 16,1000,0,15);
 
@@ -67,7 +67,7 @@ int main(int, char**)
 
     spellQBanjo.add_component(explosionQImage);
     spellWBanjo.add_component(explosionWImage);
-    spellEBanjo.add_component(explosionEImage);
+    spellEBanjo.add_component(explosionEImage);*/   
 
     //Adicionando spell ao instrumento
     banjo.addSpell(globals::spellQ,&spellQBanjo);
@@ -93,11 +93,12 @@ int main(int, char**)
 
     GameObject ghost("ghost", 800, 200);
     ghost.xF = 0; ghost.yF = 0;
-    AnimationComponent ghostI(ghost, "assets/sprites/ghost.png", 4, 4, 4, 1000, 0, 4, -1);
+    AnimationComponent ghostI(ghost, "assets/sprites/ghost.png", 4, 4, 500, 0,3 ,-1);
     FollowPlayer moveGhost(ghost);
 
-    AnimationControllerComponent ghostController(ghost, "assets/sprites/ghost.png", 1, 1);
+    AnimationControllerComponent ghostController(ghost);
     ghostController.addAnimation("moveDown", ghostI);
+
     ghost.add_component(ghostController);
     //ghost.add_component(ghostI);
     ghost.add_component(moveGhost);

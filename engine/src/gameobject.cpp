@@ -62,7 +62,11 @@ bool GameObject::draw()
         if(component->state() == Component::State::enabled)
             (dynamic_cast<AnimationControllerComponent *>(component))->draw();
     }
-
+    for(auto component: m_components[std::type_index(typeid(AnimationComponent))])
+    {
+        if(component->state() == Component::State::enabled)
+            (dynamic_cast<AnimationComponent *>(component))->draw();
+    }
     return true;
 }
 void GameObject::setup()
@@ -71,6 +75,11 @@ void GameObject::setup()
     {
         if(component->state() == Component::State::enabled)
             (dynamic_cast<AnimationControllerComponent *>(component))->setup();
+    }
+    for(auto component: m_components[std::type_index(typeid(AnimationComponent))])
+    {
+        if(component->state() == Component::State::enabled)
+            (dynamic_cast<AnimationComponent *>(component))->setup();
     }
 
 }

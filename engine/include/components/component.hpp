@@ -25,9 +25,10 @@ public:
     virtual bool update(){ return true;}
     inline State state() { return m_state; }
     void       setState(State state)  { m_state = state; }
+        GameObject * m_game_object;
+
 
 protected:
-    GameObject * m_game_object;
     State        m_state;
 };
 

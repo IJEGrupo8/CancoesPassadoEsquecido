@@ -25,7 +25,7 @@ bool ImageComponent::init()
     }
 
     m_texture = SDL_CreateTextureFromSurface(Game::instance.canvas(), image);
-
+    INFO("INIT TEXTURE ="<<m_texture);
     if (m_texture == NULL)
     {
         SDL_ERROR("Could not create texture from image!");
@@ -50,29 +50,24 @@ bool ImageComponent::shutdown()
 
 void ImageComponent::draw()
 {
-
-          INFO((int) m_game_object->physics.position.getX() << " " <<
-        (int) m_game_object->physics.position.getY());
-
     SDL_Rect renderQuad = {
         (int) m_game_object->physics.position.getX(),
         (int) m_game_object->physics.position.getY(),
         m_game_object->w,
         m_game_object->h
     };
-      INFO(m_game_object->xF << " " <<
-        m_game_object->yF << " " <<
-        m_game_object->w << " " <<
-        m_game_object->h);
-
     SDL_Rect frameQuad = {
         m_game_object->xF,
         m_game_object->yF,
         m_game_object->w,
         m_game_object->h
     };
+    //INFO(""<< m_texture);
+
     //INFO("draw "<< (m_game_object->xF)%i << "  "<< m_game_object->yF);
     //SDL_RenderCopy(Game::instance.canvas(), m_texture, &frameQuad, &renderQuad);
     SDL_RenderCopyEx(Game::instance.canvas(), m_texture, &frameQuad, &renderQuad, 0, 0, SDL_FLIP_NONE);
+    //INFO("ERROR " << SDL_GetError());
+
 }
 
