@@ -36,6 +36,7 @@ public:
     bool change_scene(const std::string & id);
 
     inline SDL_Renderer * canvas() { return m_canvas; }
+    inline AssetManager & asset_manager() { return m_scene->asset_manager(); }
     Scene * m_scene;       // Current Scene
 
 private:

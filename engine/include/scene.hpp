@@ -5,6 +5,7 @@
 #include <unordered_map>
 
 #include "gameobject.hpp"
+#include "asset_manager.hpp"
 
 namespace engine {
 
@@ -32,11 +33,13 @@ public:
     virtual bool draw();
     virtual bool update();
 
+    inline AssetManager & asset_manager() { return m_asset_manager; }
     inline std::string name() const { return m_name; }
 
 protected:
     std::string                                 m_name;
     std::unordered_map<std::string, GameObject *> m_objects;
+    AssetManager m_asset_manager;
     State m_state;
 };
 

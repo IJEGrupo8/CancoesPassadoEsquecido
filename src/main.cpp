@@ -59,9 +59,9 @@ int main(int, char**)
 
     //Adicionando imagem ao spell
 
-    AnimationComponent explosionQImage(spellQBanjo, "assets/sprites/explosion.png", 4, 4,5000,0,15);
-    AnimationComponent explosionWImage(spellWBanjo, "assets/sprites/explosion.png", 4, 4,500,0,15,4);
-    AnimationComponent explosionEImage(spellEBanjo, "assets/sprites/explosion.png", 4, 4,1000,0,15);
+    AnimationComponent explosionQImage(spellQBanjo, "explosion.png", 4, 4,5000,0,15);
+    AnimationComponent explosionWImage(spellWBanjo, "explosion.png", 4, 4,500,0,15,4);
+    AnimationComponent explosionEImage(spellEBanjo, "explosion.png", 4, 4,1000,0,15);
 
     //AnimationControllerComponent explosionController();
 
@@ -78,9 +78,9 @@ int main(int, char**)
     player.addInstrument(globals::eletric_guitar, eletric_guitar);
     player.addInstrument(globals::accordion, accordion);
 
-    ImageComponent banjoImage(player, "assets/sprites/girl2.png", 4, 4);
-    ImageComponent eletricGuitarImage(player, "assets/sprites/girl3.png", 4, 4);
-    ImageComponent accordionImage(player, "assets/sprites/girl4.png", 4, 4);
+    ImageComponent banjoImage(player, "girl2.png", 4, 4);
+    ImageComponent eletricGuitarImage(player, "girl3.png", 4, 4);
+    ImageComponent accordionImage(player, "girl4.png", 4, 4);
 
     player.addSprite(globals::banjo, &banjoImage);
     player.addSprite(globals::eletric_guitar, &eletricGuitarImage);
@@ -93,7 +93,7 @@ int main(int, char**)
 
     GameObject ghost("ghost", 800, 200);
     ghost.xF = 0; ghost.yF = 0;
-    AnimationComponent ghostI(ghost, "assets/sprites/ghost.png", 4, 4, 500, 0,3 ,-1);
+    AnimationComponent ghostI(ghost, "ghost.png", 4, 4, 500, 0,3 ,-1);
     FollowPlayer moveGhost(ghost);
 
     AnimationControllerComponent ghostController(ghost);
