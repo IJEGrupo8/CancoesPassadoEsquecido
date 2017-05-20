@@ -19,6 +19,7 @@ bool AudioComponent::shutdown()
 {
 	Mix_FreeChunk(sound);
 	INFO("AudioComponent shutdown");
+	return true;
 }
 void AudioComponent::play()
 {

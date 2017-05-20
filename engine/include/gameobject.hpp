@@ -24,7 +24,7 @@ public:
 
     GameObject() : GameObject("",0,0, State::invalid) {}
     GameObject(std::string _name,int _x,int _y, State _state=State::enabled)
-        : w(0), h(0), rotation(0), m_name(_name), physics(*this,_x,_y),
+        : w(0), h(0), rotation(0), physics(*this,_x,_y), m_name(_name),
           m_state(_state) {}
 
     ~GameObject() {}
@@ -43,12 +43,12 @@ public:
 
     void setState(State state) { m_state = state; }
     inline void set_size(int _w, int _h) { w = _w; h = _h; }
-    
-    PhysicsComponent physics;
+
 
     int    w, h;
     int    xF,yF;
     double rotation;
+    PhysicsComponent physics;
 
 protected:
     std::string m_name;

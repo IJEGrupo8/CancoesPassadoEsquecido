@@ -21,6 +21,8 @@ bool AnimationComponent::setup(){
 	m_current_frame = 0;
 	clock.startTimer();
 	m_loop = loop;
+
+	return true;
 }
 
 void AnimationComponent::draw()

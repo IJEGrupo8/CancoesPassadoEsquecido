@@ -5,13 +5,8 @@
 
 
 bool FollowPlayer::init(){
-    //timer.startTimer();
     m_game_object->physics.velocity.setY(3);
-    
-
-    //player = 
-
-
+    return true;
 }
 bool FollowPlayer::update(){
 

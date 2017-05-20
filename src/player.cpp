@@ -68,6 +68,7 @@ bool Player::moveDown(){
 
     xF = xFrame;
     yF = yFrame;
+    return true;
 }
 
 bool Player::moveUp(){
@@ -83,6 +84,7 @@ bool Player::moveUp(){
 
     xF = xFrame;
     yF = yFrame;
+    return true;
 }
 
 bool Player::moveLeft(){
@@ -98,6 +100,7 @@ bool Player::moveLeft(){
 
     xF = xFrame;
     yF = yFrame;
+    return true;
 }
 
 bool Player::moveRight(){
@@ -113,6 +116,7 @@ bool Player::moveRight(){
 
     xF = xFrame;
     yF = yFrame;
+    return true;
 }
 
 bool Player::changeInstrument(std::string instrument_name){

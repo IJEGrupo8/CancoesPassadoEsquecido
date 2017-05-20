@@ -9,6 +9,7 @@ using namespace engine;
 
 bool GameScene::init(){
     Scene::init();
+    return true;
 }
 
 bool GameScene::update()

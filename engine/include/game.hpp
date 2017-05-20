@@ -40,10 +40,10 @@ public:
 
 private:
     Game()
-        : m_name(DEFAULT_GAME_NAME), m_window_size(DEFAULT_WINDOW_SIZE),
+        : m_scene(NULL), m_name(DEFAULT_GAME_NAME), m_window_size(DEFAULT_WINDOW_SIZE),
           m_state(State::created), m_window(NULL), m_canvas(NULL),
           m_background_color({0xff, 0xff, 0xff, 0xff}),
-          m_scene(NULL), m_last_scene(NULL) {}
+          m_last_scene(NULL) {}
 
     std::string         m_name;
     std::pair<int, int> m_window_size;

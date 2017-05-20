@@ -10,7 +10,7 @@ using namespace engine;
 
 bool MenuScene::update()
 {
-    auto playButton = m_objects["playbutton"];
+    //auto playButton = m_objects["playbutton"];
 
     //const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
     if(Input::keyPressed(Input::X))

@@ -5,9 +5,10 @@
 #include "timer.hpp"
 
 bool MoveSSDirectionals::init(){
-    //timer.startTimer();
     m_game_object->physics.velocity.setY(3);
     timer.startTimer();
+
+    return true;
 }
 bool MoveSSDirectionals::update(){
 	if(timer.getTime() < 1000){

@@ -30,14 +30,13 @@ public:
     bool detectColision(GameObject* obj);
     
     GameObject * game_object;
-    std::vector<collision> collisions;
     SDL_Rect collisionBox;
     bool block;
-
-    Vector2D collisionObj;
-    Vector2D position;    
+    Vector2D position;
     Vector2D velocity;
     Vector2D aceleration;
+    Vector2D collisionObj;
+    std::vector<collision> collisions;   
 };
 
 }
