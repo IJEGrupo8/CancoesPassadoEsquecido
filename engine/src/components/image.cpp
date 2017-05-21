@@ -35,6 +35,9 @@ bool ImageComponent::init()
     m_game_object->set_size(image->w/i, image->h/j);
 
     SDL_FreeSurface(image);
+
+    INFO("Finishing ImageComponent");
+
     return true;
 }
 

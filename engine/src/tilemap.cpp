@@ -13,14 +13,10 @@ using namespace engine;
 }*/
 
 bool TileMap::init(){
-	//Aqui ja nao ta mais enabled
-	TileSet tileset(m_width, m_height, *this, m_map_path, 1, 1);
+	
+	TileSet tileset(m_width, m_height, *this, m_image_path, 1, 1);
 	setTileSet(&tileset);
-	add_component(tileset);
-
-    if(m_tileset->state() == Component::State::enabled)
-    	INFO("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-	INFO("Init Tilemap");
+	add_component(tileset);	
 
 	std::fstream f(m_map_path, f.in);
 
@@ -49,13 +45,17 @@ bool TileMap::init(){
 			int index;
 			while(ss >> index){
 				tile_matrix.emplace_back(--index);
-
+				printf("index = %d ", index);
 				ss.ignore(2, ',');
 			}
+
+			printf("\n");
 		}
 	}
 
 	GameObject::init();
+
+	printf("map_width = %d, map_height = %d, map_depth = %d\n", map_width, map_height, map_depth);
 
 	return true;
 }
@@ -79,9 +79,7 @@ void TileMap::renderLayer(int layer, int camera_x, int camera_y){
 }
 
 bool TileMap::draw(){
-	INFO("Draw Tilemap  ");
 	for(int layer = 0; layer < map_depth; layer++){
-		INFO("Draw LAYER " << layer);
 		renderLayer(layer, 0, 0);
 	}
 

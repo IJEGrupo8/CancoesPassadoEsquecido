@@ -23,8 +23,8 @@ public:
     bool init();
 
 private:
-    int rows;
-    int columns;
+    int m_rows;
+    int m_columns;
     int m_width;
     int m_height;
 };

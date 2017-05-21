@@ -92,7 +92,7 @@ int main(int, char**)
     gameplay.add_game_object(eletric_guitar);
     gameplay.add_game_object(banjo);
     gameplay.add_game_object(player);
-
+    
     TileMap tilemap("assets/sprites/tileset.png", "assets/tileMap.txt", 64, 64, "mapa", 0, 0);
     gameplay.add_game_object(tilemap);
 
