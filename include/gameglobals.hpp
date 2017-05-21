@@ -6,7 +6,8 @@
 
 namespace globals {
 
-    const std::string game_name = "pokefight";
+    const std::string game_name = "cancoes";
+    const std::string player = "Player1";
     const std::pair<int, int> window_size(1024, 720);
     const std::string banjo = "banjo";
     const std::string eletric_guitar = "eletric_guitar";

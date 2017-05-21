@@ -9,6 +9,7 @@
 #include "components/moveSS.hpp"
 #include "components/follow.hpp"
 #include "components/animationcontroller.hpp"
+#include "components/changeroom.hpp"
 #include "player.hpp"
 #include "gamescene.hpp"
 #include "menuscene.hpp"
@@ -25,7 +26,10 @@ int main(int, char**)
     Game::instance.set_properties(globals::game_name, globals::window_size);
 
     // Setup scenes
-    GameScene gameplay("Gameplay");
+    GameScene room1("stage_1_room_1");
+    GameScene room2("stage_2_room_2");
+    room1.right = &room2;
+    room2.left = &room1;
     /*MenuScene menu("Menu");
     
     Game::instance.add_scene(menu);
@@ -35,9 +39,8 @@ int main(int, char**)
     playbutton.add_component(playImage);
     menu.add_game_object(playbutton);
 */
-
     /* Gamescene*/
-    Game::instance.add_scene(gameplay);
+    Game::instance.add_scene(room1);
 
     Player player("Player1",100,100);
     player.xF = 0; player.yF = 0;
@@ -90,27 +93,34 @@ int main(int, char**)
     player.add_component(eletricGuitarImage);
     player.add_component(accordionImage);
     player.add_component(move);
-
+    //ghost
     GameObject ghost("ghost", 800, 200);
     ghost.xF = 0; ghost.yF = 0;
     AnimationComponent ghostI(ghost, "ghost.png", 4, 4, 500, 0,3 ,-1);
     FollowPlayer moveGhost(ghost);
-
     AnimationControllerComponent ghostController(ghost);
     ghostController.addAnimation("moveDown", ghostI);
 
     ghost.add_component(ghostController);
-    //ghost.add_component(ghostI);
     ghost.add_component(moveGhost);
+    //change room handler
+    GameObject goRight("goRight", 200,200);
+    goRight.xF = 0; goRight.yF = 0;
 
-    gameplay.add_game_object(spellWBanjo);
-    gameplay.add_game_object(spellEBanjo);
-    gameplay.add_game_object(spellQBanjo);
-    gameplay.add_game_object(accordion);
-    gameplay.add_game_object(eletric_guitar);
-    gameplay.add_game_object(banjo);
-    gameplay.add_game_object(player);
-    gameplay.add_game_object(ghost);
+    ChangeRoom goRightComponent(goRight,ChangeRoom::Direction::right);
+    ImageComponent wayout(goRight, "playbutton.png", 1, 1);
+    goRight.add_component(goRightComponent); 
+    goRight.add_component(wayout); 
+    //add to scene
+    room1.add_game_object(spellWBanjo);
+    room1.add_game_object(spellEBanjo);
+    room1.add_game_object(spellQBanjo);
+    room1.add_game_object(accordion);
+    room1.add_game_object(eletric_guitar);
+    room1.add_game_object(banjo);
+    room1.add_game_object(player);
+    room1.add_game_object(ghost);
+    room1.add_game_object(goRight);
 
     // Game loop
     Game::instance.run();

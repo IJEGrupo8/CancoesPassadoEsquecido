@@ -1,10 +1,8 @@
 #ifndef __COMPONENTS_FOLLOW_PLAYER__
 #define __COMPONENTS_FOLLOW_PLAYER__
 
-#include "sdl2include.h"
+
 #include "components/code.hpp"
-#include "gameobject.hpp"
-#include "timer.hpp"
 #include "gameobject.hpp"
 
 using namespace engine;

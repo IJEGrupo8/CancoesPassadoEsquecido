@@ -27,25 +27,21 @@ bool PhysicsComponent::detectColision( GameObject* obj)
     //If any of the sides from A are outside of B
     if( bottomA <= topB )
     {
-        INFO("COLISAO  DOWN\n");
         collisionObj = null;
         return false;
     }
     if( topA >= bottomB )
     {
-        INFO("COLISAO  UP\n");
         collisionObj = null;
         return false;
     }
     if( rightA <= leftB )
     {
-        INFO("COLISAO  RIGHT\n");
         collisionObj = null;
         return false;
     }
     if( leftA >= rightB )
-    {
-        INFO("COLISAO  LEFT\n");
+    {   
         collisionObj = null;
         return false;
     }

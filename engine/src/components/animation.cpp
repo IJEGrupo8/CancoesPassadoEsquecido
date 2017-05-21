@@ -27,7 +27,6 @@ bool AnimationComponent::setup(){
 
 void AnimationComponent::draw()
 {
-	INFO("LOOP" << m_loop);
 	if(m_loop == -1 || m_loop > 0){
 		if(clock.getTime() < duration){
 			drawFrame();
@@ -50,7 +49,7 @@ void AnimationComponent::drawFrame(){
 	m_current_frame = ((clock.getTime()/animationFrameTime)+start_frame);
 	//m_current_frame = m_current_frame %15;
 	
-	INFO("xF = " << m_game_object->xF << " - yF = " << m_game_object->yF <<"  -mF = "  << m_current_frame);
+	//INFO("xF = " << m_game_object->xF << " - yF = " << m_game_object->yF <<"  -mF = "  << m_current_frame);
 
     int col = (m_current_frame%n_lines)*m_game_object->w;
     int lin = (m_current_frame/n_cols)*m_game_object->h;
