@@ -10,21 +10,27 @@ bool TileSet::init(){
 	INFO("Init Tileset");
 
 	ImageComponent::init();
-	rows = m_game_object->h / m_height;
-	columns = m_game_object->w / m_width;
 
-	INFO("rows = " << rows << " " << columns);
+	m_rows = m_game_object->h / m_height;
+	m_columns = m_game_object->w / m_width;
+
+	printf("rows = %d, columns = %d\n", m_rows, m_columns);
 	
 	return true;
 }
+
 void TileSet::render(int index, int x, int y){
-	if(index >= rows * columns){
+	INFO("INIT RENDER");
+	
+	printf("index = %d, rows = %d, columns = %d\n", index, m_rows, m_columns);
+	if(index >= m_rows * m_columns){
 		exit(1);
 	}
+
 	INFO("x  " << x << "y  "<< y);
 
-	int xx = (index % columns) * m_width;
-	int yy = (index / columns) * m_height;
+	int xx = (index % m_columns) * m_width;
+	int yy = (index / m_columns) * m_height;
 
 	INFO("xx  " << xx << "yy  "<< yy);
 	INFO("w  " << m_width << "h  "<< m_height);

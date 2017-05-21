@@ -144,6 +144,7 @@ int main(int, char**)
     room2.add_game_object(goLeftRoom2);
     room2.add_game_object(tree);
 
+
     TileMap tilemap("assets/sprites/tileset.png", "assets/tileMap.txt", 64, 64, "mapa", 0, 0);
     gameplay.add_game_object(tilemap);
 
