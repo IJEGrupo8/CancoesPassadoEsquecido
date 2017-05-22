@@ -15,7 +15,7 @@ using namespace engine;
 bool TileMap::init(){
 	
 	TileSet tileset(m_width, m_height, *this, m_image_path, 1, 1);
-	setTileSet(&tileset);
+	setTileSet(tileset);
 	add_component(tileset);	
 
 	std::fstream f(m_map_path, f.in);
@@ -60,12 +60,13 @@ bool TileMap::init(){
 	return true;
 }
 
-void TileMap::setTileSet(TileSet *tSet){
-	m_tileset = tSet;
+void TileMap::setTileSet(TileSet & tSet){
+	m_tileset = &tSet;
 }
 
 int &TileMap::at(int x, int y, int z){
 	int index = (y * map_width + x) + (z * map_width * map_height);
+	printf("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  %d\n",index);
 	return tile_matrix[index];
 }
 
@@ -79,8 +80,17 @@ void TileMap::renderLayer(int layer, int camera_x, int camera_y){
 }
 
 bool TileMap::draw(){
+	m_tileset->m_height = m_height;
+	m_tileset->m_width = m_width;
+	m_tileset->m_rows = h/m_height;
+	m_tileset->m_columns = w/m_width;
+	printf("%d   %d",h,w);
+/*
+	m_rows = m_game_object->h / m_height;
+	m_columns = m_game_object->w / m_width;
+*/
 	for(int layer = 0; layer < map_depth; layer++){
-		renderLayer(layer, 0, 0);
+		renderLayer(layer, 0, 0	);
 	}
 
 	return true;
