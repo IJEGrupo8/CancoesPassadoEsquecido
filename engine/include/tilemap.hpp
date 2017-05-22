@@ -18,7 +18,7 @@ public:
     virtual ~TileMap(){}
 
     bool init();
-    void setTileSet(TileSet *tileset);
+    void setTileSet(TileSet & tileset);
     int& at(int x, int y, int z);
     void renderLayer(int layer, int camera_x = 0, int camera_y = 0);
     bool draw();

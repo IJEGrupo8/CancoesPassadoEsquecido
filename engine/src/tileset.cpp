@@ -11,9 +11,6 @@ bool TileSet::init(){
 
 	ImageComponent::init();
 
-	m_rows = m_game_object->h / m_height;
-	m_columns = m_game_object->w / m_width;
-
 	printf("rows = %d, columns = %d\n", m_rows, m_columns);
 	
 	return true;
@@ -24,13 +21,14 @@ void TileSet::render(int index, int x, int y){
 	
 	printf("index = %d, rows = %d, columns = %d\n", index, m_rows, m_columns);
 	if(index >= m_rows * m_columns){
+		//INFO("TA SAINDO SIM");
 		exit(1);
 	}
 
 	INFO("x  " << x << "y  "<< y);
 
 	int xx = (index % m_columns) * m_width;
-	int yy = (index / m_columns) * m_height;
+	int yy = (index / m_rows) * m_height;
 
 	INFO("xx  " << xx << "yy  "<< yy);
 	INFO("w  " << m_width << "h  "<< m_height);
