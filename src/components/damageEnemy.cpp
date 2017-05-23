@@ -24,6 +24,7 @@ bool DamageEnemy::update(){
     if(m_game_object->physics.detectColision(player))
     {
         player->life--;
+        player->physics.velocity = (m_game_object->physics.velocity * 5);
     }
     return true;
 }
