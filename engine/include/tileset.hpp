@@ -17,7 +17,7 @@ public:
 
     virtual ~TileSet(){}
 
-    void render(int index, int x, int y);
+    void render( int index, int x, int y);
     int getWidth();
     int getHeight();
     bool init();

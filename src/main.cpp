@@ -17,11 +17,6 @@
 #include "tilemap.hpp"
 #include "tileset.hpp"
 #include "log.h"
-<<<<<<< HEAD
-=======
-
->>>>>>> 69a75d8fcaa6c56af481ae18fbc62cbec46d3e3d
-
 #include "gameglobals.hpp"
 
 using namespace std;
@@ -150,8 +145,13 @@ int main(int, char**)
     room2.add_game_object(tree);
 
 
-    TileMap tilemap("assets/sprites/tileset.png", "assets/tileMap.txt", 64, 64, "mapa", 0, 0);
-    gameplay.add_game_object(tilemap);
+    TileMap tilemap("tileset.png", "assets/tileMap.txt", 32, 32, "mapa", 0, 0);
+    TileSet tileset(32, 32, tilemap, "assets/tileMap.txt", 1, 1);
+    tilemap.setTileSet(tileset);
+    tilemap.add_component(tileset);
+    room1.add_game_object(tilemap);
+
+    
 
     // Game loop
     Game::instance.run();

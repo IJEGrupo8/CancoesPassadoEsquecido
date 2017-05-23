@@ -22,10 +22,11 @@ public:
     virtual bool init();
     virtual bool shutdown();
     virtual void draw();
+    std::string m_path;
+        SDL_Texture * m_texture;
+
 
 protected:
-    std::string m_path;
-    SDL_Texture * m_texture;
     int i,j;
 
 };
