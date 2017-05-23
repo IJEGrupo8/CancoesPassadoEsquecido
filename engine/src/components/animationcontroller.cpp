@@ -6,7 +6,6 @@ using namespace engine;
 bool AnimationControllerComponent::init()
 {
 	for(auto animation : animations){
-		INFO("INIT INIT");
 		animation.second->init();
 	}
 	setup();

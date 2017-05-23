@@ -145,13 +145,11 @@ int main(int, char**)
     room2.add_game_object(tree);
 
 
-    TileMap tilemap("tileset.png", "assets/tileMap.txt", 32, 32, "mapa", 0, 0);
-    TileSet tileset(32, 32, tilemap, "assets/tileMap.txt", 1, 1);
+    TileMap tilemap("assets/tileMap.txt", "mapa", 0, 0);
+    TileSet tileset(32, 32, tilemap, "tileset.png", 1, 1);
     tilemap.setTileSet(tileset);
     tilemap.add_component(tileset);
-    room1.add_game_object(tilemap);
-
-    
+    room1.add_game_object(tilemap);    
 
     // Game loop
     Game::instance.run();

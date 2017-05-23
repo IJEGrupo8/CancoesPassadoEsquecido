@@ -12,8 +12,8 @@ namespace engine {
 class TileMap : public GameObject {
 public:
 
-    TileMap(std::string image_path, std::string map_path, int width, int height, std::string game_object_name,int _x,int _y):
-    GameObject(game_object_name,_x,_y), m_image_path(image_path), m_map_path(map_path),m_width(width),m_height(height){}
+    TileMap(std::string map_path, std::string game_object_name,int _x,int _y):
+    GameObject(game_object_name,_x,_y), m_map_path(map_path){}
         
     virtual ~TileMap(){}
 
@@ -26,13 +26,11 @@ public:
 
 private:
     std::vector<int> tile_matrix;
-    int m_width, m_height;
     int map_depth;
     int map_height;
     int map_width;
     TileSet *m_tileset;
     std::string m_map_path;
-    std::string m_image_path;
 };
 
 }

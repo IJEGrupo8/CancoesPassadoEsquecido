@@ -40,7 +40,7 @@ Image * AssetManager::load_image(std::string path, bool use_base)
         }
 
         SDL_Texture * texture = SDL_CreateTextureFromSurface(Game::instance.canvas(), surface);
-        INFO("INIT TEXTURE ="<<texture);
+
         if (texture == NULL)
         {
             WARN("Could not create texture from image!");

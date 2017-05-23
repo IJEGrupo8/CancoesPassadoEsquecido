@@ -48,7 +48,7 @@ void ImageComponent::draw()
     //INFO(""<< m_texture);
 
     //INFO("draw "<< (m_game_object->xF)%i << "  "<< m_game_object->yF);
-    //SDL_RenderCopy(Game::instance.canvas(), m_texture, &frameQuad, &renderQuad);
+
     SDL_RenderCopyEx(Game::instance.canvas(), m_texture, &frameQuad, &renderQuad, 0, 0, SDL_FLIP_NONE);
     //INFO("ERROR " << SDL_GetError());
 

@@ -9,13 +9,7 @@
 
 using namespace engine;
 
-/*TileMap::~TileMap(){
-	delete(m_tileset);
-}*/
-
 bool TileMap::init(){
-	
-	//tileset.m_path = "tileset.png";
 
 	std::fstream f(m_map_path, f.in);
 
@@ -54,8 +48,6 @@ bool TileMap::init(){
 
 	GameObject::init();
 
-	printf("map_width = %d, map_height = %d, map_depth = %d\n", map_width, map_height, map_depth);
-
 	return true;
 }
 
@@ -79,13 +71,6 @@ void TileMap::renderLayer(int layer, int camera_x, int camera_y){
 }
 
 bool TileMap::draw(){
-
-
-	m_tileset->m_height = m_height;
-	m_tileset->m_width = m_width;
-	m_tileset->m_rows = h/m_height;
-	m_tileset->m_columns = w/m_width;
-	
 	for(int layer = 0; layer < map_depth; layer++){
 		renderLayer(layer, 0, 0);
 	}
