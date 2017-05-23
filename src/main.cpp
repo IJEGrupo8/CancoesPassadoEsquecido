@@ -17,6 +17,10 @@
 #include "tilemap.hpp"
 #include "tileset.hpp"
 #include "log.h"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 69a75d8fcaa6c56af481ae18fbc62cbec46d3e3d
 
 #include "gameglobals.hpp"
 
@@ -94,6 +98,7 @@ int main(int, char**)
     player.add_component(banjoImage);
     player.add_component(eletricGuitarImage);
     player.add_component(accordionImage);
+
     player.add_component(move);
     //ghost
     GameObject ghost("ghost", 800, 200);
