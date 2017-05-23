@@ -20,7 +20,7 @@ public:
         : GameObject(_name,_x,_y) {}
 
     ~Player() {}
-
+    int life = 100;
     virtual bool init();
     virtual bool shutdown();
     virtual bool update();
@@ -41,6 +41,7 @@ private:
     std::unordered_map<std::string, ImageComponent*> sprites;
     Instrument active_instrument;
     ImageComponent* active_sprite;
+    
 };
 
 #endif

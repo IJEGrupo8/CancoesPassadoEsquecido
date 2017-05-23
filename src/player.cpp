@@ -51,7 +51,7 @@ bool Player::update()
     physics.collisionBox.y = physics.position.getY() + collisionAdjust;
     physics.collisionBox.w = w - collisionAdjust;
     physics.collisionBox.h = h - collisionAdjust;
-
+    INFO("Life" << life);
     //active_sprite.draw();
     return true;
 }

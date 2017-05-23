@@ -7,6 +7,7 @@
 #include "components/animation.hpp"
 #include "components/moveDirectionals.hpp"
 #include "components/moveSS.hpp"
+#include "components/damageEnemy.hpp"
 #include "components/follow.hpp"
 #include "components/animationcontroller.hpp"
 #include "components/changeroom.hpp"
@@ -14,7 +15,6 @@
 #include "gamescene.hpp"
 #include "menuscene.hpp"
 #include "spell.hpp"
-
 #include "gameglobals.hpp"
 
 using namespace std;
@@ -99,7 +99,8 @@ int main(int, char**)
     FollowPlayer moveGhost(ghost);
     AnimationControllerComponent ghostController(ghost);
     ghostController.addAnimation("moveDown", ghostI);
-
+    DamageEnemy damage(ghost);
+    ghost.add_component(damage);
     ghost.add_component(ghostController);
     ghost.add_component(moveGhost);
     //change room handler
