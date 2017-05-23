@@ -2,6 +2,8 @@
 #include "components/changeroom.hpp"
 #include "vector.hpp"
 #include "game.hpp"
+#include "gamescene.hpp"
+#include "gameglobals.hpp"
 
 
 bool ChangeRoom::init(){
@@ -11,12 +13,39 @@ bool ChangeRoom::init(){
     return true;
 }
 bool ChangeRoom::update(){
-
+    m_game_object->physics.collisionBox.x = m_game_object->physics.position.getX();
+    m_game_object->physics.collisionBox.y = m_game_object->physics.position.getY();
+    m_game_object->physics.collisionBox.w = m_game_object->w;
+    m_game_object->physics.collisionBox.h = m_game_object->h;
 	
     player = Game::instance.m_scene->get_game_object("Player1");
     //INFO(" X Y" << player )
-    if(m_game_object->physics.detectColision(player)){
-   		INFO("player is colliding");
+    if(m_game_object->physics.detectColision(player))
+    {
+        Game::instance.change_scene(room_name);
+
+        if(dir == Direction::Right)
+        {
+            INFO("DIRECTION  RIGHT");
+            player->physics.position.setX(globals::window_size.first 
+                - player->physics.position.getX() + 10);
+        }
+        else if(dir == Direction::Left)
+        {
+            player->physics.position.setX(globals::window_size.first 
+                - player->physics.position.getX() - 50);
+        }
+        else if(dir == Direction::Botton)
+        {
+            player->physics.position.setY(globals::window_size.first 
+                - player->physics.position.getY() - 10);
+        }
+        else if(dir == Direction::Top)
+        {
+            player->physics.position.setY(globals::window_size.first 
+                - player->physics.position.getY() + 10);
+        }
+        //player->physics.position.setY();
     }
     /*Vector2D pos = player->physics.position;
     m_game_object->physics.velocity = pos - m_game_object->physics.position;

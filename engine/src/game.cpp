@@ -157,12 +157,12 @@ void Game::run()
                 if (evt.type == SDL_QUIT) m_state = State::exit_loop;
             }
             
-            handleEvents();
-            
             SDL_RenderClear(m_canvas);
 
             m_scene->draw();
 
+            handleEvents();
+            
             SDL_RenderPresent(m_canvas);
             frameTime = SDL_GetTicks() - frameStart;
             
@@ -236,6 +236,7 @@ bool Game::handle_scene_changes()
 {
     if (m_state == State::main_loop_change_scene)
     {
+        INFO("Tchau ");
         if (m_scene == NULL)
         {
             WARN("No scenes to run!");
@@ -246,7 +247,6 @@ bool Game::handle_scene_changes()
             INFO("Scenes changing from " <<
                  (m_last_scene ? m_last_scene->name() : "NULL") << " to " <<
                  m_scene->name() << "...");
-
             if(m_last_scene) {
                 m_last_scene->shutdown();
                 m_last_scene->asset_manager().shutdown();

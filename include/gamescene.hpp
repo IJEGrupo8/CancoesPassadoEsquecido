@@ -19,11 +19,6 @@ public:
     bool draw();
     bool update();
     bool init();
-
-    GameScene * left;
-    GameScene * right;
-    GameScene * top;
-    GameScene * botton;
 private:
 /*
     virtual bool init();

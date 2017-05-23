@@ -8,14 +8,14 @@ using namespace engine;
 
 class ChangeRoom : public CodeComponent {
 public:
-	enum class Direction {
-        right,
-        left,
-        top,
-        botton
+    enum class Direction {
+        Right,
+        Left,
+        Top,
+        Botton
     };
-    ChangeRoom(GameObject & game_object, Direction dir)
-        : CodeComponent(game_object), direction(dir) {}
+    ChangeRoom(GameObject & game_object, std::string room, Direction direction)
+        : CodeComponent(game_object), room_name(room), dir(direction){}
         
     ChangeRoom() : CodeComponent() {}
 
@@ -24,7 +24,8 @@ public:
     virtual bool update();
     virtual bool init();
     GameObject * player;
-    Direction direction;
+    std::string room_name;
+    Direction dir;
     //Timer timer;
 
 };

@@ -27,9 +27,7 @@ int main(int, char**)
 
     // Setup scenes
     GameScene room1("stage_1_room_1");
-    GameScene room2("stage_2_room_2");
-    room1.right = &room2;
-    room2.left = &room1;
+    GameScene room2("stage_1_room_2");
     /*MenuScene menu("Menu");
     
     Game::instance.add_scene(menu);
@@ -41,6 +39,7 @@ int main(int, char**)
 */
     /* Gamescene*/
     Game::instance.add_scene(room1);
+    Game::instance.add_scene(room2);
 
     Player player("Player1",100,100);
     player.xF = 0; player.yF = 0;
@@ -104,13 +103,30 @@ int main(int, char**)
     ghost.add_component(ghostController);
     ghost.add_component(moveGhost);
     //change room handler
-    GameObject goRight("goRight", 200,200);
-    goRight.xF = 0; goRight.yF = 0;
+    GameObject goRightRoom1("goRightRoom1", 925,320);
+    goRightRoom1.xF = 0; goRightRoom1.yF = 0;
 
-    ChangeRoom goRightComponent(goRight,ChangeRoom::Direction::right);
-    ImageComponent wayout(goRight, "playbutton.png", 1, 1);
-    goRight.add_component(goRightComponent); 
-    goRight.add_component(wayout); 
+    ChangeRoom goRightRoom1Component(goRightRoom1,room2.name(),ChangeRoom::Direction::Right);
+    ImageComponent portalARoom1(goRightRoom1, "portal.png", 4, 4);
+
+    goRightRoom1.add_component(goRightRoom1Component); 
+    goRightRoom1.add_component(portalARoom1); 
+    //oi
+    GameObject goLeftRoom2("goLeftRoom2", 0,320);
+    goLeftRoom2.xF = 0; goLeftRoom2.yF = 0;
+
+    ChangeRoom goLeftRoom2Component(goLeftRoom2,room1.name(),ChangeRoom::Direction::Left);
+    ImageComponent portalARoom2(goLeftRoom2, "portal.png", 4, 4);
+
+    goLeftRoom2.add_component(goLeftRoom2Component); 
+    goLeftRoom2.add_component(portalARoom2); 
+    // objetos
+    GameObject tree("tree1",500,500);
+    tree.xF = 0; tree.yF = 0;
+
+    ImageComponent treeImage(tree,"tree.png",3,1);
+    tree.add_component(treeImage);
+
     //add to scene
     room1.add_game_object(spellWBanjo);
     room1.add_game_object(spellEBanjo);
@@ -120,7 +136,10 @@ int main(int, char**)
     room1.add_game_object(banjo);
     room1.add_game_object(player);
     room1.add_game_object(ghost);
-    room1.add_game_object(goRight);
+    room1.add_game_object(goRightRoom1);
+    room2.add_game_object(player);
+    room2.add_game_object(goLeftRoom2);
+    room2.add_game_object(tree);
 
     // Game loop
     Game::instance.run();
