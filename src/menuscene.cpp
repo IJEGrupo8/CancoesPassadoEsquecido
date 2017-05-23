@@ -15,7 +15,7 @@ bool MenuScene::update()
     //const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
     if(Input::keyPressed(Input::X))
     {
-       engine::Game::instance.change_scene("Gameplay");
+       engine::Game::instance.change_scene("stage_1_room_1");
     }
     
     return true;

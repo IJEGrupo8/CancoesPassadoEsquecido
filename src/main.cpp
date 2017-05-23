@@ -26,18 +26,12 @@ int main(int, char**)
     Game::instance.set_properties(globals::game_name, globals::window_size);
 
     // Setup scenes
+    MenuScene menu("Menu");
     GameScene room1("stage_1_room_1");
     GameScene room2("stage_1_room_2");
-    /*MenuScene menu("Menu");
     
-    Game::instance.add_scene(menu);
-    
-    GameObject playbutton("playbutton",200,200);
-    ImageComponent playImage(playbutton,"assets/sprites/playbutton.png",1,1);
-    playbutton.add_component(playImage);
-    menu.add_game_object(playbutton);
-*/
     /* Gamescene*/
+    Game::instance.add_scene(menu);
     Game::instance.add_scene(room1);
     Game::instance.add_scene(room2);
 
@@ -142,6 +136,11 @@ int main(int, char**)
     room2.add_game_object(goLeftRoom2);
     room2.add_game_object(tree);
 
+    GameObject playbutton("playbutton",200,200);
+    ImageComponent playImage(playbutton,"playbutton.png",1,1);
+    playbutton.add_component(playImage);
+    menu.add_game_object(playbutton);
+    
     // Game loop
     Game::instance.run();
     return 0;

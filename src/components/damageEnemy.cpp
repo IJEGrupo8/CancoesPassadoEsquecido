@@ -25,6 +25,12 @@ bool DamageEnemy::update(){
     {
         player->life--;
         player->physics.velocity = (m_game_object->physics.velocity * 5);
+        
+    }
+
+    if(player->life == 0)
+    {
+        engine::Game::instance.change_scene("Menu");
     }
     return true;
 }

@@ -122,7 +122,9 @@ bool Game::destroy_window()
 }
 void Game::handleEvents()
 {
+    INFO("teste antes update");
     if(m_scene != NULL) m_scene->update();
+    INFO("teste depois update");
 }
 void Game::run()
 {
@@ -147,10 +149,10 @@ void Game::run()
         else m_state = State::main_loop_change_scene;
 
         while(m_state != State::exit_loop)
-        {
+        {   
             if(handle_scene_changes() == false) break;
             frameStart = SDL_GetTicks();
-
+            
             SDL_Event evt;
             while(SDL_PollEvent(&evt) != 0)
             {
@@ -158,11 +160,8 @@ void Game::run()
             }
             
             SDL_RenderClear(m_canvas);
-
             m_scene->draw();
-
             handleEvents();
-            
             SDL_RenderPresent(m_canvas);
             frameTime = SDL_GetTicks() - frameStart;
             
@@ -225,7 +224,6 @@ bool Game::change_scene(const std::string & id)
         WARN("Scene " << id << " not found!");
         return false;
     }
-
     m_last_scene = m_scene;
     m_scene = m_scenes[id];
     m_state = State::main_loop_change_scene;

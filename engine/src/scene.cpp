@@ -93,5 +93,6 @@ bool Scene::update()
         if (obj->state() == GameObject::State::enabled &&
             obj->update() == false) return false;
     }
+    
     return true;
 }
