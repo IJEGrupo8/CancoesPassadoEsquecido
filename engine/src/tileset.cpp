@@ -19,7 +19,7 @@ bool TileSet::init(){
 
 void TileSet::render(int index, int x, int y){
 	INFO("INIT RENDER");
-
+	index++;
 	printf("index = %d, rows = %d, columns = %d\n", index, m_rows, m_columns);
 	if(index >= m_rows * m_columns){
 		//INFO("TA SAINDO SIM");
