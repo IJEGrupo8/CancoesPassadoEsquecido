@@ -7,9 +7,9 @@ using namespace engine;
 
 Game Game::instance;
 
-void Game::set_properties(std::string name, std::pair<int, int> window_size)
+void Game::set_properties(std::string new_name, std::pair<int, int> window_size)
 {
-    m_name = name;
+    m_name = new_name;
     m_window_size = window_size;
 }
 

@@ -41,7 +41,7 @@ public:
     inline std::string name()  const { return m_name; }
     inline State       state() const { return m_state; }
 
-    void setState(State state) { m_state = state; }
+    void setState(State new_state) { m_state = new_state; }
     inline void set_size(int _w, int _h) { w = _w; h = _h; }
 
 

@@ -24,7 +24,7 @@ public:
     virtual bool setup(){ return true;}
     virtual bool update(){ return true;}
     inline State state() { return m_state; }
-    void       setState(State state)  { m_state = state; }
+    void       setState(State new_state)  { m_state = new_state; }
         GameObject * m_game_object;
 
 

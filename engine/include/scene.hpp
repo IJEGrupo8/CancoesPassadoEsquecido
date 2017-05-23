@@ -19,8 +19,8 @@ public:
     };
 
     Scene() : Scene("", State::invalid) {}
-    Scene(std::string name, State _state=State::created)
-        : m_name(name), m_state(_state) {}
+    Scene(std::string _name, State _state=State::created)
+        : m_name(_name), m_state(_state) {}
 
     virtual ~Scene() {}
 

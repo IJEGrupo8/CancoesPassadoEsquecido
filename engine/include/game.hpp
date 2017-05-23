@@ -27,7 +27,7 @@ public:
 
     static Game instance;
 
-    void set_properties(std::string name, std::pair<int, int> window_size);
+    void set_properties(std::string new_name, std::pair<int, int> window_size);
 
     void run();
     void set_background_color(int r, int g, int b, int a);
