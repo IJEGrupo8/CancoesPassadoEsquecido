@@ -49,6 +49,7 @@ private:
     std::string         m_name;
     std::pair<int, int> m_window_size;
     State               m_state;
+    std::string         m_scene_intent;
 
     SDL_Window   * m_window;
     SDL_Renderer * m_canvas;

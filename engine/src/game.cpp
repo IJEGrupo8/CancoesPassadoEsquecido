@@ -141,7 +141,7 @@ void Game::run()
         INFO("Start game loop");
         m_state = State::main_loop;
 
-        if (m_scene == NULL)
+        if (m_scene_intent.empty())
         {
             WARN("No scenes to run!");
             m_state = State::exit_loop;
@@ -210,8 +210,9 @@ bool Game::add_scene(Scene & scene)
 
     m_scenes[id] = &scene;
 
-    if (m_scene == NULL) change_scene(id);
-
+    if (m_scene_intent.empty()) {
+        change_scene(id);
+    }
     return true;
 }
 
@@ -224,8 +225,7 @@ bool Game::change_scene(const std::string & id)
         WARN("Scene " << id << " not found!");
         return false;
     }
-    m_last_scene = m_scene;
-    m_scene = m_scenes[id];
+    m_scene_intent = id;
     m_state = State::main_loop_change_scene;
     return true;
 }
@@ -234,14 +234,16 @@ bool Game::handle_scene_changes()
 {
     if (m_state == State::main_loop_change_scene)
     {
-        INFO("Tchau ");
-        if (m_scene == NULL)
+        if (m_scene_intent.empty())
         {
             WARN("No scenes to run!");
             return false;
         }
         else
         {
+            m_last_scene = m_scene;
+            m_scene = m_scenes[m_scene_intent];
+
             INFO("Scenes changing from " <<
                  (m_last_scene ? m_last_scene->name() : "NULL") << " to " <<
                  m_scene->name() << "...");
