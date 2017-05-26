@@ -37,7 +37,7 @@ bool TileMap::init(){
 
 			int index;
 			while(ss >> index){
-				tile_matrix.emplace_back(--index);
+				tile_matrix.emplace_back(index);
 				printf("%d ", index);
 				ss.ignore(2, ',');
 			}

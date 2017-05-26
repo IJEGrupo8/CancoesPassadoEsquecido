@@ -18,8 +18,6 @@ bool TileSet::init(){
 }
 
 void TileSet::render(int index, int x, int y){
-	index++;
-	
 	if(index >= m_rows * m_columns){
 		exit(1);
 	}
