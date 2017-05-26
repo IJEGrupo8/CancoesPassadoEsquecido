@@ -1,10 +1,34 @@
 #include "scene.hpp"
 #include "log.h"
 #include <string>
+#include <vector>
+#include <utility>
 #include "sdl2include.h"
+
 using namespace engine;
 
 GameObject INVALID_GAME_OBJECT;
+
+bool Scene::comparator(const std::pair<std::string, GameObject *>  &p1, 
+    const std::pair<std::string, GameObject *> &p2) 
+{
+    if(p1.second->name() == "mapa"){
+        return true;
+    }else if (p2.second->name() == "mapa"){
+        return false;
+    }
+    else{
+        return (p1.second->physics.position.getY() + p1.second->h) <
+           (p2.second->physics.position.getY() + p2.second->h);
+   }
+}
+
+std::vector<std::pair<std::string, GameObject *>> Scene::sortGameObjects(){
+    std::vector<std::pair<std::string, GameObject *>> mapAsVector;
+    copy(m_objects.begin(), m_objects.end(), back_inserter(mapAsVector));
+    sort(mapAsVector.begin(), mapAsVector.end(), comparator);
+    return mapAsVector;
+}
 
 bool Scene::add_game_object(GameObject & obj)
 {
@@ -76,7 +100,9 @@ bool Scene::shutdown()
 
 bool Scene::draw()
 {
-    for (auto id_obj: m_objects)
+    std::vector<std::pair<std::string, GameObject *>> objectsVector = sortGameObjects();
+
+    for (auto id_obj: objectsVector)
     {
         auto obj = id_obj.second;
         if (obj->state() == GameObject::State::enabled &&
