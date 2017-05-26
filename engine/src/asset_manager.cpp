@@ -1,5 +1,6 @@
 #include "asset_manager.hpp"
 #include "sdl2include.h"
+#include "sdl_log.h"
 #include "log.h"
 #include "game.hpp"
 
@@ -57,7 +58,70 @@ Image * AssetManager::load_image(std::string path, bool use_base)
         SDL_FreeSurface(surface);
     }
 
-    return m_images[path];
-    
-    
+    return m_images[path];  
+}
+
+TTF_Font * AssetManager::load_font(std::string path, int size, bool use_base)
+{
+    if(use_base)
+        path = m_base_path + "fonts/" + path;
+
+    auto path_size = std::make_pair(path, size);
+
+    if (m_fonts.find(path_size) == m_fonts.end())
+    {
+        INFO("Loading new font...");
+
+        auto m_font = TTF_OpenFont(path.c_str(), size);
+
+        if(m_font == NULL)
+        {
+            SDL_TTF_ERROR("Could not load font from path " << path);
+            return NULL;
+        }
+
+        m_fonts[path_size] = m_font;
+    }
+
+    return m_fonts[path_size];
+}
+
+Mix_Music * AssetManager::load_music(std::string path, bool use_base)
+{
+    if(use_base)
+        path = m_base_path + "sounds/" + path;
+
+    if (m_musics.find(path) == m_musics.end())
+    {
+        Mix_Music * music = Mix_LoadMUS(path.c_str());
+        if (music == NULL)
+        {
+            SDL_MIX_ERROR("Could not load music from path " << path);
+            return NULL;
+        }
+
+        m_musics[path] = music;
+    }
+
+    return m_musics[path];
+}
+
+Mix_Chunk * AssetManager::load_sound(std::string path, bool use_base)
+{
+    if(use_base)
+        path = m_base_path + "sounds/" + path;
+
+    if (m_sounds.find(path) == m_sounds.end())
+    {
+        Mix_Chunk * sound = Mix_LoadWAV(path.c_str());
+        if (sound == NULL)
+        {
+            SDL_MIX_ERROR("Could not load sound from path " << path);
+            return NULL;
+        }
+
+        m_sounds[path] = sound;
+    }
+
+    return m_sounds[path];
 }
