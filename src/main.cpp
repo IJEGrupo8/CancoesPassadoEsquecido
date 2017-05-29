@@ -143,13 +143,13 @@ int main(int, char**)
     room2.add_game_object(goLeftRoom2);
     room2.add_game_object(tree);
 
-    GameObject playbutton("playbutton",200,200);
+    GameObject playbutton("playbutton",(globals::window_size.first/2)-50,(globals::window_size.second/2)-50);
     ImageComponent playImage(playbutton,"playbutton.png",1,1);
     playbutton.xF = 0; playbutton.yF = 0;
     playbutton.add_component(playImage);
     menu.add_game_object(playbutton);
 
-    GameObject gameover("gameover",200,200);
+    GameObject gameover("gameover",(globals::window_size.first/2)-100,(globals::window_size.second/2)-100);
     ImageComponent gameoverImage(gameover,"gameover.png",1,1);
     gameover.xF = 0; gameover.yF = 0;
     gameover.add_component(gameoverImage);
