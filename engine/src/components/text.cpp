@@ -16,7 +16,7 @@ bool TextComponent::init()
         return false;
     }
 
-    m_font = TTF_OpenFont(m_font_path.c_str(), m_font_size);
+    m_font = Game::instance.asset_manager().load_font(m_font_path, m_font_size);
 
     if(m_font == NULL)
     {
@@ -78,8 +78,6 @@ bool TextComponent::shutdown()
 
     SDL_DestroyTexture(m_texture);
     m_texture = NULL;
-
-    TTF_CloseFont(m_font);
     m_font = NULL;
 
     return true;

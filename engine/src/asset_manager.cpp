@@ -16,6 +16,12 @@ bool AssetManager::shutdown()
          delete id_image.second;
      }
      m_images.clear();
+     INFO("Dealocate fonts");
+     for(auto id_font: m_fonts)
+     {
+         TTF_CloseFont(id_font.second);
+     }
+     m_fonts.clear();
  
      return true;
  }
