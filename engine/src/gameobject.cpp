@@ -22,7 +22,8 @@ bool GameObject::init()
                component->init() == false) return false;
         }
     }
-
+    physics.position.setX(xI);
+    physics.position.setY(yI);
     return true;
 }
 
