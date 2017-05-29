@@ -23,14 +23,14 @@ bool DamageEnemy::update(){
 
     if(m_game_object->physics.detectColision(player))
     {
-        player->life--;
+        player->life -= 10;
         player->physics.velocity = (m_game_object->physics.velocity * 5);
         
     }
 
-    if(player->life == 0)
+    if(player->life < 0)
     {
-        engine::Game::instance.change_scene("Menu");
+        engine::Game::instance.change_scene("Gameover");
     }
     return true;
 }

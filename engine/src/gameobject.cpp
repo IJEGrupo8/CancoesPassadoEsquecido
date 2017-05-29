@@ -88,6 +88,8 @@ bool GameObject::add_component(Component & component)
     INFO("Adding component to game object " << m_name);
     m_components[std::type_index(typeid(component))].push_back(&component);
 
+    INFO("Game object " << m_name << " added");
+
     return true;
 }
 

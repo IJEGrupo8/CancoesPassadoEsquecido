@@ -14,7 +14,11 @@
 #include "player.hpp"
 #include "gamescene.hpp"
 #include "menuscene.hpp"
+#include "gameover.hpp"
 #include "spell.hpp"
+#include "tilemap.hpp"
+#include "tileset.hpp"
+#include "log.h"
 #include "gameglobals.hpp"
 
 using namespace std;
@@ -27,6 +31,7 @@ int main(int, char**)
 
     // Setup scenes
     MenuScene menu("Menu");
+    MenuScene GameoverScene("Gameover");
     GameScene room1("stage_1_room_1");
     GameScene room2("stage_1_room_2");
     
@@ -34,6 +39,7 @@ int main(int, char**)
     Game::instance.add_scene(menu);
     Game::instance.add_scene(room1);
     Game::instance.add_scene(room2);
+    Game::instance.add_scene(GameoverScene);
 
     Player player("Player1",100,100);
     player.xF = 0; player.yF = 0;
@@ -85,6 +91,7 @@ int main(int, char**)
     player.add_component(banjoImage);
     player.add_component(eletricGuitarImage);
     player.add_component(accordionImage);
+
     player.add_component(move);
     //ghost
     GameObject ghost("ghost", 800, 200);
@@ -138,9 +145,23 @@ int main(int, char**)
 
     GameObject playbutton("playbutton",200,200);
     ImageComponent playImage(playbutton,"playbutton.png",1,1);
+    playbutton.xF = 0; playbutton.yF = 0;
     playbutton.add_component(playImage);
     menu.add_game_object(playbutton);
-    
+
+    GameObject gameover("gameover",200,200);
+    ImageComponent gameoverImage(gameover,"gameover.png",1,1);
+    gameover.xF = 0; gameover.yF = 0;
+    gameover.add_component(gameoverImage);
+    GameoverScene.add_game_object(gameover);
+
+
+    TileMap tilemap("assets/tileMap.txt", "mapa", 0, 0);
+    TileSet tileset(32, 32, tilemap, "tileset.png", 1, 1);
+    tilemap.setTileSet(tileset);
+    tilemap.add_component(tileset);
+    room1.add_game_object(tilemap);    
+
     // Game loop
     Game::instance.run();
     return 0;

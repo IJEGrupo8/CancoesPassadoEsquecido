@@ -1,19 +1,19 @@
-#ifndef __MENU_SCENE__
-#define __MENU_SCENE__
+#ifndef __GAMEOVER_SCENE__
+#define __GAMEOVER_SCENE__
 
 #include <string>
 #include "scene.hpp"
 
 using namespace engine;
 
-class MenuScene : public Scene{
+class GameOverScene : public Scene{
 public:
 
-    MenuScene() : Scene("") {}
-    MenuScene(std::string _name)
+    GameOverScene() : Scene("") {}
+    GameOverScene(std::string _name)
         : Scene(_name) {}
 
-    ~MenuScene() {}
+    ~GameOverScene() {}
     bool update();
 private:
 
