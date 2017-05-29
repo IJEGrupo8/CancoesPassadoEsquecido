@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/IJEGrupo8/CancoesPassadoEsquecido.svg?branch=master)](https://travis-ci.org/IJEGrupo8/CancoesPassadoEsquecido)
+[![Build Status](https://travis-ci.org/IJEGrupo8/CancoesPassadoEsquecido.svg?branch=devel)](https://travis-ci.org/IJEGrupo8/CancoesPassadoEsquecido)
 
 # Canções de passado esquecido
 Uma garota possui um instrumento que quando tocado provoca reações nas pessoas, encantando-as, irritando-as, dentre outros. Ela perde a memória em um conflito na vila em que ela mora, quando tentam roubar seu instrumento a fim de obterem seus poderes.
