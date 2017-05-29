@@ -3,6 +3,9 @@
 
 #include <string>
 #include <unordered_map>
+#include <vector>
+#include <utility>
+#include <algorithm>
 
 #include "gameobject.hpp"
 #include "asset_manager.hpp"
@@ -33,11 +36,14 @@ public:
     virtual bool draw();
     virtual bool update();
 
+    static bool comparator(const std::pair<std::string, GameObject *>  &p1, const std::pair<std::string, GameObject *> &p2);
+    std::vector<std::pair<std::string, GameObject *>> sortGameObjects();
+
     inline AssetManager & asset_manager() { return m_asset_manager; }
     inline std::string name() const { return m_name; }
 
 protected:
-    std::string                                 m_name;
+    std::string m_name;
     std::unordered_map<std::string, GameObject *> m_objects;
     AssetManager m_asset_manager;
     State m_state;
