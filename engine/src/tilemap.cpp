@@ -45,7 +45,8 @@ bool TileMap::init(){
 			printf("\n");
 		}
 	}
-
+	 
+	map_depth--;
 	GameObject::init();
 
 	return true;

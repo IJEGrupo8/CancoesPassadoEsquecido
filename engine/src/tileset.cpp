@@ -21,7 +21,7 @@ void TileSet::render(int index, int x, int y){
 	if(index >= m_rows * m_columns){
 		exit(1);
 	}
-
+	index--;
 	//INFO("x  " << x << "y  "<< y);
 
 	int xx = (index % m_columns) * m_width;

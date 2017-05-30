@@ -2,15 +2,22 @@
 #include "components/moveDirectionals.hpp"
 #include "keyword.hpp"
 #include "vector.hpp"
+#include "game.hpp"
+#include "tilemap.hpp"
 
 bool MoveDirectionals::update(){
 
 	bool keyFlag = false;
-    //bool collision = player1->physics.detectColision(player2);
+
     if(Input::keyPressed(Input::UP))
     {
+        auto map = Game::instance.m_scene->get_game_object("mapa");
+        if((dynamic_cast<TileMap *>(map))->at((m_game_object->physics.position.getX()/32)-1,(m_game_object->physics.position.getY()/32)-2,2)==1)
+           keyFlag = false;     
+        else{
+            keyFlag = true;
+        }
         (dynamic_cast<Player *>(m_game_object))->moveUp();
-        keyFlag = true;
     }
     if(Input::keyPressed(Input::DOWN))
     {

@@ -164,7 +164,7 @@ int main(int, char**)
     GameoverScene.add_game_object(gameover);
 
     TileMap tilemap("assets/tileMap.txt", "mapa", 0, 0);
-    TileSet tileset(32, 32, tilemap, "tileset.png", 1, 1);
+    TileSet tileset(32, 32, tilemap, "tilesheet.png", 1, 1);
     tilemap.setTileSet(tileset);
     tilemap.add_component(tileset);
 

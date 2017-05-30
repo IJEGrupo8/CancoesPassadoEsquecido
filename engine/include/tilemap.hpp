@@ -22,13 +22,14 @@ public:
     int& at(int x, int y, int z);
     void renderLayer(int layer, int camera_x = 0, int camera_y = 0);
     bool draw();
-    
-
-private:
     std::vector<int> tile_matrix;
     int map_depth;
     int map_height;
     int map_width;
+
+
+private:
+    
     TileSet *m_tileset;
     std::string m_map_path;
 };
