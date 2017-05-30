@@ -22,12 +22,12 @@ class CustomImageComponent : public ImageComponent{
         virtual bool shutdown();
         virtual void draw();
 
-        void setWidth(int width);
-        void setHeight(int height);
+        void setWidth(double width);
+        void setHeight(double height);
 
     private:
-        int m_width;
-        int m_height;
+        double m_width;
+        double m_height;
     };
 
 }
