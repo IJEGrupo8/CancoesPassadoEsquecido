@@ -31,12 +31,12 @@ public:
     void pause(int channel=-1);
 
     inline bool is_music() { return m_is_music; }
-
+    void update_state();
 private:
     std::string m_path;
     bool m_is_music;
     bool m_play_on_start;
-
+    int m_channel = -1;
     AudioState m_audio_state;
 
     Mix_Music * m_music;

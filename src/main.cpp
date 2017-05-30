@@ -55,7 +55,10 @@ int main(int, char**)
     Spell spellWBanjo("spellWBanjo",&player,0,0,5000,5000);
     Spell spellEBanjo("spellEBanjo",&player,0,0,5000,1000);
 
-    AudioComponent som(spellQBanjo,"pika.wav",false,false);
+    AudioComponent somQ(spellQBanjo,"pika.wav",false,false);
+    AudioComponent somE(spellWBanjo,"pika.wav",false,false); 
+    AudioComponent somW(spellEBanjo,"pika.wav",false,false);
+
     spellQBanjo.xF = 0; spellQBanjo.yF = 0;
     spellWBanjo.xF = 0; spellWBanjo.yF = 0;
     spellEBanjo.xF = 0; spellEBanjo.yF = 0;
@@ -71,7 +74,9 @@ int main(int, char**)
     spellQBanjo.add_component(explosionQImage);
     spellWBanjo.add_component(explosionWImage);
     spellEBanjo.add_component(explosionEImage);  
-    spellQBanjo.add_component(som);
+    spellQBanjo.add_component(somQ);
+    spellWBanjo.add_component(somE);
+    spellEBanjo.add_component(somW);
     //Adicionando spell ao instrumento
     banjo.addSpell(globals::spellQ,&spellQBanjo);
     banjo.addSpell(globals::spellW,&spellWBanjo);

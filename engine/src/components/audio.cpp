@@ -31,6 +31,7 @@ bool AudioComponent::shutdown()
 
 bool AudioComponent::update()
 {
+	update_state();
     if(m_play_on_start)
     {
         play();
@@ -38,7 +39,45 @@ bool AudioComponent::update()
     }
     return true;
 }
-
+void AudioComponent::update_state()
+{
+	if(m_is_music)
+	{
+		if(Mix_PlayingMusic() == 1)
+		{
+			INFO("playing");
+			m_audio_state = AudioState::playing;
+		}
+		else if(Mix_PausedMusic() == 1)
+		{
+			INFO("paused");
+			m_audio_state = AudioState::paused;
+		}
+		else
+		{
+			INFO("stopped");
+			m_audio_state = AudioState::stopped;
+		}
+	}
+	else
+	{
+		if(Mix_Playing(m_channel) == 1)
+		{
+			INFO("playing");
+			m_audio_state = AudioState::playing;
+		}
+		else if(Mix_Paused(m_channel) == 1)
+		{
+			INFO("paused");
+			m_audio_state = AudioState::paused;
+		}
+		else
+		{
+			INFO("stopped");
+			m_audio_state = AudioState::stopped;
+		}
+	}
+}
 void AudioComponent::play(int loops, int channel)
 {
 	INFO("play");
@@ -50,16 +89,17 @@ void AudioComponent::play(int loops, int channel)
     }
     else
     {
+    	m_channel = channel;
     	INFO("play sound");
         if(m_audio_state == AudioState::stopped)
         {
         	INFO("play sound1");
-            Mix_PlayChannel(channel, m_sound, loops);
+            Mix_PlayChannel(m_channel, m_sound, loops);
         }
         else if (m_audio_state == AudioState::paused)
         {
         	INFO("play sound2");
-            Mix_Resume(channel);
+            Mix_Resume(m_channel);
         }
     }
 
