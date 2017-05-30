@@ -10,9 +10,10 @@ bool CustomImageComponent::init(){
 }
 
 void CustomImageComponent::draw(){
+
 	    SDL_Rect renderQuad = {
-        (int) m_game_object->physics.position.getX(),
-        (int) m_game_object->physics.position.getY(),
+        m_x,
+        m_y,
         m_width,
         m_height
     };
@@ -34,7 +35,6 @@ bool CustomImageComponent::shutdown(){
 void CustomImageComponent::setWidth(double width){
 	m_width = width;
 }
-
 void CustomImageComponent::setHeight(double height){
-	m_height = height;
+    m_height = height;
 }

@@ -122,9 +122,7 @@ bool Game::destroy_window()
 }
 void Game::handleEvents()
 {
-    INFO("teste antes update");
     if(m_scene != NULL) m_scene->update();
-    INFO("teste depois update");
 }
 void Game::run()
 {

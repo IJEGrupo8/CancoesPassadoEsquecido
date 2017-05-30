@@ -169,8 +169,9 @@ int main(int, char**)
     tilemap.add_component(tileset);
 
     HUDLife hudlife("hudlife", 0, 0, &player);
-    ImageComponent lifeBar(hudlife, "hud_life.png", 0, 0);
-    CustomImageComponent lifeBarContent(hudlife, "hud_life_full.png", 0, 0);
+    hudlife.xF = 0; hudlife.yF = 0;
+    ImageComponent lifeBar(hudlife, "hud_life.png", 1, 1);
+    CustomImageComponent lifeBarContent(hudlife, "hud_life_full.png", 1, 1);
     hudlife.setLifeBar(&lifeBar);
     hudlife.setLifeBarContent(&lifeBarContent);
     hudlife.add_component(lifeBar);

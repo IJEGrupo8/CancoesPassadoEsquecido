@@ -5,6 +5,7 @@
 #include "components/animation.hpp"
 #include "components/code.hpp"
 #include "components/animationcontroller.hpp"
+#include "customimagecomponent.hpp"
 
 #include "log.h"
 
@@ -49,6 +50,13 @@ bool GameObject::draw()
     {
         if(component->state() == Component::State::enabled){
             (dynamic_cast<ImageComponent *>(component))->draw();
+        }
+    }
+
+    for(auto component: m_components[std::type_index(typeid(CustomImageComponent))])
+    {
+        if(component->state() == Component::State::enabled){
+            (dynamic_cast<CustomImageComponent *>(component))->draw();
         }
     }
 

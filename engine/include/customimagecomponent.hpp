@@ -24,10 +24,14 @@ class CustomImageComponent : public ImageComponent{
 
         void setWidth(double width);
         void setHeight(double height);
+        void setX(int x){m_x = x;}
+        void setY(int y){m_y = y;}
 
     private:
         double m_width;
         double m_height;
+        double m_x;
+        double m_y;
     };
 
 }

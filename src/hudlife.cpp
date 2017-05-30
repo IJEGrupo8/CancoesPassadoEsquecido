@@ -18,9 +18,13 @@ bool HUDLife::shutdown()
 
 bool HUDLife::draw()
 {
-    double new_width = w * m_player->life / 100.0;
+    INFO("OIIIIIIIIIIIIIIII");
+    double new_width = ((w-110) * m_player->life) / 100.0;
+    double new_heith = h*0.5;
     m_life_content->setWidth(new_width);
-
+    m_life_content->setHeight(new_heith);
+    m_life_content->setX(physics.position.getX()+55);
+    m_life_content->setY(physics.position.getY()+10);
     engine::GameObject::draw();
 
     return true;
