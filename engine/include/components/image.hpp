@@ -23,7 +23,7 @@ public:
     virtual bool shutdown();
     virtual void draw();
     std::string m_path;
-        SDL_Texture * m_texture;
+    SDL_Texture * m_texture;
 
 
 protected:

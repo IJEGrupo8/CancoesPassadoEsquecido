@@ -24,6 +24,7 @@ bool Player::init()
 
     sprites[globals::eletric_guitar]->setState(Component::State::disabled);
     sprites[globals::accordion]->setState(Component::State::disabled);
+
     life = 100;
     //INFO("x"<<physics.collisionBox.x<<"  y"<<physics.collisionBox.y <<"  w"<<physics.collisionBox.w<< "    h"<< physics.collisionBox.h)
     return true;
@@ -124,11 +125,9 @@ bool Player::changeInstrument(std::string instrument_name){
     INFO("Changing Instrument to " << instrument_name);
     Instrument instrument = instruments[instrument_name];
     bool isInstrumentNull = true;
-    //bool isInstrumentNull = instrument* != NULL;
-    //if(!isInstrumentNull){
-        active_instrument = instrument;
-        changeSprite(instrument_name);
-    //}
+
+    active_instrument = instrument;
+    changeSprite(instrument_name);
 
     return isInstrumentNull;
 }
@@ -136,19 +135,12 @@ bool Player::changeInstrument(std::string instrument_name){
 bool Player::changeSprite(std::string sprite_name){
     INFO("Changing Sprite to " << sprite_name);
     ImageComponent* sprite = sprites[sprite_name];
-    //bool isSpriteNull = true;
-    /*bool isSpriteNull = sprite == nullptr;
-    INFO(isSpriteNull);
-    if(isSpriteNull && sprite != active_sprite){*/
+   
     active_sprite->setState(Component::State::disabled);
     sprite->setState(Component::State::enabled);
     active_sprite = sprite;
 
-    /*}else{
-        WARN(sprite_name << " Is already active");
-
-    }*/
-    return true;//isSpriteNull;
+    return true;
 }
 
 bool Player::handlePlayer(){
@@ -199,3 +191,9 @@ void Player::addInstrument(std::string instrument_name, Instrument instrument){
 void Player::addSprite(std::string instrument_name, ImageComponent * sprite){
     sprites[instrument_name] = sprite;
 }
+
+Instrument Player::getActiveInstrument(){
+    return active_instrument;
+}
+
+

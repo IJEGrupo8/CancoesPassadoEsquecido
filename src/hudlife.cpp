@@ -18,7 +18,6 @@ bool HUDLife::shutdown()
 
 bool HUDLife::draw()
 {
-    INFO("OIIIIIIIIIIIIIIII");
     double new_width = ((w-110) * m_player->life) / 100.0;
     double new_heith = h*0.5;
     m_life_content->setWidth(new_width);

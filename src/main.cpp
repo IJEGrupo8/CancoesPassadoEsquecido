@@ -22,6 +22,7 @@
 #include "log.h"
 #include "gameglobals.hpp"
 #include "hudlife.hpp"
+#include "hudinstrument.hpp"
 
 using namespace std;
 using namespace engine;
@@ -49,9 +50,9 @@ int main(int, char**)
     MoveDirectionals move(player);
 
     //Declaring instruments
-    Instrument banjo("Banjo", 100,100);
-    Instrument eletric_guitar("Eletric Guitar", 100,100);
-    Instrument accordion("Accordion", 100,100);
+    Instrument banjo(globals::banjo, 100,100);
+    Instrument eletric_guitar(globals::eletric_guitar, 100,100);
+    Instrument accordion(globals::accordion, 100,100);
     //Declaring spells
     Spell spellQBanjo("spellQBanjo",&player,0,0,5000,5000);
     Spell spellWBanjo("spellWBanjo",&player,0,0,5000,5000);
@@ -91,6 +92,20 @@ int main(int, char**)
     ImageComponent banjoImage(player, "girl2.png", 4, 4);
     ImageComponent eletricGuitarImage(player, "girl3.png", 4, 4);
     ImageComponent accordionImage(player, "girl4.png", 4, 4);
+
+    HUDInstrument HUDInstrument("hudinstrument", globals::window_size.first-380, globals::window_size.second-120, &player);
+    HUDInstrument.xF = 0; HUDInstrument.yF = 0;
+    ImageComponent banjoActiveHUD(HUDInstrument, "hud_instruments_0.png", 1, 1);
+    ImageComponent eletricGuitarActiveHUD(HUDInstrument, "hud_instruments_1.png", 1, 1);
+    ImageComponent accordionActiveHUD(HUDInstrument, "hud_instruments_2.png", 1, 1);
+
+    HUDInstrument.addHUD(globals::banjo, &banjoActiveHUD);
+    HUDInstrument.addHUD(globals::eletric_guitar, &eletricGuitarActiveHUD);
+    HUDInstrument.addHUD(globals::accordion, &accordionActiveHUD);
+
+    HUDInstrument.add_component(banjoActiveHUD);
+    HUDInstrument.add_component(eletricGuitarActiveHUD);
+    HUDInstrument.add_component(accordionActiveHUD);
 
     player.addSprite(globals::banjo, &banjoImage);
     player.addSprite(globals::eletric_guitar, &eletricGuitarImage);
@@ -179,6 +194,7 @@ int main(int, char**)
 
     room1.add_game_object(tilemap);    
     room1.add_game_object(hudlife);
+    room1.add_game_object(HUDInstrument);
 
     // Game loop
     Game::instance.run();
