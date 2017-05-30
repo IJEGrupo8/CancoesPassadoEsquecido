@@ -22,7 +22,8 @@ bool GameObject::init()
                component->init() == false) return false;
         }
     }
-
+    physics.position.setX(xI);
+    physics.position.setY(yI);
     return true;
 }
 
@@ -95,6 +96,7 @@ bool GameObject::add_component(Component & component)
 
 bool GameObject::update()
 {
+    INFO("teste gameobject before");
     physics.velocity += physics.aceleration;
     physics.position += physics.velocity;
 
@@ -102,11 +104,13 @@ bool GameObject::update()
     {
         for(auto component : componentList.second)
         {
+            INFO("teste component before");
             if(component->state() == Component::State::enabled)
                 component->update();
+            INFO("teste component after");
         }
     }
-
+    INFO("teste gameobject after");
 
     return true;
 }

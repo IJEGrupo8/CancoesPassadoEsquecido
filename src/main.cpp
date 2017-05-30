@@ -7,12 +7,14 @@
 #include "components/animation.hpp"
 #include "components/moveDirectionals.hpp"
 #include "components/moveSS.hpp"
+#include "components/damageEnemy.hpp"
 #include "components/follow.hpp"
 #include "components/animationcontroller.hpp"
 #include "components/changeroom.hpp"
 #include "player.hpp"
 #include "gamescene.hpp"
 #include "menuscene.hpp"
+#include "gameover.hpp"
 #include "spell.hpp"
 #include "tilemap.hpp"
 #include "tileset.hpp"
@@ -28,20 +30,16 @@ int main(int, char**)
     Game::instance.set_properties(globals::game_name, globals::window_size);
 
     // Setup scenes
+    MenuScene menu("Menu");
+    MenuScene GameoverScene("Gameover");
     GameScene room1("stage_1_room_1");
     GameScene room2("stage_1_room_2");
-    /*MenuScene menu("Menu");
     
-    Game::instance.add_scene(menu);
-    
-    GameObject playbutton("playbutton",200,200);
-    ImageComponent playImage(playbutton,"assets/sprites/playbutton.png",1,1);
-    playbutton.add_component(playImage);
-    menu.add_game_object(playbutton);
-*/
     /* Gamescene*/
+    Game::instance.add_scene(menu);
     Game::instance.add_scene(room1);
     Game::instance.add_scene(room2);
+    Game::instance.add_scene(GameoverScene);
 
     Player player("Player1",100,100);
     player.xF = 0; player.yF = 0;
@@ -103,7 +101,8 @@ int main(int, char**)
     FollowPlayer moveGhost(ghost);
     AnimationControllerComponent ghostController(ghost);
     ghostController.addAnimation("moveDown", ghostI);
-
+    DamageEnemy damage(ghost);
+    ghost.add_component(damage);
     ghost.add_component(ghostController);
     ghost.add_component(moveGhost);
     //change room handler
@@ -144,6 +143,18 @@ int main(int, char**)
     room2.add_game_object(player);
     room2.add_game_object(goLeftRoom2);
     room2.add_game_object(tree);
+
+    GameObject playbutton("playbutton",(globals::window_size.first/2)-50,(globals::window_size.second/2)-50);
+    ImageComponent playImage(playbutton,"playbutton.png",1,1);
+    playbutton.xF = 0; playbutton.yF = 0;
+    playbutton.add_component(playImage);
+    menu.add_game_object(playbutton);
+
+    GameObject gameover("gameover",(globals::window_size.first/2)-100,(globals::window_size.second/2)-100);
+    ImageComponent gameoverImage(gameover,"gameover.png",1,1);
+    gameover.xF = 0; gameover.yF = 0;
+    gameover.add_component(gameoverImage);
+    GameoverScene.add_game_object(gameover);
 
 
     TileMap tilemap("assets/tileMap.txt", "mapa", 0, 0);

@@ -33,6 +33,7 @@ class Input{
             X = SDL_SCANCODE_X,
             Y = SDL_SCANCODE_Y,
             Z = SDL_SCANCODE_Z,
+            ENTER = SDL_SCANCODE_RETURN,
             UP = SDL_SCANCODE_UP,
             DOWN = SDL_SCANCODE_DOWN,
             LEFT = SDL_SCANCODE_LEFT,

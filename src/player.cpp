@@ -24,6 +24,7 @@ bool Player::init()
 
     sprites[globals::eletric_guitar]->setState(Component::State::disabled);
     sprites[globals::accordion]->setState(Component::State::disabled);
+    life = 100;
     //INFO("x"<<physics.collisionBox.x<<"  y"<<physics.collisionBox.y <<"  w"<<physics.collisionBox.w<< "    h"<< physics.collisionBox.h)
     return true;
 }
@@ -51,7 +52,7 @@ bool Player::update()
     physics.collisionBox.y = physics.position.getY() + collisionAdjust;
     physics.collisionBox.w = w - collisionAdjust;
     physics.collisionBox.h = h - collisionAdjust;
-
+    INFO("Life" << life);
     //active_sprite.draw();
     return true;
 }
