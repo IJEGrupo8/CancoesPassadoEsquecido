@@ -13,6 +13,8 @@
 
 
 namespace engine {
+    
+class Component;
 
 class GameObject {
 public:
@@ -40,7 +42,11 @@ public:
 
     inline std::string name()  const { return m_name; }
     inline State       state() const { return m_state; }
-
+    template<typename T>
+    T * get_component()
+    {
+        return dynamic_cast<T *>(m_components[std::type_index(typeid(T))].front());
+    }
     void setState(State new_state) { m_state = new_state; }
     inline void set_size(int _w, int _h) { w = _w; h = _h; }
 

@@ -1,5 +1,6 @@
 #include "gameobject.hpp"
 #include "components/image.hpp"
+#include "components/audio.hpp"
 #include "log.h"
 #include "vector.hpp"
 #include "spell.hpp"
@@ -53,7 +54,8 @@ bool Spell::useSpell()
 {
   if(countdownTimer.getTime() > countdown){
     INFO("Start spell");
-
+    AudioComponent * audio = get_component<AudioComponent>();
+    audio->play(1);
     setState(State::enabled);
     physics.position = player->physics.position;
     physics.velocity = player->physics.velocity;
