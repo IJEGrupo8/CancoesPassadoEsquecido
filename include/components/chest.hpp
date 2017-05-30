@@ -1,5 +1,5 @@
-#ifndef __COMPONENTS_FOLLOW_PLAYER__
-#define __COMPONENTS_FOLLOW_PLAYER__
+#ifndef __COMPONENTS_CHEST__
+#define __COMPONENTS_CHEST__
 
 
 #include "components/code.hpp"
@@ -7,14 +7,14 @@
 
 using namespace engine;
 
-class FollowPlayer : public CodeComponent {
+class ChestComponent : public CodeComponent {
 public:
-    FollowPlayer(GameObject & game_object)
+    ChestComponent(GameObject & game_object)
         : CodeComponent(game_object) {}
         
-    FollowPlayer() : CodeComponent() {}
+    ChestComponent() : CodeComponent() {}
 
-    ~FollowPlayer() {}
+    ~ChestComponent() {}
     
     virtual bool update();
     virtual bool init();
