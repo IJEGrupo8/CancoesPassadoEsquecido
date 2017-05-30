@@ -11,6 +11,7 @@
 #include "components/follow.hpp"
 #include "components/animationcontroller.hpp"
 #include "components/changeroom.hpp"
+#include "customimagecomponent.hpp"
 #include "player.hpp"
 #include "gamescene.hpp"
 #include "menuscene.hpp"
@@ -20,6 +21,7 @@
 #include "tileset.hpp"
 #include "log.h"
 #include "gameglobals.hpp"
+#include "hudlife.hpp"
 
 using namespace std;
 using namespace engine;
@@ -161,12 +163,21 @@ int main(int, char**)
     gameover.add_component(gameoverImage);
     GameoverScene.add_game_object(gameover);
 
-
     TileMap tilemap("assets/tileMap.txt", "mapa", 0, 0);
     TileSet tileset(32, 32, tilemap, "tileset.png", 1, 1);
     tilemap.setTileSet(tileset);
     tilemap.add_component(tileset);
+
+    HUDLife hudlife("hudlife", 0, 0, &player);
+    ImageComponent lifeBar(hudlife, "hud_life.png", 0, 0);
+    CustomImageComponent lifeBarContent(hudlife, "hud_life_full.png", 0, 0);
+    hudlife.setLifeBar(&lifeBar);
+    hudlife.setLifeBarContent(&lifeBarContent);
+    hudlife.add_component(lifeBar);
+    hudlife.add_component(lifeBarContent);
+
     room1.add_game_object(tilemap);    
+    room1.add_game_object(hudlife);
 
     // Game loop
     Game::instance.run();

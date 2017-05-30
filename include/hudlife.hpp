@@ -12,8 +12,8 @@ using namespace engine;
 class HUDLife : public GameObject {
 public:
     HUDLife() : GameObject() {}
-    HUDLife(std::string _name,int _x,int _y, Player *player, ImageComponent *life_bar, CustomImageComponent *life_content)
-        : GameObject(_name,_x,_y), m_life_bar(life_bar), m_life_content(life_content), m_player(player) {}
+    HUDLife(std::string _name,int _x,int _y, Player *player)
+        : GameObject(_name,_x,_y), m_player(player) {}
 
     ~HUDLife() {}
    
@@ -21,6 +21,8 @@ public:
     virtual bool shutdown();
     virtual bool update();
     virtual bool draw();
+    void setLifeBar(ImageComponent *life_bar);
+    void setLifeBarContent(CustomImageComponent *life_content);
 
 private:
     ImageComponent *m_life_bar;

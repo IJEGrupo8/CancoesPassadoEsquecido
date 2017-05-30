@@ -31,3 +31,11 @@ bool HUDLife::update()
     engine::GameObject::update();
     return true;
 }
+
+void HUDLife::setLifeBar(ImageComponent *life_bar){
+    m_life_bar = life_bar;
+}
+
+void HUDLife::setLifeBarContent(CustomImageComponent *life_content){
+    m_life_content = life_content;
+}
