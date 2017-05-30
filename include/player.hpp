@@ -10,6 +10,7 @@
 #include "gameobject.hpp"
 #include "components/image.hpp"
 #include "instrument.hpp"
+#include "components/text.hpp"
 
 using namespace engine;
 
@@ -37,6 +38,7 @@ public:
     void addSprite(std::string instrument_name, ImageComponent* sprite);
     Instrument getActiveInstrument();
     void addFragment(int _id);
+    TextComponent* nFragments;
 
 private:
     std::unordered_map<std::string, Instrument> instruments;

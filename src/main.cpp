@@ -11,7 +11,7 @@
 #include "components/follow.hpp"
 #include "components/animationcontroller.hpp"
 #include "components/changeroom.hpp"
-#include "components/chest.hpp"
+#include "components/fragment.hpp"
 #include "customimagecomponent.hpp"
 #include "player.hpp"
 #include "gamescene.hpp"
@@ -117,6 +117,11 @@ int main(int, char**)
     player.add_component(accordionImage);
 
     player.add_component(move);
+
+    GameObject nFragments("nFragments",10,40);
+    TextComponent fragmentText(nFragments,"Numero de fragmentos: ","font.ttf",20);
+    nFragments.add_component(fragmentText);
+    player.nFragments = &fragmentText;
     //ghost
     GameObject ghost("ghost", 800, 200);
     ghost.xF = 0; ghost.yF = 0;
@@ -166,14 +171,18 @@ int main(int, char**)
     room2.add_game_object(player);
     room2.add_game_object(goLeftRoom2);
     room2.add_game_object(tree);
+    room1.add_game_object(nFragments);
 
     GameObject fragmento("fragmento",16*32,12*32);
     fragmento.xF = 0; fragmento.yF = 0;
-    ChestComponent chestC(fragmento);
+    FragmentComponent obtainFrag(fragmento,1);
     ImageComponent guitarFrag(fragmento, "guitar.png", 1, 3);
-    fragmento.add_component(chestC);
+    fragmento.add_component(obtainFrag);
     fragmento.add_component(guitarFrag);
     room1.add_game_object(fragmento);
+
+
+
 
     GameObject playbutton("playbutton",(globals::window_size.first/2)-50,(globals::window_size.second/2)-50);
     ImageComponent playImage(playbutton,"playbutton.png",1,1);

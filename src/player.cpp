@@ -6,6 +6,8 @@
 #include "vector.hpp"
 #include "keyword.hpp"
 #include "gameglobals.hpp"
+#include <sstream>
+
 
 #define nframes 4
 
@@ -197,5 +199,11 @@ Instrument Player::getActiveInstrument(){
 
 void Player::addFragment(int _id){
     fragments.push_back(_id);
-}
 
+    std::stringstream ss;
+    ss << "Numero de fragmentos: "<<fragments.size();
+    
+
+    nFragments->setText(ss.str());
+    nFragments->init();
+}

@@ -33,7 +33,8 @@ public:
     bool shutdown();
 
     void draw();
-
+    void setText(std::string _text){m_text = _text;}
+    
     inline void enable_high_quality()  { m_high_quality = true; }
     inline void disable_high_quality() { m_high_quality = false; }
 
