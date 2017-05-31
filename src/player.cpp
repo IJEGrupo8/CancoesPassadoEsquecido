@@ -61,7 +61,7 @@ bool Player::update()
 bool Player::moveDown(){
     // Update Velocity
     int componentX = 0;
-    int componentY = 3;
+    int componentY = 10;
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
@@ -77,7 +77,7 @@ bool Player::moveDown(){
 bool Player::moveUp(){
     // Update Velocity
     int componentX = 0;
-    int componentY = -3;
+    int componentY = -10;
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
@@ -92,7 +92,7 @@ bool Player::moveUp(){
 
 bool Player::moveLeft(){
     // Update Velocity
-    int componentX = -3;
+    int componentX = -10;
     int componentY = 0;
 
     Vector2D move(componentX,componentY);
@@ -108,7 +108,7 @@ bool Player::moveLeft(){
 
 bool Player::moveRight(){
     // Update Velocity
-    int componentX = 3;
+    int componentX = 10;
     int componentY = 0;
 
     Vector2D move(componentX,componentY);

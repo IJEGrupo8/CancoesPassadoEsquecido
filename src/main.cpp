@@ -137,26 +137,22 @@ int main(int, char**)
     GameObject goRightRoom1("goRightRoom1", 925,320);
     goRightRoom1.xF = 0; goRightRoom1.yF = 0;
 
-    ChangeRoom goRightRoom1Component(goRightRoom1,room2.name(),ChangeRoom::Direction::Right);
+    ChangeRoom goRightRoom1Component(goRightRoom1, room2.name(),ChangeRoom::Direction::Right);
     ImageComponent portalARoom1(goRightRoom1, "portal.png", 4, 4);
 
     goRightRoom1.add_component(goRightRoom1Component); 
     goRightRoom1.add_component(portalARoom1); 
     //oi
-    GameObject goLeftRoom2("goLeftRoom2", 0,320);
+    GameObject goLeftRoom2("goLeftRoom2", 0, 320);
     goLeftRoom2.xF = 0; goLeftRoom2.yF = 0;
 
-    ChangeRoom goLeftRoom2Component(goLeftRoom2,room1.name(),ChangeRoom::Direction::Left);
+    ChangeRoom goLeftRoom2Component(goLeftRoom2, room1.name(), ChangeRoom::Direction::Left);
     ImageComponent portalARoom2(goLeftRoom2, "portal.png", 4, 4);
 
     goLeftRoom2.add_component(goLeftRoom2Component); 
     goLeftRoom2.add_component(portalARoom2); 
     // objetos
-    GameObject tree("tree1",500,500);
-    tree.xF = 0; tree.yF = 0;
 
-    ImageComponent treeImage(tree,"tree.png",3,1);
-    tree.add_component(treeImage);
 
     //add to scene
     room1.add_game_object(spellWBanjo);
@@ -168,10 +164,17 @@ int main(int, char**)
     room1.add_game_object(player);
     room1.add_game_object(ghost);
     room1.add_game_object(goRightRoom1);
-    room2.add_game_object(player);
-    room2.add_game_object(goLeftRoom2);
-    room2.add_game_object(tree);
     room1.add_game_object(nFragments);
+
+    room2.add_game_object(player);
+    room2.add_game_object(spellWBanjo);
+    room2.add_game_object(spellEBanjo);
+    room2.add_game_object(spellQBanjo);
+    room2.add_game_object(accordion);
+    room2.add_game_object(eletric_guitar);
+    room2.add_game_object(banjo);
+    room2.add_game_object(goLeftRoom2);
+    
 
     GameObject fragmento("fragmento",16*32,12*32);
     fragmento.xF = 0; fragmento.yF = 0;
@@ -193,10 +196,15 @@ int main(int, char**)
     gameover.add_component(gameoverImage);
     GameoverScene.add_game_object(gameover);
 
-    TileMap tilemap("assets/tileMap.txt", "mapa", 0, 0);
+    TileMap tilemap("assets/mapa1.txt", "mapa", 0, 0);
     TileSet tileset(32, 32, tilemap, "tilesheet.png", 1, 1);
     tilemap.setTileSet(tileset);
     tilemap.add_component(tileset);
+
+    TileMap tilemap2("assets/mapa2.txt", "mapa2", 0, 0);
+    TileSet tileset2(32, 32, tilemap2, "tilesheet.png", 1, 1);
+    tilemap2.setTileSet(tileset2);
+    tilemap2.add_component(tileset2);
 
     HUDLife hudlife("hudlife", 0, 0, &player);
     hudlife.xF = 0; hudlife.yF = 0;
@@ -209,10 +217,14 @@ int main(int, char**)
 
     AudioComponent music(tilemap,"fase.mp3",true, true);
     tilemap.add_component(music);
+    tilemap2.add_component(music);
 
-    room1.add_game_object(tilemap);    
+    room1.add_game_object(tilemap);
     room1.add_game_object(hudlife);
     room1.add_game_object(HUDInstrument);
+
+    room2.add_game_object(tilemap2);
+    room2.add_game_object(hudlife);
 
     // Game loop
     Game::instance.run();
