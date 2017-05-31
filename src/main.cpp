@@ -38,6 +38,7 @@ int main(int, char**)
     // Setup scenes
     MenuScene menu("Menu");
     MenuScene GameoverScene("Gameover");
+    MenuScene VictoryScene("Victory");
     GameScene room1("stage_1_room_1");
     GameScene room2("stage_1_room_2");
     GameScene room3("stage_1_room_3");
@@ -50,6 +51,7 @@ int main(int, char**)
     Game::instance.add_scene(room3);
     Game::instance.add_scene(room4);
     Game::instance.add_scene(GameoverScene);
+    Game::instance.add_scene(VictoryScene);
 
     Player player(globals::player,100,100);
     player.xF = 0; player.yF = 0;
@@ -348,6 +350,12 @@ int main(int, char**)
     gameover.xF = 0; gameover.yF = 0;
     gameover.add_component(gameoverImage);
     GameoverScene.add_game_object(gameover);
+
+    GameObject victory("victory",(globals::window_size.first/2)-100,(globals::window_size.second/2)-100);
+    ImageComponent victoryImage(victory,"victory.png",1,1);
+    victory.xF = 0; victory.yF = 0;
+    victory.add_component(victoryImage);
+    VictoryScene.add_game_object(victory);
 
     TileMap tilemap("assets/mapa1.txt", "mapa", 0, 0);
     TileSet tileset(32, 32, tilemap, "tilesheet.png", 1, 1);

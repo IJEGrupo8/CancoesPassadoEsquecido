@@ -7,6 +7,7 @@
 #include "keyword.hpp"
 #include "gameglobals.hpp"
 #include <sstream>
+#include "game.hpp"
 
 
 #define nframes 4
@@ -199,6 +200,11 @@ Instrument Player::getActiveInstrument(){
 
 void Player::addFragment(int _id){
     fragments.push_back(_id);
+    if(fragments.size() == 2) {
+        engine::Game::instance.change_scene("Victory");
+        physics.position.setX(getInitialX());
+        physics.position.setY(getInitialY());
+    }
 
     std::stringstream ss;
     ss << "Numero de fragmentos: "<<fragments.size();
