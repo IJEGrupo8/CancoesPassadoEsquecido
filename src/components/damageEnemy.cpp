@@ -33,6 +33,8 @@ bool DamageEnemy::update(){
         engine::Game::instance.change_scene("Gameover");
         player->physics.position.setX(player->getInitialX());
         player->physics.position.setY(player->getInitialY());
+        player->life = 100;
+
     }
     return true;
 }

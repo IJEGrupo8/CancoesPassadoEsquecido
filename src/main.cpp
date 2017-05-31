@@ -271,7 +271,7 @@ int main(int, char**)
 
 
     //change room handler
-    GameObject goRightRoom1("goRightRoom1", 925,220);
+    GameObject goRightRoom1("goRightRoom1", 925,200);
     goRightRoom1.xF = 0; goRightRoom1.yF = 0;
     ChangeRoom goRightRoom1Component(goRightRoom1,room2.name(),ChangeRoom::Direction::Right);
     goRightRoom1.add_component(goRightRoom1Component); 

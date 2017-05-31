@@ -16,9 +16,9 @@ public:
         stopped
     };
 
-    AudioComponent(GameObject & game_object, std::string path,bool is_music=false,
+    AudioComponent(GameObject & game_object, std::string path,bool _is_music=false,
                    bool play_on_start=true)
-        : Component(game_object), m_path(path), m_is_music(is_music), 
+        : Component(game_object), m_path(path), m_is_music(_is_music), 
           m_play_on_start(play_on_start), m_audio_state(AudioState::stopped),
           m_music(NULL), m_sound(NULL) {}
 

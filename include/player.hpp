@@ -46,7 +46,7 @@ private:
     Instrument active_instrument;
     ImageComponent* active_sprite;
     std::vector<int> fragments;
-    
+    int defaultVel = 5;
 };
 
 #endif

@@ -14,6 +14,7 @@ bool FollowPlayer::update(){
     Vector2D pos = player->physics.position;
     m_game_object->physics.velocity = pos - m_game_object->physics.position;
     m_game_object->physics.velocity.normalize();
+    m_game_object->physics.velocity *=2;
     
     return true;
 }
