@@ -39,7 +39,7 @@ bool ChangeRoom::update(){
         else if(dir == Direction::Botton)
         {
             player->physics.position.setY(globals::window_size.first 
-                - player->physics.position.getY() + 350);
+                - player->physics.position.getY() - 325);
         }
         else if(dir == Direction::Top)
         {

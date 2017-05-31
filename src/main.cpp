@@ -135,7 +135,7 @@ int main(int, char**)
 
     Enemy ghost("ghost", 800, 200);
     ghost.xF = 0; ghost.yF = 0;
-    AnimationComponent ghostI(ghost, "ghost.png", 4, 4, 500, 0,3 ,-1);
+    AnimationComponent ghostI(ghost, "ghost.png", 4, 4, 500, 0, 3 ,-1);
     FollowPlayer moveGhost(ghost);
     AnimationControllerComponent ghostController(ghost);
     ghostController.addAnimation("moveDown", ghostI);
@@ -145,9 +145,9 @@ int main(int, char**)
     ghost.add_component(moveGhost);
 
     //ghost2
-    Enemy ghost2("ghos2", 800, 200);
+    Enemy ghost2("ghost2", 800, 200);
     ghost2.xF = 0; ghost2.yF = 0;
-    AnimationComponent ghostI2(ghost2, "ghost.png", 4, 4, 500, 0,3 ,-1);
+    AnimationComponent ghostI2(ghost2, "ghost.png", 4, 4, 500, 0, 3 ,-1);
     FollowPlayer moveGhost2(ghost2);
     AnimationControllerComponent ghost2Controller(ghost2);
     ghost2Controller.addAnimation("moveDown", ghostI2);
@@ -155,6 +155,18 @@ int main(int, char**)
     ghost2.add_component(damage2);
     ghost2.add_component(ghost2Controller);
     ghost2.add_component(moveGhost2);
+
+    //ghost3
+    Enemy ghost3("ghost3", 100, 100);
+    ghost3.xF = 0; ghost3.yF = 0;
+    AnimationComponent ghostI3(ghost3, "ghost.png", 4, 4, 500, 0, 3 ,-1);
+    FollowPlayer moveGhost3(ghost3);
+    AnimationControllerComponent ghost3Controller(ghost3);
+    ghost3Controller.addAnimation("moveDown", ghostI3);
+    DamageEnemy damage3(ghost3);
+    ghost3.add_component(damage3);
+    ghost3.add_component(ghost3Controller);
+    ghost3.add_component(moveGhost3);
 
     //change room handler
     GameObject goRightRoom1("goRightRoom1", 925,220);
@@ -172,8 +184,14 @@ int main(int, char**)
     GameObject goTopRoom2("goTopRoom2", 450, 0);
     goTopRoom2.xF = 0; goTopRoom2.yF = 0;
     goTopRoom2.w = 100; goTopRoom2.h = 100;
-    ChangeRoom goTopRoom2Component(goTopRoom2, room1.name(), ChangeRoom::Direction::Top);
+    ChangeRoom goTopRoom2Component(goTopRoom2, room3.name(), ChangeRoom::Direction::Top);
     goTopRoom2.add_component(goTopRoom2Component);    
+
+    GameObject goBottonRoom3("goBottonRoom2", 450, 650);
+    goBottonRoom3.xF = 0; goBottonRoom3.yF = 0;
+    goBottonRoom3.w = 100; goBottonRoom3.h = 100;
+    ChangeRoom goBottonRoom3Component(goBottonRoom3, room2.name(), ChangeRoom::Direction::Botton);
+    goBottonRoom3.add_component(goBottonRoom3Component);        
 
     //add to scene
     room1.add_game_object(spellWBanjo);
@@ -197,8 +215,19 @@ int main(int, char**)
     room2.add_game_object(goLeftRoom2);
     room2.add_game_object(goTopRoom2);
 
+    room3.add_game_object(spellWBanjo);
+    room3.add_game_object(spellEBanjo);
+    room3.add_game_object(spellQBanjo);
+    room3.add_game_object(accordion);
+    room3.add_game_object(eletric_guitar);
+    room3.add_game_object(banjo);
+    room3.add_game_object(player);
+    room3.add_game_object(goBottonRoom3);
+    room3.add_game_object(ghost3);
+
     room1.add_game_object(nFragments);
     room2.add_game_object(nFragments);
+    room3.add_game_object(nFragments);
 
     //Fragmento sala 1
 
@@ -218,7 +247,17 @@ int main(int, char**)
     ImageComponent guitarFrag2(fragmento2, "guitar.png", 1, 3);
     fragmento2.add_component(obtainFrag2);
     fragmento2.add_component(guitarFrag2);
-    room2.add_game_object(fragmento2); 
+    room2.add_game_object(fragmento2);
+
+    //Fragmento sala 3
+
+    GameObject fragmento3("fragmento",20*32,6*32);
+    fragmento3.xF = 0; fragmento3.yF = 0;
+    FragmentComponent obtainFrag3(fragmento3,1);
+    ImageComponent guitarFrag3(fragmento3, "guitar.png", 1, 3);
+    fragmento3.add_component(obtainFrag3);
+    fragmento3.add_component(guitarFrag3);
+    room3.add_game_object(fragmento3);
 
     GameObject playbutton("playbutton",(globals::window_size.first/2)-50,(globals::window_size.second/2)-50);
     ImageComponent playImage(playbutton,"playbutton.png",1,1);
@@ -242,6 +281,12 @@ int main(int, char**)
     tilemap2.setTileSet(tileset2);
     tilemap2.add_component(tileset2);
 
+    TileMap tilemap3("assets/mapa3.txt", "mapa", 0, 0); 
+    TileSet tileset3(32, 32, tilemap3, "tilesheet.png", 1, 1);
+    tilemap3.setTileSet(tileset3);
+    tilemap3.add_component(tileset3);
+
+
     HUDLife hudlife("hudlife", 0, 0, &player);
     hudlife.xF = 0; hudlife.yF = 0;
     ImageComponent lifeBar(hudlife, "hud_life.png", 1, 1);
@@ -263,6 +308,10 @@ int main(int, char**)
     room2.add_game_object(hudlife);
     room2.add_game_object(HUDInstrument);
     room2.add_game_object(tilemap2);
+
+    room3.add_game_object(hudlife);
+    room3.add_game_object(HUDInstrument);
+    room3.add_game_object(tilemap3);
  
 /*
     room1.add_game_object(tilemap);
