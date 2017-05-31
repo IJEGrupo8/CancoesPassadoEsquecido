@@ -181,9 +181,6 @@ int main(int, char**)
     fragmento.add_component(guitarFrag);
     room1.add_game_object(fragmento);
 
-
-
-
     GameObject playbutton("playbutton",(globals::window_size.first/2)-50,(globals::window_size.second/2)-50);
     ImageComponent playImage(playbutton,"playbutton.png",1,1);
     playbutton.xF = 0; playbutton.yF = 0;
@@ -210,11 +207,12 @@ int main(int, char**)
     hudlife.add_component(lifeBar);
     hudlife.add_component(lifeBarContent);
 
+    AudioComponent music(tilemap,"fase.mp3",true, true);
+    tilemap.add_component(music);
+
     room1.add_game_object(tilemap);    
     room1.add_game_object(hudlife);
     room1.add_game_object(HUDInstrument);
-
-
 
     // Game loop
     Game::instance.run();
