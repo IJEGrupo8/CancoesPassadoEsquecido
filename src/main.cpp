@@ -12,6 +12,7 @@
 #include "components/animationcontroller.hpp"
 #include "components/changeroom.hpp"
 #include "components/fragment.hpp"
+#include "components/pushenemy.hpp"
 #include "customimagecomponent.hpp"
 #include "player.hpp"
 #include "gamescene.hpp"
@@ -24,6 +25,7 @@
 #include "gameglobals.hpp"
 #include "hudlife.hpp"
 #include "hudinstrument.hpp"
+#include "enemy.hpp"
 
 using namespace std;
 using namespace engine;
@@ -55,7 +57,7 @@ int main(int, char**)
     Instrument eletric_guitar(globals::eletric_guitar, 100,100);
     Instrument accordion(globals::accordion, 100,100);
     //Declaring spells
-    Spell spellQBanjo("spellQBanjo",&player,0,0,5000,5000);
+    Spell spellQBanjo("spellQBanjo",&player,0,0,3000,3000);
     Spell spellWBanjo("spellWBanjo",&player,0,0,5000,5000);
     Spell spellEBanjo("spellEBanjo",&player,0,0,5000,1000);
 
@@ -63,13 +65,15 @@ int main(int, char**)
     AudioComponent somE(spellWBanjo,"pika.wav",false,false); 
     AudioComponent somW(spellEBanjo,"pika.wav",false,false);
 
+    PushEnemy pushQ(spellQBanjo);
+
     spellQBanjo.xF = 0; spellQBanjo.yF = 0;
     spellWBanjo.xF = 0; spellWBanjo.yF = 0;
     spellEBanjo.xF = 0; spellEBanjo.yF = 0;
 
     //Adicionando imagem ao spell
 
-    AnimationComponent explosionQImage(spellQBanjo, "explosion.png", 4, 4,5000,0,15);
+    AnimationComponent explosionQImage(spellQBanjo, "explosion.png", 4, 4,1000,0,15);
     AnimationComponent explosionWImage(spellWBanjo, "explosion.png", 4, 4,500,0,15,4);
     AnimationComponent explosionEImage(spellEBanjo, "explosion.png", 4, 4,1000,0,15);
 
@@ -77,10 +81,13 @@ int main(int, char**)
 
     spellQBanjo.add_component(explosionQImage);
     spellWBanjo.add_component(explosionWImage);
-    spellEBanjo.add_component(explosionEImage);  
+    spellEBanjo.add_component(explosionEImage); 
+
     spellQBanjo.add_component(somQ);
     spellWBanjo.add_component(somE);
     spellEBanjo.add_component(somW);
+    
+    spellQBanjo.add_component(pushQ);
     //Adicionando spell ao instrumento
     banjo.addSpell(globals::spellQ,&spellQBanjo);
     banjo.addSpell(globals::spellW,&spellWBanjo);
@@ -123,7 +130,7 @@ int main(int, char**)
     nFragments.add_component(fragmentText);
     player.nFragments = &fragmentText;
     //ghost
-    GameObject ghost("ghost", 800, 200);
+    Enemy ghost("ghost", 800, 200);
     ghost.xF = 0; ghost.yF = 0;
     AnimationComponent ghostI(ghost, "ghost.png", 4, 4, 500, 0,3 ,-1);
     FollowPlayer moveGhost(ghost);
@@ -134,14 +141,15 @@ int main(int, char**)
     ghost.add_component(ghostController);
     ghost.add_component(moveGhost);
     //change room handler
-    GameObject goRightRoom1("goRightRoom1", 925,320);
+    GameObject goRightRoom1("goRightRoom1", 925,220);
     goRightRoom1.xF = 0; goRightRoom1.yF = 0;
 
     ChangeRoom goRightRoom1Component(goRightRoom1,room2.name(),ChangeRoom::Direction::Right);
-    ImageComponent portalARoom1(goRightRoom1, "portal.png", 4, 4);
+    //ImageComponent portalARoom1(goRightRoom1, "portal.png", 4, 4);
 
     goRightRoom1.add_component(goRightRoom1Component); 
-    goRightRoom1.add_component(portalARoom1); 
+    //goRightRoom1.add_component(portalARoom1); 
+    goRightRoom1.w = 100; goRightRoom1.h = 100;
     //oi
     GameObject goLeftRoom2("goLeftRoom2", 0,320);
     goLeftRoom2.xF = 0; goLeftRoom2.yF = 0;
@@ -152,11 +160,11 @@ int main(int, char**)
     goLeftRoom2.add_component(goLeftRoom2Component); 
     goLeftRoom2.add_component(portalARoom2); 
     // objetos
-    GameObject tree("tree1",500,500);
+    /*GameObject tree("tree1",500,500);
     tree.xF = 0; tree.yF = 0;
 
     ImageComponent treeImage(tree,"tree.png",3,1);
-    tree.add_component(treeImage);
+    tree.add_component(treeImage);*/
 
     //add to scene
     room1.add_game_object(spellWBanjo);
@@ -168,9 +176,14 @@ int main(int, char**)
     room1.add_game_object(player);
     room1.add_game_object(ghost);
     room1.add_game_object(goRightRoom1);
+    room2.add_game_object(spellWBanjo);
+    room2.add_game_object(spellEBanjo);
+    room2.add_game_object(spellQBanjo);
+    room2.add_game_object(accordion);
+    room2.add_game_object(eletric_guitar);
+    room2.add_game_object(banjo);
     room2.add_game_object(player);
     room2.add_game_object(goLeftRoom2);
-    room2.add_game_object(tree);
     room1.add_game_object(nFragments);
 
     GameObject fragmento("fragmento",16*32,12*32);
@@ -213,6 +226,12 @@ int main(int, char**)
     room1.add_game_object(tilemap);    
     room1.add_game_object(hudlife);
     room1.add_game_object(HUDInstrument);
+
+    room2.add_game_object(hudlife);
+    room2.add_game_object(HUDInstrument);
+    room2.add_game_object(tilemap);
+    
+
 
     // Game loop
     Game::instance.run();
