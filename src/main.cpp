@@ -41,12 +41,14 @@ int main(int, char**)
     GameScene room1("stage_1_room_1");
     GameScene room2("stage_1_room_2");
     GameScene room3("stage_1_room_3");
+    GameScene room4("stage_1_room_4");
     
     /* Gamescene*/
     Game::instance.add_scene(menu);
     Game::instance.add_scene(room1);
     Game::instance.add_scene(room2);
     Game::instance.add_scene(room3);
+    Game::instance.add_scene(room4);
     Game::instance.add_scene(GameoverScene);
 
     Player player(globals::player,100,100);
@@ -131,6 +133,7 @@ int main(int, char**)
     TextComponent fragmentText(nFragments,"Numero de fragmentos: ","font.ttf",20);
     nFragments.add_component(fragmentText);
     player.nFragments = &fragmentText;
+    
     //ghost1
 
     Enemy ghost("ghost", 800, 200);
@@ -145,6 +148,7 @@ int main(int, char**)
     ghost.add_component(moveGhost);
 
     //ghost2
+
     Enemy ghost2("ghost2", 800, 200);
     ghost2.xF = 0; ghost2.yF = 0;
     AnimationComponent ghostI2(ghost2, "ghost.png", 4, 4, 500, 0, 3 ,-1);
@@ -157,6 +161,7 @@ int main(int, char**)
     ghost2.add_component(moveGhost2);
 
     //ghost3
+
     Enemy ghost3("ghost3", 100, 100);
     ghost3.xF = 0; ghost3.yF = 0;
     AnimationComponent ghostI3(ghost3, "ghost.png", 4, 4, 500, 0, 3 ,-1);
@@ -167,6 +172,52 @@ int main(int, char**)
     ghost3.add_component(damage3);
     ghost3.add_component(ghost3Controller);
     ghost3.add_component(moveGhost3);
+
+    //ghosts room 4
+
+    Enemy ghost41("ghost41", 3*32, 3*32);
+    ghost41.xF = 0; ghost41.yF = 0;
+    AnimationComponent ghostI41(ghost41, "ghost.png", 4, 4, 500, 0, 3 ,-1);
+    FollowPlayer moveGhost41(ghost41);
+    AnimationControllerComponent ghost41Controller(ghost41);
+    ghost41Controller.addAnimation("moveDown", ghostI41);
+    DamageEnemy damage41(ghost41);
+    ghost41.add_component(damage41);
+    ghost41.add_component(ghost41Controller);
+    ghost41.add_component(moveGhost41);
+
+    Enemy ghost42("ghost42", 28*32, 3*32);
+    ghost42.xF = 0; ghost42.yF = 0;
+    AnimationComponent ghostI42(ghost42, "ghost.png", 4, 4, 500, 0, 3 ,-1);
+    FollowPlayer moveGhost42(ghost42);
+    AnimationControllerComponent ghost42Controller(ghost42);
+    ghost42Controller.addAnimation("moveDown", ghostI42);
+    DamageEnemy damage42(ghost42);
+    ghost42.add_component(damage42);
+    ghost42.add_component(ghost42Controller);
+    ghost42.add_component(moveGhost42);
+
+    Enemy ghost43("ghost43", 3*32, 19*32);
+    ghost43.xF = 0; ghost43.yF = 0;
+    AnimationComponent ghostI43(ghost43, "ghost.png", 4, 4, 500, 0, 3 ,-1);
+    FollowPlayer moveGhost43(ghost43);
+    AnimationControllerComponent ghost43Controller(ghost43);
+    ghost43Controller.addAnimation("moveDown", ghostI43);
+    DamageEnemy damage43(ghost43);
+    ghost43.add_component(damage43);
+    ghost43.add_component(ghost43Controller);
+    ghost43.add_component(moveGhost43);
+
+    Enemy ghost44("ghost44", 28*32, 15*32);
+    ghost44.xF = 0; ghost44.yF = 0;
+    AnimationComponent ghostI44(ghost44, "ghost.png", 4, 4, 500, 0, 3 ,-1);
+    FollowPlayer moveGhost44(ghost44);
+    AnimationControllerComponent ghost44Controller(ghost44);
+    ghost44Controller.addAnimation("moveDown", ghostI44);
+    DamageEnemy damage44(ghost44);
+    ghost44.add_component(damage44);
+    ghost44.add_component(ghost44Controller);
+    ghost44.add_component(moveGhost44);
 
     //change room handler
     GameObject goRightRoom1("goRightRoom1", 925,220);
@@ -187,11 +238,23 @@ int main(int, char**)
     ChangeRoom goTopRoom2Component(goTopRoom2, room3.name(), ChangeRoom::Direction::Top);
     goTopRoom2.add_component(goTopRoom2Component);    
 
-    GameObject goBottonRoom3("goBottonRoom2", 450, 650);
+    GameObject goBottonRoom3("goBottonRoom3", 450, 650);
     goBottonRoom3.xF = 0; goBottonRoom3.yF = 0;
     goBottonRoom3.w = 100; goBottonRoom3.h = 100;
     ChangeRoom goBottonRoom3Component(goBottonRoom3, room2.name(), ChangeRoom::Direction::Botton);
-    goBottonRoom3.add_component(goBottonRoom3Component);        
+    goBottonRoom3.add_component(goBottonRoom3Component);
+
+    GameObject goLeftRoom3("goLeftRoom3", 0, 320);
+    goLeftRoom3.xF = 0; goLeftRoom3.yF = 0;
+    goLeftRoom3.w = 70; goLeftRoom3.h = 100;
+    ChangeRoom goLeftRoom3Component(goLeftRoom3, room4.name(), ChangeRoom::Direction::Left);
+    goLeftRoom3.add_component(goLeftRoom3Component);
+
+    GameObject goRightRoom4("goRightRoom4", 925, 320);
+    goRightRoom4.xF = 0; goRightRoom4.yF = 0;
+    goRightRoom4.w = 70; goRightRoom4.h = 100;
+    ChangeRoom goRightRoom4Component(goRightRoom4, room3.name(), ChangeRoom::Direction::Right);
+    goRightRoom4.add_component(goRightRoom4Component);    
 
     //add to scene
     room1.add_game_object(spellWBanjo);
@@ -223,11 +286,26 @@ int main(int, char**)
     room3.add_game_object(banjo);
     room3.add_game_object(player);
     room3.add_game_object(goBottonRoom3);
+    room3.add_game_object(goLeftRoom3);
     room3.add_game_object(ghost3);
+
+    room4.add_game_object(spellWBanjo);
+    room4.add_game_object(spellEBanjo);
+    room4.add_game_object(spellQBanjo);
+    room4.add_game_object(accordion);
+    room4.add_game_object(eletric_guitar);
+    room4.add_game_object(banjo);
+    room4.add_game_object(player);
+    room4.add_game_object(goRightRoom4);
+    room4.add_game_object(ghost41);
+    room4.add_game_object(ghost42);
+    room4.add_game_object(ghost43);
+    room4.add_game_object(ghost44);
 
     room1.add_game_object(nFragments);
     room2.add_game_object(nFragments);
     room3.add_game_object(nFragments);
+    room4.add_game_object(nFragments);
 
     //Fragmento sala 1
 
@@ -286,6 +364,11 @@ int main(int, char**)
     tilemap3.setTileSet(tileset3);
     tilemap3.add_component(tileset3);
 
+    TileMap tilemap4("assets/mapa4.txt", "mapa", 0, 0); 
+    TileSet tileset4(32, 32, tilemap4, "tilesheet.png", 1, 1);
+    tilemap4.setTileSet(tileset4);
+    tilemap4.add_component(tileset4);    
+
 
     HUDLife hudlife("hudlife", 0, 0, &player);
     hudlife.xF = 0; hudlife.yF = 0;
@@ -312,6 +395,11 @@ int main(int, char**)
     room3.add_game_object(hudlife);
     room3.add_game_object(HUDInstrument);
     room3.add_game_object(tilemap3);
+
+    room4.add_game_object(hudlife);
+    room4.add_game_object(HUDInstrument);
+    room4.add_game_object(tilemap4);
+
  
 /*
     room1.add_game_object(tilemap);
