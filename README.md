@@ -33,4 +33,3 @@ Após isso rode o cmake e o make.
 |libsdl2-mixer-dev:amd64| 2.0.0+dfsg1-3|
 |libsdl2-ttf-2.0-0:amd64| 2.0.12+dfsg1-2|
 |libsdl2-ttf-dev:amd64| 2.0.12+dfsg1-2 |
-
