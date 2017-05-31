@@ -77,8 +77,8 @@ bool Scene::init()
     for (auto id_obj: m_objects)
     {
         auto obj = id_obj.second;
-        if (obj->state() == GameObject::State::enabled &&
-            obj->init() == false) return false;
+        obj->resetState();
+        if (obj->init() == false) return false;
     }
 
     return true;
@@ -91,8 +91,7 @@ bool Scene::shutdown()
     for (auto id_obj: m_objects)
     {
         auto obj = id_obj.second;
-        if (obj->state() == GameObject::State::enabled &&
-            obj->shutdown() == false) return false;
+        if (obj->shutdown() == false) return false;
     }
 
     return true;

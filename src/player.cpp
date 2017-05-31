@@ -205,3 +205,14 @@ void Player::addFragment(int _id){
     nFragments->setText(ss.str());
     nFragments->init();
 }
+void Player::clearFragments(){
+    fragments.clear();
+
+    std::stringstream ss;
+    ss << "Numero de fragmentos: "<<fragments.size();
+
+    nFragments->setText(ss.str());
+    nFragments->init();
+
+
+}

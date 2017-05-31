@@ -27,7 +27,7 @@ public:
     GameObject() : GameObject("",0,0, State::invalid) {}
     GameObject(std::string _name,int _x,int _y, State _state=State::enabled)
         : w(0), h(0), rotation(0), physics(*this,_x,_y), m_name(_name),xI(_x),yI(_y),
-          m_state(_state){}
+          m_state(_state), i_state(_state){}
 
     ~GameObject() {}
 
@@ -51,7 +51,7 @@ public:
     inline void set_size(int _w, int _h) { w = _w; h = _h; }
     int getInitialX();
     int getInitialY();
-
+    void resetState(){m_state = i_state;}
     
     int    w, h;
     int    xF,yF;
@@ -62,6 +62,7 @@ protected:
     std::string m_name;
     int    xI,yI;
     State       m_state;
+    State i_state;
     std::unordered_map<std::type_index, std::list<Component *> > m_components;
     
 };

@@ -39,7 +39,8 @@ public:
     Instrument getActiveInstrument();
     void addFragment(int _id);
     TextComponent* nFragments;
-
+    void clearFragments();
+    
 private:
     std::unordered_map<std::string, Instrument> instruments;
     std::unordered_map<std::string, ImageComponent*> sprites;

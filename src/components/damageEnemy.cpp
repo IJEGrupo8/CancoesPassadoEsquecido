@@ -34,6 +34,7 @@ bool DamageEnemy::update(){
         player->physics.position.setX(player->getInitialX());
         player->physics.position.setY(player->getInitialY());
         player->life = 100;
+        player->clearFragments();
 
     }
     return true;

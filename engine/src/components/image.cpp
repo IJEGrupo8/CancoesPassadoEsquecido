@@ -18,6 +18,7 @@ bool ImageComponent::init()
     auto image = Game::instance.asset_manager().load_image(m_path);
     m_texture = image->texture;
     m_game_object->set_size(image->w/i, image->h/j);
+    INFO("PATH "<< m_path << "OBJECT "<<m_game_object->name());
 
     return true;
 }
