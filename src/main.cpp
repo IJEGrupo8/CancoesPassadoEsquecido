@@ -40,11 +40,13 @@ int main(int, char**)
     MenuScene GameoverScene("Gameover");
     GameScene room1("stage_1_room_1");
     GameScene room2("stage_1_room_2");
+    GameScene room3("stage_1_room_3");
     
     /* Gamescene*/
     Game::instance.add_scene(menu);
     Game::instance.add_scene(room1);
     Game::instance.add_scene(room2);
+    Game::instance.add_scene(room3);
     Game::instance.add_scene(GameoverScene);
 
     Player player(globals::player,100,100);
@@ -157,31 +159,21 @@ int main(int, char**)
     //change room handler
     GameObject goRightRoom1("goRightRoom1", 925,220);
     goRightRoom1.xF = 0; goRightRoom1.yF = 0;
-
-
     ChangeRoom goRightRoom1Component(goRightRoom1,room2.name(),ChangeRoom::Direction::Right);
-    //ImageComponent portalARoom1(goRightRoom1, "portal.png", 4, 4);
-
     goRightRoom1.add_component(goRightRoom1Component); 
-    //goRightRoom1.add_component(portalARoom1); 
     goRightRoom1.w = 100; goRightRoom1.h = 100;
-    //oi
+    
     GameObject goLeftRoom2("goLeftRoom2", 0, 320);
     goLeftRoom2.xF = 0; goLeftRoom2.yF = 0;
     goLeftRoom2.w = 100; goLeftRoom2.h = 100;
-
     ChangeRoom goLeftRoom2Component(goLeftRoom2, room1.name(), ChangeRoom::Direction::Left);
-    //ImageComponent portalARoom2(goLeftRoom2, "portal.png", 4, 4);
+    goLeftRoom2.add_component(goLeftRoom2Component);
 
-    goLeftRoom2.add_component(goLeftRoom2Component); 
-    //goLeftRoom2.add_component(portalARoom2); 
-    // objetos
-
-    /*GameObject tree("tree1",500,500);
-    tree.xF = 0; tree.yF = 0;
-
-    ImageComponent treeImage(tree,"tree.png",3,1);
-    tree.add_component(treeImage);*/
+    GameObject goTopRoom2("goTopRoom2", 450, 0);
+    goTopRoom2.xF = 0; goTopRoom2.yF = 0;
+    goTopRoom2.w = 100; goTopRoom2.h = 100;
+    ChangeRoom goTopRoom2Component(goTopRoom2, room1.name(), ChangeRoom::Direction::Top);
+    goTopRoom2.add_component(goTopRoom2Component);    
 
     //add to scene
     room1.add_game_object(spellWBanjo);
@@ -203,6 +195,7 @@ int main(int, char**)
     room2.add_game_object(player);
     room2.add_game_object(ghost2);
     room2.add_game_object(goLeftRoom2);
+    room2.add_game_object(goTopRoom2);
 
     room1.add_game_object(nFragments);
     room2.add_game_object(nFragments);
@@ -225,7 +218,7 @@ int main(int, char**)
     ImageComponent guitarFrag2(fragmento2, "guitar.png", 1, 3);
     fragmento2.add_component(obtainFrag2);
     fragmento2.add_component(guitarFrag2);
-    room2.add_game_object(fragmento2);
+    room2.add_game_object(fragmento2); 
 
     GameObject playbutton("playbutton",(globals::window_size.first/2)-50,(globals::window_size.second/2)-50);
     ImageComponent playImage(playbutton,"playbutton.png",1,1);
