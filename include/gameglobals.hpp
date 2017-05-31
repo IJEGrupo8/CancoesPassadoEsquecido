@@ -15,8 +15,6 @@ namespace globals {
     const std::string spellQ = "spellQ";
     const std::string spellW = "spellW";
     const std::string spellE = "spellE";
-
-
 }
 
 #endif

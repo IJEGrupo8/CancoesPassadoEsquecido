@@ -32,9 +32,16 @@ bool CustomImageComponent::shutdown(){
 	return true;	
 }
 
-void CustomImageComponent::setWidth(double width){
+void CustomImageComponent::setWidth(int width){
 	m_width = width;
 }
-void CustomImageComponent::setHeight(double height){
+void CustomImageComponent::setHeight(int height){
     m_height = height;
+}
+
+void CustomImageComponent::setX(int x){
+    m_x = x;
+}
+void CustomImageComponent::setY(int y){
+    m_y = y;
 }

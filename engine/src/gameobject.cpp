@@ -6,6 +6,7 @@
 #include "components/code.hpp"
 #include "components/animationcontroller.hpp"
 #include "customimagecomponent.hpp"
+#include "gameglobals.hpp"
 
 #include "log.h"
 
@@ -23,8 +24,7 @@ bool GameObject::init()
                component->init() == false) return false;
         }
     }
-    physics.position.setX(xI);
-    physics.position.setY(yI);
+
     return true;
 }
 
@@ -121,3 +121,10 @@ bool GameObject::update()
     return true;
 }
 
+int GameObject::getInitialX(){
+    return xI;
+}
+
+int GameObject::getInitialY(){
+    return yI;
+}

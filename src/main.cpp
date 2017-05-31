@@ -47,7 +47,7 @@ int main(int, char**)
     Game::instance.add_scene(room2);
     Game::instance.add_scene(GameoverScene);
 
-    Player player("Player1",100,100);
+    Player player(globals::player,100,100);
     player.xF = 0; player.yF = 0;
 
     MoveDirectionals move(player);
@@ -101,7 +101,7 @@ int main(int, char**)
     ImageComponent eletricGuitarImage(player, "girl3.png", 4, 4);
     ImageComponent accordionImage(player, "girl4.png", 4, 4);
 
-    HUDInstrument HUDInstrument("hudinstrument", globals::window_size.first-380, globals::window_size.second-120, &player);
+    HUDInstrument HUDInstrument("hudinstrument", globals::window_size.first-250, globals::window_size.second-120, &player);
     HUDInstrument.xF = 0; HUDInstrument.yF = 0;
     ImageComponent banjoActiveHUD(HUDInstrument, "hud_instruments_0.png", 1, 1);
     ImageComponent eletricGuitarActiveHUD(HUDInstrument, "hud_instruments_1.png", 1, 1);
@@ -223,7 +223,8 @@ int main(int, char**)
     AudioComponent music(tilemap,"fase.mp3",true, true);
     tilemap.add_component(music);
 
-    room1.add_game_object(tilemap);    
+    room1.add_game_object(tilemap); 
+    room2.add_game_object(tilemap);   
     room1.add_game_object(hudlife);
     room1.add_game_object(HUDInstrument);
 
