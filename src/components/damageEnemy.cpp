@@ -28,9 +28,11 @@ bool DamageEnemy::update(){
         
     }
 
-    if(player->life < 0)
+    if(player->life <= 0)
     {
         engine::Game::instance.change_scene("Gameover");
+        player->physics.position.setX(player->getInitialX());
+        player->physics.position.setY(player->getInitialY());
     }
     return true;
 }
