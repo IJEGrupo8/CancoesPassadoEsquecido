@@ -28,7 +28,8 @@ bool ChangeRoom::update(){
         {
             INFO("DIRECTION  RIGHT");
             player->physics.position.setX(globals::window_size.first 
-                - player->physics.position.getX() + 10);
+                - player->physics.position.getX() + 1);
+            player->physics.position.setY(330);
         }
         else if(dir == Direction::Left)
         {

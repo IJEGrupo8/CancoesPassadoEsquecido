@@ -49,6 +49,8 @@ public:
     }
     void setState(State new_state) { m_state = new_state; }
     inline void set_size(int _w, int _h) { w = _w; h = _h; }
+    int getInitialX();
+    int getInitialY();
 
     
     int    w, h;

@@ -45,7 +45,7 @@ void AudioComponent::update_state()
 	{
 		if(Mix_PlayingMusic() == 1)
 		{
-			INFO("playing");
+			//INFO("playing");
 			m_audio_state = AudioState::playing;
 		}
 		else if(Mix_PausedMusic() == 1)
