@@ -200,7 +200,7 @@ Instrument Player::getActiveInstrument(){
 
 void Player::addFragment(int _id){
     fragments.push_back(_id);
-    if(fragments.size() == 2) {
+    if(fragments.size() == 4) {
         engine::Game::instance.change_scene("Victory");
         physics.position.setX(getInitialX());
         physics.position.setY(getInitialY());

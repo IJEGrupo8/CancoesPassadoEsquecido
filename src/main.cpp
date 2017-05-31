@@ -236,7 +236,7 @@ int main(int, char**)
 
     GameObject goTopRoom2("goTopRoom2", 450, 0);
     goTopRoom2.xF = 0; goTopRoom2.yF = 0;
-    goTopRoom2.w = 100; goTopRoom2.h = 100;
+    goTopRoom2.w = 70; goTopRoom2.h = 100;
     ChangeRoom goTopRoom2Component(goTopRoom2, room3.name(), ChangeRoom::Direction::Top);
     goTopRoom2.add_component(goTopRoom2Component);    
 
@@ -392,7 +392,6 @@ int main(int, char**)
     tilemap2.add_component(music);
 
     room1.add_game_object(tilemap); 
-    //room2.add_game_object(tilemap);   
     room1.add_game_object(hudlife);
     room1.add_game_object(HUDInstrument);
 
@@ -407,18 +406,6 @@ int main(int, char**)
     room4.add_game_object(hudlife);
     room4.add_game_object(HUDInstrument);
     room4.add_game_object(tilemap4);
-
- 
-/*
-    room1.add_game_object(tilemap);
-    room2.add_game_object(tilemap);   
-    room1.add_game_object(hudlife);
-    room1.add_game_object(HUDInstrument);
-
-    room2.add_game_object(hudlife);
-    room2.add_game_object(HUDInstrument);
-    room2.add_game_object(tilemap2);
- */   
 
     // Game loop
     Game::instance.run();
