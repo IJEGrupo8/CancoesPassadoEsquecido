@@ -13,6 +13,7 @@
 #include "components/changeroom.hpp"
 #include "components/fragment.hpp"
 #include "components/pushenemy.hpp"
+#include "components/talknpc.hpp"
 #include "customimagecomponent.hpp"
 #include "player.hpp"
 #include "gamescene.hpp"
@@ -319,6 +320,15 @@ int main(int, char**)
     ChangeRoom goRightRoom5Component(goRightRoom5, room4.name(), ChangeRoom::Direction::Right);
     goRightRoom5.add_component(goRightRoom5Component);
 
+    GameObject npcjoao("npcjoao", 500, 500);
+    npcjoao.xF = 0; npcjoao.yF = 0;
+    TextComponent joaoline(npcjoao,"Oiiir, eu sou o joao!","font.ttf",20);
+    TalkNpc talkjoao(npcjoao,&joaoline);
+    ImageComponent joaoImage(npcjoao, "boy.png",4,4);
+    npcjoao.add_component(joaoline);
+    npcjoao.add_component(talkjoao);
+    npcjoao.add_component(joaoImage);
+
     //add to scene
     room1.add_game_object(spellWBanjo);
     room1.add_game_object(spellEBanjo);
@@ -327,8 +337,9 @@ int main(int, char**)
     room1.add_game_object(eletric_guitar);
     room1.add_game_object(banjo);
     room1.add_game_object(player);
-    room1.add_game_object(ghost);
+    //room1.add_game_object(ghost);
     room1.add_game_object(goRightRoom1);
+    room1.add_game_object(npcjoao);
 
     room2.add_game_object(spellWBanjo);
     room2.add_game_object(spellEBanjo);
