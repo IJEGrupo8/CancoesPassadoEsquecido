@@ -37,35 +37,13 @@ bool Spell::update()
 {
   GameObject::update();
 
-  if(durationTimer.getTime()< duration){
-    
-    
-  }else{
-   	//quita do scene
-   	INFO("Finish spell");
-    setState(State::disabled);
-
-   	//Game::instance.m_scene->remove_game_object(name());
-   }
-   return true;
+  return true;
 }
 
 bool Spell::useSpell()
 {
-  if(countdownTimer.getTime() > countdown){
-    INFO("Start spell");
-    AudioComponent * audio = get_component<AudioComponent>();
-    audio->play(1);
-    setState(State::enabled);
-    physics.position = player->physics.position;
-    physics.velocity = player->physics.velocity;
-  	durationTimer.startTimer();
-    countdownTimer.startTimer();
-    //timer2.startTimer();
-    setup();
-  }else{
-    INFO("on countdown");
-  }
+  //Implemente nos filhos
+  INFO("Use Spell on spell");
   return true;
 }
 void Spell::setup()

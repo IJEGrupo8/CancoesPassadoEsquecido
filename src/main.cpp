@@ -13,6 +13,7 @@
 #include "components/changeroom.hpp"
 #include "components/fragment.hpp"
 #include "components/pushenemy.hpp"
+#include "basicspell.hpp"
 #include "customimagecomponent.hpp"
 #include "player.hpp"
 #include "gamescene.hpp"
@@ -58,49 +59,43 @@ int main(int, char**)
     Player player(globals::player,100,100);
     player.xF = 0; player.yF = 0;
 
-    MoveDirectionals move(player);
-
     //Declaring instruments
     Instrument banjo(globals::banjo, 100,100);
     Instrument eletric_guitar(globals::eletric_guitar, 100,100);
     Instrument accordion(globals::accordion, 100,100);
     //Declaring spells
-    Spell spellQBanjo("spellQBanjo",&player,0,0,3000,3000);
-    Spell spellWBanjo("spellWBanjo",&player,0,0,5000,5000);
-    Spell spellEBanjo("spellEBanjo",&player,0,0,5000,1000);
-
-    AudioComponent somQ(spellQBanjo,"pika.wav",false,false);
-    AudioComponent somE(spellWBanjo,"pika.wav",false,false); 
-    AudioComponent somW(spellEBanjo,"pika.wav",false,false);
-
-    PushEnemy pushQ(spellQBanjo);
-
+    BasicSpell spellQBanjo("spellQBanjo",&player,0,0,1500,1500);
+    BasicSpell spellQGuitar("spellQGuitar",&player,0,0,1500,1500);
+    BasicSpell spellQAccordion("spellQAccordion",&player,0,0,1500,1500);
+ 
     spellQBanjo.xF = 0; spellQBanjo.yF = 0;
-    spellWBanjo.xF = 0; spellWBanjo.yF = 0;
-    spellEBanjo.xF = 0; spellEBanjo.yF = 0;
+    spellQGuitar.xF = 0; spellQGuitar.yF = 0;
+    spellQAccordion.xF = 0; spellQAccordion.yF = 0;   
 
-    //Adicionando imagem ao spell
+    AudioComponent somQBanjo(spellQBanjo,"drumsBasic.wav",false,false);
+    AudioComponent somQGuitar(spellQGuitar,"drumsBasic.wav",false,false);
+    AudioComponent somQAccordion(spellQAccordion,"drumsBasic.wav",false,false);
 
-    AnimationComponent explosionQImage(spellQBanjo, "explosion.png", 4, 4,1000,0,15);
-    AnimationComponent explosionWImage(spellWBanjo, "explosion.png", 4, 4,500,0,15,4);
-    AnimationComponent explosionEImage(spellEBanjo, "explosion.png", 4, 4,1000,0,15);
+    ImageComponent banjoQImage(spellQBanjo, "musicnote.png", 3, 3);
+    ImageComponent guitarQImage(spellQGuitar, "musicnote.png", 3, 3);
+    ImageComponent accordionQImage(spellQAccordion, "musicnote.png", 3, 3);
 
     //AnimationControllerComponent explosionController();
 
-    spellQBanjo.add_component(explosionQImage);
-    spellWBanjo.add_component(explosionWImage);
-    spellEBanjo.add_component(explosionEImage); 
+    spellQBanjo.add_component(banjoQImage);
+    spellQBanjo.add_component(somQBanjo);
 
-    spellQBanjo.add_component(somQ);
-    spellWBanjo.add_component(somE);
-    spellEBanjo.add_component(somW);
-    
-    spellQBanjo.add_component(pushQ);
+    spellQGuitar.add_component(guitarQImage);
+    spellQGuitar.add_component(somQGuitar);
+
+    spellQAccordion.add_component(accordionQImage);
+    spellQAccordion.add_component(somQGuitar);
+
     //Adicionando spell ao instrumento
     banjo.addSpell(globals::spellQ,&spellQBanjo);
-    banjo.addSpell(globals::spellW,&spellWBanjo);
-    banjo.addSpell(globals::spellE,&spellEBanjo);
-    //spell[globals::spellQ]
+    eletric_guitar.addSpell(globals::spellQ,&spellQGuitar);
+    accordion.addSpell(globals::spellQ,&spellQAccordion);
+
     player.addInstrument(globals::banjo, banjo);
     player.addInstrument(globals::eletric_guitar, eletric_guitar);
     player.addInstrument(globals::accordion, accordion);
@@ -131,12 +126,13 @@ int main(int, char**)
     player.add_component(eletricGuitarImage);
     player.add_component(accordionImage);
 
+    MoveDirectionals move(player);
     player.add_component(move);
 
     GameObject nFragments("nFragments",10,40);
     TextComponent fragmentText(nFragments,"Numero de fragmentos: ","font.ttf",20);
     nFragments.add_component(fragmentText);
-    player.nFragments = &fragmentText;
+    player.nFragments = &fragmentText; 
     
     //ghost1
 
@@ -320,9 +316,9 @@ int main(int, char**)
     goRightRoom5.add_component(goRightRoom5Component);
 
     //add to scene
-    room1.add_game_object(spellWBanjo);
-    room1.add_game_object(spellEBanjo);
     room1.add_game_object(spellQBanjo);
+    room1.add_game_object(spellQGuitar);
+    room1.add_game_object(spellQAccordion);
     room1.add_game_object(accordion);
     room1.add_game_object(eletric_guitar);
     room1.add_game_object(banjo);
@@ -330,9 +326,9 @@ int main(int, char**)
     room1.add_game_object(ghost);
     room1.add_game_object(goRightRoom1);
 
-    room2.add_game_object(spellWBanjo);
-    room2.add_game_object(spellEBanjo);
     room2.add_game_object(spellQBanjo);
+    room2.add_game_object(spellQGuitar);
+    room2.add_game_object(spellQAccordion);
     room2.add_game_object(accordion);
     room2.add_game_object(eletric_guitar);
     room2.add_game_object(banjo);
@@ -341,9 +337,9 @@ int main(int, char**)
     room2.add_game_object(goLeftRoom2);
     room2.add_game_object(goTopRoom2);
 
-    room3.add_game_object(spellWBanjo);
-    room3.add_game_object(spellEBanjo);
     room3.add_game_object(spellQBanjo);
+    room3.add_game_object(spellQGuitar);
+    room3.add_game_object(spellQAccordion);
     room3.add_game_object(accordion);
     room3.add_game_object(eletric_guitar);
     room3.add_game_object(banjo);
@@ -352,9 +348,9 @@ int main(int, char**)
     room3.add_game_object(goLeftRoom3);
     room3.add_game_object(ghost3);
 
-    room4.add_game_object(spellWBanjo);
-    room4.add_game_object(spellEBanjo);
     room4.add_game_object(spellQBanjo);
+    room4.add_game_object(spellQGuitar);
+    room4.add_game_object(spellQAccordion);
     room4.add_game_object(accordion);
     room4.add_game_object(eletric_guitar);
     room4.add_game_object(banjo);
@@ -366,9 +362,9 @@ int main(int, char**)
     room4.add_game_object(ghost43);
     room4.add_game_object(ghost44);
 
-    room5.add_game_object(spellWBanjo);
-    room5.add_game_object(spellEBanjo);
     room5.add_game_object(spellQBanjo);
+    room5.add_game_object(spellQGuitar);
+    room5.add_game_object(spellQAccordion);
     room5.add_game_object(accordion);
     room5.add_game_object(eletric_guitar);
     room5.add_game_object(banjo);
@@ -476,7 +472,7 @@ int main(int, char**)
     TileSet tileset2(32, 32, tilemap2, "tilesheet.png", 1, 1);
     tilemap2.setTileSet(tileset2);
     tilemap2.add_component(tileset2);
-
+ 
     TileMap tilemap3("assets/mapa3.txt", "mapa", 0, 0); 
     TileSet tileset3(32, 32, tilemap3, "tilesheet.png", 1, 1);
     tilemap3.setTileSet(tileset3);

@@ -27,12 +27,12 @@ public:
     int lastTimeUsed;
     int duration;
     
-    bool init();
-    bool shutdown();
-    bool update();
-    bool draw();
-    void setup();
-    bool useSpell();
+    virtual bool init();
+    virtual bool shutdown();
+    virtual bool update();
+    virtual bool draw();
+    virtual void setup();
+    virtual bool useSpell();
 private:
     
 };

@@ -9,7 +9,6 @@
 bool DamageEnemy::init(){
 
     INFO("Init changeroom");
-    
     return true;
 }
 bool DamageEnemy::update(){

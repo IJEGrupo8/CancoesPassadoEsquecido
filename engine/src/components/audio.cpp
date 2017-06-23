@@ -63,7 +63,7 @@ void AudioComponent::update_state()
 	{
 		if(Mix_Playing(m_channel) == 1)
 		{
-			//INFO("playing");
+			INFO("playing");
 			m_audio_state = AudioState::playing;
 		}
 		else if(Mix_Paused(m_channel) == 1)
@@ -73,7 +73,7 @@ void AudioComponent::update_state()
 		}
 		else
 		{
-			//INFO("stopped");
+			INFO("stopped");
 			m_audio_state = AudioState::stopped;
 		}
 	}

@@ -18,7 +18,6 @@ public:
     
     virtual bool update();
     virtual bool init();
-
 };
 
 #endif
