@@ -257,3 +257,7 @@ bool Game::handle_scene_changes()
 
     return true;
 }
+
+void Game::set_state(State state){
+    m_state = state;
+}

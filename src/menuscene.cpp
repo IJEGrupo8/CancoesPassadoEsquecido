@@ -2,85 +2,124 @@
 #include "menuscene.hpp"
 #include "game.hpp"
 #include "keyword.hpp"
-
+#include "components/image.hpp"
+#include "timer.hpp"
 
 using namespace engine;
 
+bool MenuScene::init(){
+	//set button 0 (play) as selected
+	selected[0] = 1;
+	selected[1] = 0;
+	selected[2] = 0;
+	timer.startTimer();
+	engine::Scene::init();
+
+	return true;
+}
+
 bool MenuScene::update()
 {
-	handleEvents();
-
-    if(Input::keyPressed(Input::ENTER))
-    {
-       engine::Game::instance.change_scene("stage_1_room_1");
-    }
+	selectButton();
+	setSelectionIndicator();
+	confirmButton();
     
     return true;
 }
 
-bool MenuScene::handleEvents(){
-	SDL_Event e;
-    while(SDL_PollEvent(&e)){
-    	INFO("ESTA NO HANDLE EVENTS " << e.type);
-        switch(e.type){
-            case SDL_MOUSEBUTTONDOWN:
-            	INFO("CLICOU");
-                if(e.button.button == SDL_BUTTON_LEFT){
-                	int x = e.button.x;
-                	int y = e.button.y;
-                	INFO("CLICOU EM " << x << "E " << y);
+bool MenuScene::selectButton()
+{
+	if(timer.getTime() > 200){
+		if(Input::keyPressed(Input::DOWN)){
+			timer.startTimer();
+			if(selected[0]){
+				INFO("ESTAVA NO PLAY APERTOU PRA BAIXO");
+				selected[0] = 0;
+				selected[1] = 1;
+				selected[2] = 0;
+			}
+			else if(selected[1]){
+				INFO("ESTAVA NO OPTIONS APERTOU PRA BAIXO");
+				selected[0] = 0;
+				selected[1] = 0;
+				selected[2] = 1;
+			}
+			else if(selected[2]){
+				INFO("ESTAVA NO QUIT APERTOU PRA BAIXO");
+				selected[0] = 1;
+				selected[1] = 0;
+				selected[2] = 0;
+			}
+		}
+		else if(Input::keyPressed(Input::UP)){
+			timer.startTimer();
+			if(selected[0]){
+				INFO("ESTAVA NO PLAY APERTOU PRA CIMA");
+				selected[0] = 0;
+				selected[1] = 0;
+				selected[2] = 1;
+			}
+			else if(selected[1]){
+				INFO("ESTAVA NO OPTIONS APERTOU PRA CIMA");
+				selected[0] = 1;
+				selected[1] = 0;
+				selected[2] = 0;
+			}
+			else if(selected[2]){
+				INFO("ESTAVA NO QUIT APERTOU PRA CIMA");
+				selected[0] = 0;
+				selected[1] = 1;
+				selected[2] = 0;
+			}
+		}
+	}
 
-                	GameObject * playButton = get_game_object("playbutton");
-                	GameObject * optionsButton = get_game_object("optionsbutton");
-                	GameObject * quitButton = get_game_object("quitbutton");
+	return true;
+}
 
-                	if(isInsideButton(playButton->physics.position.getX(),
-                					  playButton->physics.position.getY(),
-                					  x, y,
-                					  playButton->w,
-                					  playButton->h)){
-                		INFO("CLICOU NO PLAY");
-                	}
-                	else if(isInsideButton(optionsButton->physics.position.getX(),
-                					  optionsButton->physics.position.getY(),
-                					  x, y,
-                					  optionsButton->w,
-                					  optionsButton->h)){
-                		INFO("CLICOU NO OPTIONS");
-
-                	}
-                	else if(isInsideButton(quitButton->physics.position.getX(),
-                					  quitButton->physics.position.getY(),
-                					  x, y,
-                					  quitButton->w,
-                					  quitButton->h)){
-                		INFO("CLICOU NO QUIT");
-                	}                	
-                }
-
-                break;
-        }
+bool MenuScene::confirmButton(){
+	if(Input::keyPressed(Input::ENTER))
+    {
+       if(selected[0]){
+       	engine::Game::instance.change_scene("stage_1_room_1");
+       }
+       else if(selected[1]){
+       	
+       }
+       else if(selected[2])
+       {
+       	engine::Game::instance.set_state(Game::State::exit_loop);
+       }
     }
 
     return true;
 }
 
-bool MenuScene::isInsideButton(int buttonX, int buttonY, int clickX, int clickY, 
-	int buttonW, int buttonH){
-	bool inside = true; 
- 
-	if ( clickX < buttonX ) { 
-		inside = false; 
-	} 
-	else if( clickX > buttonX + buttonW ) { 
-		inside = false; 
-	} 
-	else if( clickY < buttonY ) { 
-		inside = false; 
+bool MenuScene::setSelectionIndicator(){
+
+	GameObject * playButton = get_game_object("playbutton");
+	GameObject * optionsButton = get_game_object("optionsbutton");
+	GameObject * quitButton = get_game_object("quitbutton");
+
+	auto playButtonImage = playButton->get_component<ImageComponent>();
+	auto optionsButtonImage = optionsButton->get_component<ImageComponent>();
+	auto quitButtonImage = quitButton->get_component<ImageComponent>();
+
+	if(selected[0]){
+		SDL_SetTextureAlphaMod(playButtonImage->m_texture, 120.0);
+		SDL_SetTextureAlphaMod(optionsButtonImage->m_texture, 255.0);
+		SDL_SetTextureAlphaMod(quitButtonImage->m_texture, 255.0);
 	}
-	else if( clickY > buttonY + buttonH ) { 
-		inside = false; 
+	else if(selected[1]){
+		SDL_SetTextureAlphaMod(playButtonImage->m_texture, 255.0);
+		SDL_SetTextureAlphaMod(optionsButtonImage->m_texture, 120.0);
+		SDL_SetTextureAlphaMod(quitButtonImage->m_texture, 255.0);
+	}
+	else if(selected[2]){
+		SDL_SetTextureAlphaMod(playButtonImage->m_texture, 255.0);
+		SDL_SetTextureAlphaMod(optionsButtonImage->m_texture, 255.0);
+		SDL_SetTextureAlphaMod(quitButtonImage->m_texture, 120.0);
 	}
 
-	return inside;
+    return true;
 }

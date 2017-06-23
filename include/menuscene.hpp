@@ -4,6 +4,7 @@
 #include <string>
 #include "scene.hpp"
 #include "log.h"
+#include "timer.hpp"
 
 using namespace engine;
 
@@ -16,9 +17,14 @@ public:
 
     ~MenuScene() {}
     bool update();
-    bool isInsideButton(int buttonX, int buttonY, int clickX, int clickY, int buttonW, int buttonH);
-    bool handleEvents();
+    bool selectButton();
+    bool confirmButton();
+    bool setSelectionIndicator();
+    virtual bool init();
 private:
+
+    int selected[3];
+    Timer timer;
 
 /*
     virtual bool init();
