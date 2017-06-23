@@ -17,7 +17,7 @@ public:
 
     ~Enemy() {}
     int life = 100;
-    
+    bool canMove = true;
 private:
 };
 
