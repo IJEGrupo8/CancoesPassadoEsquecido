@@ -12,9 +12,9 @@ GameObject INVALID_GAME_OBJECT;
 bool Scene::comparator(const std::pair<std::string, GameObject *>  &p1, 
     const std::pair<std::string, GameObject *> &p2) 
 {
-    if(p1.second->name() == "mapa"){
+    if(p1.second->name() == "mapa" or p1.second->name() == "menu_background"){
         return true;
-    }else if (p2.second->name() == "mapa"){
+    }else if (p2.second->name() == "mapa" or p2.second->name() == "menu_background"){
         return false;
     }
     else{
@@ -47,11 +47,11 @@ bool Scene::add_game_object(GameObject & obj)
 
 GameObject * Scene::get_game_object(const std::string & id)
 {
-    /*if (m_objects.find(id) == m_objects.end())
+    if (m_objects.find(id) == m_objects.end())
     {
         WARN("Could not find game object " << id);
-        return INVALID_GAME_OBJECT;
-    }*/
+        return nullptr;
+    }
 
     return m_objects[id];
 }

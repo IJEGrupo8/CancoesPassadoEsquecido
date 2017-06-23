@@ -425,11 +425,35 @@ int main(int, char**)
     fragmento4.add_component(guitarFrag4);
     room5.add_game_object(fragmento4);
 
-    GameObject playbutton("playbutton",(globals::window_size.first/2)-50,(globals::window_size.second/2)-50);
+    GameObject menuBackground("menu_background", 0, 0);
+    menuBackground.xF = 0; menuBackground.yF = 0;
+    ImageComponent backgroundImage(menuBackground, "menu_background.png", 1, 1);
+    menuBackground.add_component(backgroundImage);
+    menu.add_game_object(menuBackground);
+
+    GameObject playButton("playbutton", 50, 150);
+    playButton.xF = 0; playButton.yF = 0;
+    ImageComponent playImage(playButton,"play_button.png", 1, 1);
+    playButton.add_component(playImage);
+    menu.add_game_object(playButton);
+
+    GameObject optionsButton("optionsbutton", 150, 300);
+    optionsButton.xF = 0; optionsButton.yF = 0;
+    ImageComponent optionsImage(optionsButton,"options_button.png", 1, 1);
+    optionsButton.add_component(optionsImage);
+    menu.add_game_object(optionsButton);
+
+    GameObject quitButton("quitbutton", 250, 450);
+    quitButton.xF = 0; quitButton.yF = 0;
+    ImageComponent quitImage(quitButton,"quit_button.png", 1, 1);
+    quitButton.add_component(quitImage);
+    menu.add_game_object(quitButton);
+
+    /*GameObject playbutton("playbutton",(globals::window_size.first/2)-50,(globals::window_size.second/2)-50);
     ImageComponent playImage(playbutton,"playbutton.png",1,1);
     playbutton.xF = 0; playbutton.yF = 0;
     playbutton.add_component(playImage);
-    menu.add_game_object(playbutton);
+    menu.add_game_object(playbutton);*/
 
     GameObject gameover("gameover",(globals::window_size.first/2)-100,(globals::window_size.second/2)-100);
     ImageComponent gameoverImage(gameover,"gameover.png",1,1);

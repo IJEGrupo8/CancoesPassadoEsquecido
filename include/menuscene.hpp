@@ -3,6 +3,7 @@
 
 #include <string>
 #include "scene.hpp"
+#include "log.h"
 
 using namespace engine;
 
@@ -15,6 +16,8 @@ public:
 
     ~MenuScene() {}
     bool update();
+    bool isInsideButton(int buttonX, int buttonY, int clickX, int clickY, int buttonW, int buttonH);
+    bool handleEvents();
 private:
 
 /*
