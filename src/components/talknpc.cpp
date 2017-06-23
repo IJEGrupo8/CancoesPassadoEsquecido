@@ -1,10 +1,17 @@
 #include "log.h"
 #include "components/talknpc.hpp"
+#include "components/image.hpp"
+#include "components/text.hpp"
+#include "hudbox.hpp"
 #include "keyword.hpp"
 #include "player.hpp"
 #include "game.hpp"
 
-bool TalkNpc::init(){            
+bool TalkNpc::init(){
+    box_image = box->get_component<ImageComponent>();
+    box_image->setState(State::disabled);
+    box_image->init();
+    line = box->get_component<TextComponent>();  
     line->setState(State::disabled);
     line->init();
     timer.startTimer();
@@ -22,9 +29,11 @@ bool TalkNpc::update(){
 
         if(m_game_object->physics.detectColision(player) && Input::keyPressed(Input::A)){
             line->setState(State::enabled);
+            box_image->setState(State::enabled);
             timer.startTimer();
         }else{
             line->setState(State::disabled);
+            box_image->setState(State::disabled);
         }
     }
 

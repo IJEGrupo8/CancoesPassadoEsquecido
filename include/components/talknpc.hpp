@@ -4,6 +4,8 @@
 #include "components/code.hpp"
 #include "gameobject.hpp"
 #include "player.hpp"
+#include "hudbox.hpp"
+#include "components/image.hpp"
 #include "components/text.hpp"
 #include "timer.hpp"
 
@@ -11,8 +13,8 @@ using namespace engine;
 
 class TalkNpc : public CodeComponent {
 public:
-    TalkNpc(GameObject & game_object, TextComponent * _textComponent)
-        : CodeComponent(game_object),line(_textComponent){}
+    TalkNpc(GameObject & game_object, HUDBox * _box)
+        : CodeComponent(game_object),box(_box){}
         
     TalkNpc() : CodeComponent() {}
 
@@ -22,6 +24,8 @@ public:
     virtual bool init();
 
     Player * player;
+    HUDBox * box;
+    ImageComponent *box_image;
     TextComponent *line;
     Timer timer;
 

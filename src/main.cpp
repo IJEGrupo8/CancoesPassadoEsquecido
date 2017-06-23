@@ -25,6 +25,7 @@
 #include "log.h"
 #include "gameglobals.hpp"
 #include "hudlife.hpp"
+#include "hudbox.hpp"
 #include "hudinstrument.hpp"
 #include "enemy.hpp"
 
@@ -321,15 +322,20 @@ int main(int, char**)
     goRightRoom5.add_component(goRightRoom5Component);
 
     GameObject npcjoao("npcjoao", 500, 500);
-    npcjoao.xF = 0; npcjoao.yF = 0;
-    TextComponent joaoline(npcjoao,"Oiiir, eu sou o joao!","font.ttf",20);
-    TalkNpc talkjoao(npcjoao,&joaoline);
+    npcjoao.xF = 0; npcjoao.yF = 0;    
     ImageComponent joaoImage(npcjoao, "boy.png",4,4);
-    npcjoao.add_component(joaoline);
-    npcjoao.add_component(talkjoao);
     npcjoao.add_component(joaoImage);
 
+    HUDBox npcBox("npc_box",212, 600);
+    TextComponent joaoline(npcBox,".             Oiiir, eu sou o joao!","font.ttf",20, {255,255,255});
+    ImageComponent boxImage(npcBox, "dialog_box.png",1,1);
+    npcBox.add_component(boxImage);
+    npcBox.add_component(joaoline);
+
+    TalkNpc talkjoao(npcjoao,&npcBox);
+    npcjoao.add_component(talkjoao);
     //add to scene
+    room1.add_game_object(npcBox);
     room1.add_game_object(spellWBanjo);
     room1.add_game_object(spellEBanjo);
     room1.add_game_object(spellQBanjo);
@@ -489,7 +495,7 @@ int main(int, char**)
     hudlife.add_component(lifeBar);
     hudlife.add_component(lifeBarContent); 
 
-    AudioComponent music(tilemap,"fase.mp3",true, true);
+    AudioComponent music(tilemap,"fase.wav",true, true);
     tilemap.add_component(music);
     tilemap2.add_component(music);
     tilemap3.add_component(music);
