@@ -9,8 +9,8 @@ using namespace engine;
 
 GameObject INVALID_GAME_OBJECT;
 
-bool Scene::comparator(const std::pair<std::string, GameObject *>  &p1, 
-    const std::pair<std::string, GameObject *> &p2) 
+bool Scene::comparator(const std::pair<std::string, GameObject *>  &p1,
+    const std::pair<std::string, GameObject *> &p2)
 {
     if(p1.second->name() == "mapa" or p1.second->name() == "menu_background"){
         return true;
@@ -118,6 +118,6 @@ bool Scene::update()
         if (obj->state() == GameObject::State::enabled &&
             obj->update() == false) return false;
     }
-    
+
     return true;
 }
