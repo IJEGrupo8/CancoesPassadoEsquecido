@@ -5,6 +5,7 @@
 #include <unordered_map>
 
 #include "scene.hpp"
+#include "components/changeroom.hpp"
 
 using namespace engine;
 
@@ -20,6 +21,8 @@ public:
     bool update();
     bool init();
     bool add_enemy(std::string enemy_id, int x, int y);
+    bool add_room_transition(std::string id_transition, int x, int y,
+         int w, int h, std::string target_room, ChangeRoom::Direction direction);
 
 private:
 /*

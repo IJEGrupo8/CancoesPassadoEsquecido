@@ -40,3 +40,12 @@ bool Room::add_enemy(std::string enemy_id, int x, int y)
     add_game_object(*newEnemy);
     return true;
 }
+bool Room::add_room_transition(std::string id_transition, int x, int y, int w, int h, std::string target_room, ChangeRoom::Direction direction){
+    GameObject * transition = new GameObject(id_transition, x, y);
+    ChangeRoom * changeRoomComponent = new ChangeRoom(*transition, target_room, direction);
+    transition->add_component(*changeRoomComponent);
+    transition->w = w; transition->h = h;
+
+    add_game_object(*transition);
+    return true;
+}

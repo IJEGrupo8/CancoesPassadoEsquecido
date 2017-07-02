@@ -127,22 +127,6 @@ int main(int, char**)
 
     player.add_component(banjoController);
     player.addSprite(globals::banjo, &banjoController);
-    //AnimationComponent ghostI(ghost, "ghost.png", 4, 4, 500, 0, 3 ,-1);
-
-    /*
-    ImageComponent banjoImage(player, "girl2.png", 4, 4);
-    ImageComponent eletricGuitarImage(player, "girl3.png", 4, 4);
-    ImageComponent accordionImage(player, "girl4.png", 4, 4);
-
-    player.addSprite(globals::banjo, &banjoImage);
-    player.addSprite(globals::eletric_guitar, &eletricGuitarImage);
-    player.addSprite(globals::accordion, &accordionImage);
-
-    player.add_component(banjoImage);
-    player.add_component(eletricGuitarImage);
-    player.add_component(accordionImage);*/
-
-
 
     MoveDirectionals move(player);
     player.add_component(move);
@@ -165,53 +149,20 @@ int main(int, char**)
     gameplay.get_room("stage_1_room_5")->add_enemy("ghost54", 28*32, 15*32);
 
     //change room handler
-    GameObject goRightRoom1("goRightRoom1", 925,200);
+/*    GameObject goRightRoom1("goRightRoom1", 925,200);
     goRightRoom1.xF = 0; goRightRoom1.yF = 0;
     ChangeRoom goRightRoom1Component(goRightRoom1,"stage_1_room_2",ChangeRoom::Direction::Right);
     goRightRoom1.add_component(goRightRoom1Component);
-    goRightRoom1.w = 100; goRightRoom1.h = 100;
+    goRightRoom1.w = 100; goRightRoom1.h = 100;*/
 
-    GameObject goLeftRoom2("goLeftRoom2", 0, 320);
-    goLeftRoom2.xF = 0; goLeftRoom2.yF = 0;
-    goLeftRoom2.w = 100; goLeftRoom2.h = 100;
-    ChangeRoom goLeftRoom2Component(goLeftRoom2, "stage_1_room_2", ChangeRoom::Direction::Left);
-    goLeftRoom2.add_component(goLeftRoom2Component);
-
-    GameObject goTopRoom2("goTopRoom2", 450, 0);
-    goTopRoom2.xF = 0; goTopRoom2.yF = 0;
-    goTopRoom2.w = 70; goTopRoom2.h = 100;
-    ChangeRoom goTopRoom2Component(goTopRoom2, "stage_1_room_3", ChangeRoom::Direction::Top);
-    goTopRoom2.add_component(goTopRoom2Component);
-
-    GameObject goBottonRoom3("goBottonRoom3", 450, 650);
-    goBottonRoom3.xF = 0; goBottonRoom3.yF = 0;
-    goBottonRoom3.w = 100; goBottonRoom3.h = 100;
-    ChangeRoom goBottonRoom3Component(goBottonRoom3, "stage_1_room_2", ChangeRoom::Direction::Botton);
-    goBottonRoom3.add_component(goBottonRoom3Component);
-
-    GameObject goLeftRoom3("goLeftRoom3", 0, 320);
-    goLeftRoom3.xF = 0; goLeftRoom3.yF = 0;
-    goLeftRoom3.w = 70; goLeftRoom3.h = 100;
-    ChangeRoom goLeftRoom3Component(goLeftRoom3, "stage_1_room_4", ChangeRoom::Direction::Left);
-    goLeftRoom3.add_component(goLeftRoom3Component);
-
-    GameObject goRightRoom4("goRightRoom4", 925, 320);
-    goRightRoom4.xF = 0; goRightRoom4.yF = 0;
-    goRightRoom4.w = 70; goRightRoom4.h = 100;
-    ChangeRoom goRightRoom4Component(goRightRoom4, "stage_1_room_3", ChangeRoom::Direction::Right);
-    goRightRoom4.add_component(goRightRoom4Component);
-
-    GameObject goLeftRoom4("goLeftRoom4", 0, 300);
-    goLeftRoom4.xF = 0; goLeftRoom4.yF = 0;
-    goLeftRoom4.w = 70; goLeftRoom4.h = 100;
-    ChangeRoom goLeftRoom4Component(goLeftRoom4, "stage_1_room_5", ChangeRoom::Direction::Left);
-    goLeftRoom4.add_component(goLeftRoom4Component);
-
-    GameObject goRightRoom5("goRightRoom5", 925, 320);
-    goRightRoom5.xF = 0; goRightRoom5.yF = 0;
-    goRightRoom5.w = 70; goRightRoom5.h = 100;
-    ChangeRoom goRightRoom5Component(goRightRoom5, "stage_1_room_4", ChangeRoom::Direction::Right);
-    goRightRoom5.add_component(goRightRoom5Component);
+    gameplay.get_room("stage_1_room_1")->add_room_transition("goRightRoom1", 925,200,100,100,"stage_1_room_2",ChangeRoom::Direction::Right);
+    gameplay.get_room("stage_1_room_2")->add_room_transition("goLeftRoom2", 0, 320,100,100,"stage_1_room_1",ChangeRoom::Direction::Left);
+    gameplay.get_room("stage_1_room_2")->add_room_transition("goTopRoom2", 450, 0,70,100,"stage_1_room_3",ChangeRoom::Direction::Top);
+    gameplay.get_room("stage_1_room_3")->add_room_transition("goBottonRoom3", 450, 650,100,100,"stage_1_room_2",ChangeRoom::Direction::Botton);
+    gameplay.get_room("stage_1_room_3")->add_room_transition("goLeftRoom3",0, 320,70,100,"stage_1_room_4",ChangeRoom::Direction::Left);
+    gameplay.get_room("stage_1_room_4")->add_room_transition("goRightRoom4",925, 320,70,100,"stage_1_room_3",ChangeRoom::Direction::Right);
+    gameplay.get_room("stage_1_room_4")->add_room_transition("goLeftRoom4", 0, 300,70,100,"stage_1_room_5",ChangeRoom::Direction::Left);
+    gameplay.get_room("stage_1_room_5")->add_room_transition("goRightRoom5", 0, 925, 320,100,"stage_1_room_4",ChangeRoom::Direction::Right);
 
     //add to scene
     gameplay.add_game_object(spellQBanjo);
@@ -221,61 +172,6 @@ int main(int, char**)
     gameplay.add_game_object(eletric_guitar);
     gameplay.add_game_object(banjo);
     gameplay.add_game_object(player);
-    INFO("OIR1");
-    //gameplay.add_game_object_to_room("stage_1_room_1",ghost);
-    INFO("OIR2");
-    gameplay.add_game_object_to_room("stage_1_room_1",goRightRoom1);
-
-    /*room2.add_game_object(spellQBanjo);
-    room2.add_game_object(spellQGuitar);
-    room2.add_game_object(spellQAccordion);
-    room2.add_game_object(accordion);
-    room2.add_game_object(eletric_guitar);
-    room2.add_game_object(banjo);
-    room2.add_game_object(player);*/
-    gameplay.add_game_object_to_room("stage_1_room_2",ghost2);
-    gameplay.add_game_object_to_room("stage_1_room_2",goLeftRoom2);
-    gameplay.add_game_object_to_room("stage_1_room_2",goTopRoom2);
-
-    /*room3.add_game_object(spellQBanjo);
-    room3.add_game_object(spellQGuitar);
-    room3.add_game_object(spellQAccordion);
-    room3.add_game_object(accordion);
-    room3.add_game_object(eletric_guitar);
-    room3.add_game_object(banjo);
-    room3.add_game_object(player);*/
-    gameplay.add_game_object_to_room("stage_1_room_3",goBottonRoom3);
-    gameplay.add_game_object_to_room("stage_1_room_3",goLeftRoom3);
-    gameplay.add_game_object_to_room("stage_1_room_3",ghost3);
-
-    /*room4.add_game_object(spellQBanjo);
-    room4.add_game_object(spellQGuitar);
-    room4.add_game_object(spellQAccordion);
-    room4.add_game_object(accordion);
-    room4.add_game_object(eletric_guitar);
-    room4.add_game_object(banjo);
-    room4.add_game_object(player);*/
-    gameplay.add_game_object_to_room("stage_1_room_4",goRightRoom4);
-    gameplay.add_game_object_to_room("stage_1_room_4",goLeftRoom4);
-    gameplay.add_game_object_to_room("stage_1_room_4",ghost41);
-    gameplay.add_game_object_to_room("stage_1_room_4",ghost42);
-    gameplay.add_game_object_to_room("stage_1_room_4",ghost43);
-    gameplay.add_game_object_to_room("stage_1_room_4",ghost44);
-
-    /*room5.add_game_object(spellQBanjo);
-    room5.add_game_object(spellQGuitar);
-    room5.add_game_object(spellQAccordion);
-    room5.add_game_object(accordion);
-    room5.add_game_object(eletric_guitar);
-    room5.add_game_object(banjo);
-    room5.add_game_object(player);*/
-    gameplay.add_game_object_to_room("stage_1_room_5",goRightRoom5);
-    gameplay.add_game_object_to_room("stage_1_room_5",ghost51);
-    gameplay.add_game_object_to_room("stage_1_room_5",ghost52);
-    gameplay.add_game_object_to_room("stage_1_room_5",ghost53);
-    gameplay.add_game_object_to_room("stage_1_room_5",ghost54);
-
-
     gameplay.add_game_object(nFragments);
 
     //Fragmento sala 1
