@@ -41,12 +41,13 @@ public:
     void addFragment(int _id);
     TextComponent* nFragments;
     void clearFragments();
+    AnimationControllerComponent * active_sprite;
+
 
 private:
     std::unordered_map<std::string, Instrument> instruments;
     std::unordered_map<std::string, AnimationControllerComponent *> sprites;
     Instrument active_instrument;
-    AnimationControllerComponent * active_sprite;
     std::vector<int> fragments;
     int defaultVel = 5;
 };

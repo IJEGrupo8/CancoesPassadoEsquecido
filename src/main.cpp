@@ -118,10 +118,10 @@ int main(int, char**)
     //Animation
     AnimationControllerComponent banjoController(player);
 
-    AnimationComponent banjoMoveLeft(player,"walk.png",8,4,2000,0,7,-1);
-    AnimationComponent banjoMoveRight(player,"walk.png",8,4,2000,8,15,-1);
-    AnimationComponent banjoMoveDown(player,"walk.png",8,4,4000,16,19,-1);
-    AnimationComponent banjoMoveUp(player,"walk.png",8,4,4000,24,27,-1);
+    AnimationComponent banjoMoveLeft(player,"walk.png",8,4,1000,0,7,-1);
+    AnimationComponent banjoMoveRight(player,"walk.png",8,4,1000,8,15,-1);
+    AnimationComponent banjoMoveDown(player,"walk.png",8,4,2000,16,19,-1);
+    AnimationComponent banjoMoveUp(player,"walk.png",8,4,2000,24,27,-1);
 
     banjoController.addAnimation(globals::moveLeft,banjoMoveLeft);
     banjoController.addAnimation(globals::moveRight,banjoMoveRight);

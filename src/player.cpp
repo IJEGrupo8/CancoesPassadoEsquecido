@@ -76,6 +76,7 @@ bool Player::moveDown(){
     xF = xFrame;
     yF = yFrame;*/
     active_sprite->changeAnimation(globals::moveDown);
+    active_sprite->activeAnimation->clock.resumeTimer();
     return true;
 }
 
@@ -93,7 +94,7 @@ bool Player::moveUp(){
     xF = xFrame;
     yF = yFrame;*/
     active_sprite->changeAnimation(globals::moveUp);
-
+    active_sprite->activeAnimation->clock.resumeTimer();
     return true;
 }
 
@@ -112,7 +113,7 @@ bool Player::moveLeft(){
     xF = xFrame;
     yF = yFrame;*/
     active_sprite->changeAnimation(globals::moveLeft);
-
+    active_sprite->activeAnimation->clock.resumeTimer();
     return true;
 }
 
@@ -131,7 +132,7 @@ bool Player::moveRight(){
     xF = xFrame;
     yF = yFrame;*/
     active_sprite->changeAnimation(globals::moveRight);
-
+    active_sprite->activeAnimation->clock.resumeTimer();
     return true;
 }
 
