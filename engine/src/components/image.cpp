@@ -49,4 +49,3 @@ void ImageComponent::draw()
 
     SDL_RenderCopyEx(Game::instance.canvas(), m_texture, &frameQuad, &renderQuad, 0, 0, SDL_FLIP_NONE);
 }
-

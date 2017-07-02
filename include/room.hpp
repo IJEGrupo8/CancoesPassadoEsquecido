@@ -19,6 +19,8 @@ public:
     bool draw();
     bool update();
     bool init();
+    bool add_enemy(std::string enemy_id, int x, int y);
+
 private:
 /*
     virtual bool init();

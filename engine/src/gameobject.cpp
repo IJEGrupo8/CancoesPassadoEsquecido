@@ -46,6 +46,7 @@ bool GameObject::shutdown()
 
 bool GameObject::draw()
 {
+    INFO("DRAW " << name());
     for(auto component: m_components[std::type_index(typeid(ImageComponent))])
     {
         if(component->state() == Component::State::enabled){
@@ -77,7 +78,7 @@ bool GameObject::draw()
         if(component->state() == Component::State::enabled)
             (dynamic_cast<AnimationComponent *>(component))->draw();
     }
-    
+
     return true;
 }
 void GameObject::setup()

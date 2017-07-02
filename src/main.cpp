@@ -152,137 +152,17 @@ int main(int, char**)
     nFragments.add_component(fragmentText);
     player.nFragments = &fragmentText;
 
-    //ghost1
-
-    Enemy ghost("ghost", 800, 200);
-    ghost.xF = 0; ghost.yF = 0;
-    AnimationComponent ghostI(ghost, "ghost.png", 4, 4, 500, 0, 3 ,-1);
-    FollowPlayer moveGhost(ghost);
-    AnimationControllerComponent ghostController(ghost);
-    ghostController.addAnimation("moveDown", ghostI);
-    DamageEnemy damage(ghost);
-    ghost.add_component(damage);
-    ghost.add_component(ghostController);
-    ghost.add_component(moveGhost);
-
-    //ghost2
-
-    Enemy ghost2("ghost2", 800, 200);
-    ghost2.xF = 0; ghost2.yF = 0;
-    AnimationComponent ghostI2(ghost2, "ghost.png", 4, 4, 500, 0, 3 ,-1);
-    FollowPlayer moveGhost2(ghost2);
-    AnimationControllerComponent ghost2Controller(ghost2);
-    ghost2Controller.addAnimation("moveDown", ghostI2);
-    DamageEnemy damage2(ghost2);
-    ghost2.add_component(damage2);
-    ghost2.add_component(ghost2Controller);
-    ghost2.add_component(moveGhost2);
-
-    //ghost3
-
-    Enemy ghost3("ghost3", 100, 100);
-    ghost3.xF = 0; ghost3.yF = 0;
-    AnimationComponent ghostI3(ghost3, "ghost.png", 4, 4, 500, 0, 3 ,-1);
-    FollowPlayer moveGhost3(ghost3);
-    AnimationControllerComponent ghost3Controller(ghost3);
-    ghost3Controller.addAnimation("moveDown", ghostI3);
-    DamageEnemy damage3(ghost3);
-    ghost3.add_component(damage3);
-    ghost3.add_component(ghost3Controller);
-    ghost3.add_component(moveGhost3);
-
-    //ghosts room 4
-
-    Enemy ghost41("ghost41", 3*32, 3*32);
-    ghost41.xF = 0; ghost41.yF = 0;
-    AnimationComponent ghostI41(ghost41, "ghost.png", 4, 4, 500, 0, 3 ,-1);
-    FollowPlayer moveGhost41(ghost41);
-    AnimationControllerComponent ghost41Controller(ghost41);
-    ghost41Controller.addAnimation("moveDown", ghostI41);
-    DamageEnemy damage41(ghost41);
-    ghost41.add_component(damage41);
-    ghost41.add_component(ghost41Controller);
-    ghost41.add_component(moveGhost41);
-
-    Enemy ghost42("ghost42", 28*32, 3*32);
-    ghost42.xF = 0; ghost42.yF = 0;
-    AnimationComponent ghostI42(ghost42, "ghost.png", 4, 4, 500, 0, 3 ,-1);
-    FollowPlayer moveGhost42(ghost42);
-    AnimationControllerComponent ghost42Controller(ghost42);
-    ghost42Controller.addAnimation("moveDown", ghostI42);
-    DamageEnemy damage42(ghost42);
-    ghost42.add_component(damage42);
-    ghost42.add_component(ghost42Controller);
-    ghost42.add_component(moveGhost42);
-
-    Enemy ghost43("ghost43", 3*32, 19*32);
-    ghost43.xF = 0; ghost43.yF = 0;
-    AnimationComponent ghostI43(ghost43, "ghost.png", 4, 4, 500, 0, 3 ,-1);
-    FollowPlayer moveGhost43(ghost43);
-    AnimationControllerComponent ghost43Controller(ghost43);
-    ghost43Controller.addAnimation("moveDown", ghostI43);
-    DamageEnemy damage43(ghost43);
-    ghost43.add_component(damage43);
-    ghost43.add_component(ghost43Controller);
-    ghost43.add_component(moveGhost43);
-
-    Enemy ghost44("ghost44", 28*32, 15*32);
-    ghost44.xF = 0; ghost44.yF = 0;
-    AnimationComponent ghostI44(ghost44, "ghost.png", 4, 4, 500, 0, 3 ,-1);
-    FollowPlayer moveGhost44(ghost44);
-    AnimationControllerComponent ghost44Controller(ghost44);
-    ghost44Controller.addAnimation("moveDown", ghostI44);
-    DamageEnemy damage44(ghost44);
-    ghost44.add_component(damage44);
-    ghost44.add_component(ghost44Controller);
-    ghost44.add_component(moveGhost44);
-
-    //ghosts room 5
-
-    Enemy ghost51("ghost51", 3*32, 3*32);
-    ghost51.xF = 0; ghost51.yF = 0;
-    AnimationComponent ghostI51(ghost51, "ghost.png", 4, 4, 500, 0, 3 ,-1);
-    FollowPlayer moveGhost51(ghost51);
-    AnimationControllerComponent ghost51Controller(ghost51);
-    ghost51Controller.addAnimation("moveDown", ghostI51);
-    DamageEnemy damage51(ghost51);
-    ghost51.add_component(damage51);
-    ghost51.add_component(ghost51Controller);
-    ghost51.add_component(moveGhost51);
-
-    Enemy ghost52("ghost52", 28*32, 3*32);
-    ghost52.xF = 0; ghost52.yF = 0;
-    AnimationComponent ghostI52(ghost52, "ghost.png", 4, 4, 500, 0, 3 ,-1);
-    FollowPlayer moveGhost52(ghost52);
-    AnimationControllerComponent ghost52Controller(ghost52);
-    ghost52Controller.addAnimation("moveDown", ghostI52);
-    DamageEnemy damage52(ghost52);
-    ghost52.add_component(damage52);
-    ghost52.add_component(ghost52Controller);
-    ghost52.add_component(moveGhost52);
-
-    Enemy ghost53("ghost53", 3*32, 19*32);
-    ghost53.xF = 0; ghost53.yF = 0;
-    AnimationComponent ghostI53(ghost53, "ghost.png", 4, 4, 500, 0, 3 ,-1);
-    FollowPlayer moveGhost53(ghost53);
-    AnimationControllerComponent ghost53Controller(ghost53);
-    ghost53Controller.addAnimation("moveDown", ghostI53);
-    DamageEnemy damage53(ghost53);
-    ghost53.add_component(damage53);
-    ghost53.add_component(ghost53Controller);
-    ghost53.add_component(moveGhost53);
-
-    Enemy ghost54("ghost54", 28*32, 15*32);
-    ghost54.xF = 0; ghost54.yF = 0;
-    AnimationComponent ghostI54(ghost54, "ghost.png", 4, 4, 500, 0, 3 ,-1);
-    FollowPlayer moveGhost54(ghost54);
-    AnimationControllerComponent ghost54Controller(ghost54);
-    ghost54Controller.addAnimation("moveDown", ghostI54);
-    DamageEnemy damage54(ghost54);
-    ghost54.add_component(damage54);
-    ghost54.add_component(ghost54Controller);
-    ghost54.add_component(moveGhost54);
-
+    gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 800, 200);
+    gameplay.get_room("stage_1_room_2")->add_enemy("ghost2", 800, 200);
+    gameplay.get_room("stage_1_room_3")->add_enemy("ghost3", 100, 100);
+    gameplay.get_room("stage_1_room_4")->add_enemy("ghost41", 3*32, 3*32);
+    gameplay.get_room("stage_1_room_4")->add_enemy("ghost42", 28*32, 3*32);
+    gameplay.get_room("stage_1_room_4")->add_enemy("ghost43", 3*32, 19*32);
+    gameplay.get_room("stage_1_room_4")->add_enemy("ghost44", 28*32, 15*32);
+    gameplay.get_room("stage_1_room_5")->add_enemy("ghost51", 3*32, 3*32);
+    gameplay.get_room("stage_1_room_5")->add_enemy("ghost52", 28*32, 3*32);
+    gameplay.get_room("stage_1_room_5")->add_enemy("ghost53", 3*32, 19*32);
+    gameplay.get_room("stage_1_room_5")->add_enemy("ghost54", 28*32, 15*32);
 
     //change room handler
     GameObject goRightRoom1("goRightRoom1", 925,200);
@@ -342,7 +222,7 @@ int main(int, char**)
     gameplay.add_game_object(banjo);
     gameplay.add_game_object(player);
     INFO("OIR1");
-    gameplay.add_game_object_to_room("stage_1_room_1",ghost);
+    //gameplay.add_game_object_to_room("stage_1_room_1",ghost);
     INFO("OIR2");
     gameplay.add_game_object_to_room("stage_1_room_1",goRightRoom1);
 
