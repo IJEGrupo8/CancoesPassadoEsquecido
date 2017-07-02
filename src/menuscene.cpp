@@ -23,7 +23,7 @@ bool MenuScene::update()
 	selectButton();
 	setSelectionIndicator();
 	confirmButton();
-    
+
     return true;
 }
 
@@ -81,10 +81,10 @@ bool MenuScene::confirmButton(){
 	if(Input::keyPressed(Input::ENTER))
     {
        if(selected[0]){
-       	engine::Game::instance.change_scene("stage_1_room_1");
+       	engine::Game::instance.change_scene("stage_1");
        }
        else if(selected[1]){
-       	
+
        }
        else if(selected[2])
        {

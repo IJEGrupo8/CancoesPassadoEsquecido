@@ -42,6 +42,8 @@ bool Scene::add_game_object(GameObject & obj)
     }
 
     m_objects[id] = &obj;
+    INFO("game object added");
+
     return true;
 }
 
