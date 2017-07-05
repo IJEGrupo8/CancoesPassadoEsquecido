@@ -13,8 +13,8 @@ using namespace engine;
 class Enemy : public GameObject {
 public:
     Enemy() : GameObject() {}
-    Enemy(std::string _name,int _x,int _y)
-        : GameObject(_name,_x,_y) {}
+    Enemy(std::string _name, int _x, int _y, Player * target, int enemy_life)
+        : GameObject(_name,_x,_y), m_target(target), life(enemy_life) {}
  	
  	~Enemy() {}
     virtual bool init();
@@ -22,15 +22,16 @@ public:
     virtual bool update();
     virtual bool draw();
  	void setTilemap();
+    void bfs(Vector2D pos);
 
-    int life = 100;
+    int life;
     bool canMove = true;
-    int matrix[32][32];
+    int matrix[22][32];
     int positionX, positionY;
 
 
 private:
-
+    Player* m_target;
 };
 
 #endif
