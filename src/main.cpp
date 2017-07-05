@@ -47,6 +47,37 @@ int main(int, char**)
     gameplay.add_room("stage_1_room_4");
     gameplay.add_room("stage_1_room_5");
 
+    TileMap tilemap("assets/mapa1.txt", "mapa", 0, 0);
+    TileSet tileset(32, 32, tilemap, "tilesheet.png", 1, 1);
+    tilemap.setTileSet(tileset);
+    tilemap.add_component(tileset);
+
+    TileMap tilemap2("assets/mapa2.txt", "mapa", 0, 0);
+    TileSet tileset2(32, 32, tilemap2, "tilesheet.png", 1, 1);
+    tilemap2.setTileSet(tileset2);
+    tilemap2.add_component(tileset2);
+
+    TileMap tilemap3("assets/mapa3.txt", "mapa", 0, 0);
+    TileSet tileset3(32, 32, tilemap3, "tilesheet.png", 1, 1);
+    tilemap3.setTileSet(tileset3);
+    tilemap3.add_component(tileset3);
+
+    TileMap tilemap4("assets/mapa4.txt", "mapa", 0, 0);
+    TileSet tileset4(32, 32, tilemap4, "tilesheet.png", 1, 1);
+    tilemap4.setTileSet(tileset4);
+    tilemap4.add_component(tileset4);
+
+    TileMap tilemap5("assets/mapa5.txt", "mapa", 0, 0);
+    TileSet tileset5(32, 32, tilemap5, "tilesheet.png", 1, 1);
+    tilemap5.setTileSet(tileset5);
+    tilemap5.add_component(tileset5);
+
+    gameplay.add_game_object_to_room("stage_1_room_1", tilemap);
+    gameplay.add_game_object_to_room("stage_1_room_2", tilemap2);
+    gameplay.add_game_object_to_room("stage_1_room_3", tilemap3);
+    gameplay.add_game_object_to_room("stage_1_room_4", tilemap4);
+    gameplay.add_game_object_to_room("stage_1_room_5", tilemap5);
+
     /* Gamescene*/
     Game::instance.add_scene(menu);
     Game::instance.add_scene(gameplay);
@@ -136,8 +167,8 @@ int main(int, char**)
     nFragments.add_component(fragmentText);
     player.nFragments = &fragmentText;
 
-    gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 800, 200);
-    gameplay.get_room("stage_1_room_2")->add_enemy("ghost2", 800, 200);
+    gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 25*32, 6*32);
+    gameplay.get_room("stage_1_room_2")->add_enemy("ghost2", 25*32, 6*32);
     gameplay.get_room("stage_1_room_3")->add_enemy("ghost3", 100, 100);
     gameplay.get_room("stage_1_room_4")->add_enemy("ghost41", 3*32, 3*32);
     gameplay.get_room("stage_1_room_4")->add_enemy("ghost42", 28*32, 3*32);
@@ -255,31 +286,6 @@ int main(int, char**)
     victory.add_component(victoryImage);
     VictoryScene.add_game_object(victory);
 
-    TileMap tilemap("assets/mapa1.txt", "mapa", 0, 0);
-    TileSet tileset(32, 32, tilemap, "tilesheet.png", 1, 1);
-    tilemap.setTileSet(tileset);
-    tilemap.add_component(tileset);
-
-    TileMap tilemap2("assets/mapa2.txt", "mapa", 0, 0);
-    TileSet tileset2(32, 32, tilemap2, "tilesheet.png", 1, 1);
-    tilemap2.setTileSet(tileset2);
-    tilemap2.add_component(tileset2);
-
-    TileMap tilemap3("assets/mapa3.txt", "mapa", 0, 0);
-    TileSet tileset3(32, 32, tilemap3, "tilesheet.png", 1, 1);
-    tilemap3.setTileSet(tileset3);
-    tilemap3.add_component(tileset3);
-
-    TileMap tilemap4("assets/mapa4.txt", "mapa", 0, 0);
-    TileSet tileset4(32, 32, tilemap4, "tilesheet.png", 1, 1);
-    tilemap4.setTileSet(tileset4);
-    tilemap4.add_component(tileset4);
-
-    TileMap tilemap5("assets/mapa5.txt", "mapa", 0, 0);
-    TileSet tileset5(32, 32, tilemap5, "tilesheet.png", 1, 1);
-    tilemap5.setTileSet(tileset5);
-    tilemap5.add_component(tileset5);
-
 
     HUDLife hudlife("hudlife", 0, 0, &player);
     hudlife.xF = 0; hudlife.yF = 0;
@@ -300,12 +306,6 @@ int main(int, char**)
 
     gameplay.add_game_object(hudlife);
     gameplay.add_game_object(HUDInstrument);
-
-    gameplay.add_game_object_to_room("stage_1_room_1",tilemap);
-    gameplay.add_game_object_to_room("stage_1_room_2",tilemap2);
-    gameplay.add_game_object_to_room("stage_1_room_3",tilemap3);
-    gameplay.add_game_object_to_room("stage_1_room_4",tilemap4);
-    gameplay.add_game_object_to_room("stage_1_room_5",tilemap5);
 
 
     // Game loop
