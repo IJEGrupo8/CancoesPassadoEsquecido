@@ -11,6 +11,7 @@
 #include "components/image.hpp"
 #include "instrument.hpp"
 #include "components/text.hpp"
+#include "components/animationcontroller.hpp"
 
 using namespace engine;
 
@@ -35,17 +36,18 @@ public:
     bool changeSprite(std::string sprite);
     bool handlePlayer();
     void addInstrument(std::string instrument_name, Instrument instrument);
-    void addSprite(std::string instrument_name, ImageComponent* sprite);
+    void addSprite(std::string instrument_name, AnimationControllerComponent * sprite);
     Instrument getActiveInstrument();
     void addFragment(int _id);
     TextComponent* nFragments;
     void clearFragments();
-    
+    AnimationControllerComponent * active_sprite;
+
+
 private:
     std::unordered_map<std::string, Instrument> instruments;
-    std::unordered_map<std::string, ImageComponent*> sprites;
+    std::unordered_map<std::string, AnimationControllerComponent *> sprites;
     Instrument active_instrument;
-    ImageComponent* active_sprite;
     std::vector<int> fragments;
     int defaultVel = 5;
 };

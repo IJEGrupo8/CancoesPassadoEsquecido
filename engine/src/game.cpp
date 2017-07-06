@@ -127,7 +127,7 @@ void Game::handleEvents()
 void Game::run()
 {
     INFO("Game " << m_name << "Setup");
-    
+
     const int FPS = 30;
     const int DELAY_TIME = 1000.0f / FPS;
     Uint32 frameStart, frameTime;
@@ -147,27 +147,29 @@ void Game::run()
         else m_state = State::main_loop_change_scene;
 
         while(m_state != State::exit_loop)
-        {   
+        {
             if(handle_scene_changes() == false) break;
+
             frameStart = SDL_GetTicks();
-            
+
             SDL_Event evt;
             while(SDL_PollEvent(&evt) != 0)
             {
                 if (evt.type == SDL_QUIT) m_state = State::exit_loop;
             }
-            
+
             SDL_RenderClear(m_canvas);
+
             m_scene->draw();
             handleEvents();
             SDL_RenderPresent(m_canvas);
             frameTime = SDL_GetTicks() - frameStart;
-            
+
             if(frameTime< DELAY_TIME)
             {
                 SDL_Delay((int)(DELAY_TIME - frameTime));
             }
-            
+
         }
 
         INFO("Cleaning up resources...");
@@ -256,4 +258,8 @@ bool Game::handle_scene_changes()
     }
 
     return true;
+}
+
+void Game::set_state(State state){
+    m_state = state;
 }

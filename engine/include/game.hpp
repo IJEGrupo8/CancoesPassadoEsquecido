@@ -4,7 +4,6 @@
 #include <string>
 #include <unordered_map>
 #include <utility>
-
 #include "scene.hpp"
 #include "sdl2include.h"
 
@@ -34,6 +33,7 @@ public:
 
     bool add_scene(Scene & scene);
     bool change_scene(const std::string & id);
+    void set_state(State state);
 
     inline SDL_Renderer * canvas() { return m_canvas; }
     inline AssetManager & asset_manager() { return m_scene->asset_manager(); }

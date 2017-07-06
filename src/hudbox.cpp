@@ -19,7 +19,6 @@ bool HUDBox::shutdown()
 bool HUDBox::draw()
 {
     engine::GameObject::draw();
-
     return true;
 }
 

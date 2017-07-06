@@ -41,6 +41,7 @@ void AnimationControllerComponent::addAnimation(std::string name, AnimationCompo
 }
 void AnimationControllerComponent::changeAnimation(std::string name)
 {
+	if(activeAnimation == animations[name]) return;
 	INFO("Trocando para a animação" << name);
 	activeAnimation = animations[name];
 	setup();

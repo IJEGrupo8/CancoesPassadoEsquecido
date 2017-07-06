@@ -77,7 +77,7 @@ bool GameObject::draw()
         if(component->state() == Component::State::enabled)
             (dynamic_cast<AnimationComponent *>(component))->draw();
     }
-    
+
     return true;
 }
 void GameObject::setup()

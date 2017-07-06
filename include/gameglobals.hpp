@@ -15,6 +15,12 @@ namespace globals {
     const std::string spellQ = "spellQ";
     const std::string spellW = "spellW";
     const std::string spellE = "spellE";
+    const std::string moveLeft = "moveLeft";
+    const std::string moveRight = "moveRight";
+    const std::string moveUp = "moveUp";
+    const std::string moveDown = "moveDown";
+
+
 }
 
 #endif
