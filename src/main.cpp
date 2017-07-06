@@ -13,6 +13,7 @@
 #include "components/changeroom.hpp"
 #include "components/fragment.hpp"
 #include "basicspell.hpp"
+#include "slamspell.hpp"
 #include "customimagecomponent.hpp"
 #include "player.hpp"
 #include "gamescene.hpp"
@@ -58,44 +59,25 @@ int main(int, char**)
 
     //Declaring instruments
     Instrument banjo(globals::banjo, 100,100);
-    Instrument eletric_guitar(globals::eletric_guitar, 100,100);
-    Instrument accordion(globals::accordion, 100,100);
-    //Declaring spells
+
     BasicSpell spellQBanjo("spellQBanjo",&player,0,0,1500,1500);
-    BasicSpell spellQGuitar("spellQGuitar",&player,0,0,1500,1500);
-    BasicSpell spellQAccordion("spellQAccordion",&player,0,0,1500,1500);
-
     spellQBanjo.xF = 0; spellQBanjo.yF = 0;
-    spellQGuitar.xF = 0; spellQGuitar.yF = 0;
-    spellQAccordion.xF = 0; spellQAccordion.yF = 0;
-
     AudioComponent somQBanjo(spellQBanjo,"drumsBasic.wav",false,false);
-    AudioComponent somQGuitar(spellQGuitar,"drumsBasic.wav",false,false);
-    AudioComponent somQAccordion(spellQAccordion,"drumsBasic.wav",false,false);
-
     ImageComponent banjoQImage(spellQBanjo, "musicnote.png", 3, 3);
-    ImageComponent guitarQImage(spellQGuitar, "musicnote.png", 3, 3);
-    ImageComponent accordionQImage(spellQAccordion, "musicnote.png", 3, 3);
-
-    //AnimationControllerComponent explosionController();
-
     spellQBanjo.add_component(banjoQImage);
     spellQBanjo.add_component(somQBanjo);
 
-    spellQGuitar.add_component(guitarQImage);
-    spellQGuitar.add_component(somQGuitar);
+    SlamSpell spellWBanjo("spellWBanjo",&player,0,0,1500,1500);
+    spellWBanjo.xF = 0; spellWBanjo.yF = 0;
+    AudioComponent somWBanjo(spellWBanjo,"drumsBasic.wav",false,false);
+    ImageComponent banjoWImage(spellWBanjo, "musicnote.png", 3, 3);
+    spellWBanjo.add_component(banjoWImage);
+    spellWBanjo.add_component(somWBanjo);
 
-    spellQAccordion.add_component(accordionQImage);
-    spellQAccordion.add_component(somQGuitar);
 
-    //Adicionando spell ao instrumento
     banjo.addSpell(globals::spellQ,&spellQBanjo);
-    eletric_guitar.addSpell(globals::spellQ,&spellQGuitar);
-    accordion.addSpell(globals::spellQ,&spellQAccordion);
-
+    banjo.addSpell(globals::spellW,&spellWBanjo);
     player.addInstrument(globals::banjo, banjo);
-    player.addInstrument(globals::eletric_guitar, eletric_guitar);
-    player.addInstrument(globals::accordion, accordion);
 
 
     HUDInstrument HUDInstrument("hudinstrument", globals::window_size.first-250, globals::window_size.second-120, &player);
@@ -136,6 +118,15 @@ int main(int, char**)
     nFragments.add_component(fragmentText);
     player.nFragments = &fragmentText;
 
+    //add to scene
+    gameplay.add_game_object(spellQBanjo);
+    gameplay.add_game_object(spellWBanjo);
+    gameplay.add_game_object(banjo);
+    gameplay.add_game_object(player);
+    gameplay.add_game_object(nFragments);
+
+    /***************************Enemies**********************/
+
     gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 800, 200);
     gameplay.get_room("stage_1_room_2")->add_enemy("ghost2", 800, 200);
     gameplay.get_room("stage_1_room_3")->add_enemy("ghost3", 100, 100);
@@ -148,12 +139,7 @@ int main(int, char**)
     gameplay.get_room("stage_1_room_5")->add_enemy("ghost53", 3*32, 19*32);
     gameplay.get_room("stage_1_room_5")->add_enemy("ghost54", 28*32, 15*32);
 
-    //change room handler
-/*    GameObject goRightRoom1("goRightRoom1", 925,200);
-    goRightRoom1.xF = 0; goRightRoom1.yF = 0;
-    ChangeRoom goRightRoom1Component(goRightRoom1,"stage_1_room_2",ChangeRoom::Direction::Right);
-    goRightRoom1.add_component(goRightRoom1Component);
-    goRightRoom1.w = 100; goRightRoom1.h = 100;*/
+    /************************Transitions**********************/
 
     gameplay.get_room("stage_1_room_1")->add_room_transition("goRightRoom1", 925,200,100,100,"stage_1_room_2",ChangeRoom::Direction::Right);
     gameplay.get_room("stage_1_room_2")->add_room_transition("goLeftRoom2", 0, 320,100,100,"stage_1_room_1",ChangeRoom::Direction::Left);
@@ -164,15 +150,7 @@ int main(int, char**)
     gameplay.get_room("stage_1_room_4")->add_room_transition("goLeftRoom4", 0, 300,70,100,"stage_1_room_5",ChangeRoom::Direction::Left);
     gameplay.get_room("stage_1_room_5")->add_room_transition("goRightRoom5", 0, 925, 320,100,"stage_1_room_4",ChangeRoom::Direction::Right);
 
-    //add to scene
-    gameplay.add_game_object(spellQBanjo);
-    gameplay.add_game_object(spellQGuitar);
-    gameplay.add_game_object(spellQAccordion);
-    gameplay.add_game_object(accordion);
-    gameplay.add_game_object(eletric_guitar);
-    gameplay.add_game_object(banjo);
-    gameplay.add_game_object(player);
-    gameplay.add_game_object(nFragments);
+
 
     //Fragmento sala 1
 
@@ -236,12 +214,6 @@ int main(int, char**)
     ImageComponent quitImage(quitButton,"quit_button.png", 1, 1);
     quitButton.add_component(quitImage);
     menu.add_game_object(quitButton);
-
-    /*GameObject playbutton("playbutton",(globals::window_size.first/2)-50,(globals::window_size.second/2)-50);
-    ImageComponent playImage(playbutton,"playbutton.png",1,1);
-    playbutton.xF = 0; playbutton.yF = 0;
-    playbutton.add_component(playImage);
-    menu.add_game_object(playbutton);*/
 
     GameObject gameover("gameover",(globals::window_size.first/2)-100,(globals::window_size.second/2)-100);
     ImageComponent gameoverImage(gameover,"gameover.png",1,1);
