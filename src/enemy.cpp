@@ -176,7 +176,7 @@ void Enemy::bfs(Vector2D pos){
 
     memset(matrixMinimumPath, 0, sizeof matrixMinimumPath);
 
-    matrixMinimumPath[i][j] = 9;
+    matrixMinimumPath[i][j] = 1;
 
     do {
     	if(matrixAux[i][j - 1] == distPlayer - 1) {
@@ -200,7 +200,7 @@ void Enemy::bfs(Vector2D pos){
     		i = i + 1;
     	}
     	if(distPlayer == 2)
-    		matrixMinimumPath[i][j] = 9;
+    		matrixMinimumPath[i][j] = 1;
     } while (distPlayer > 2);
 
     while(!q.empty()) q.pop();
@@ -223,6 +223,10 @@ void Enemy::discoverNextMove() {
 
 	if(distance >= 15) {
 		nextMove = 0;
+	}
+
+	else if(distance <= 2) {
+		nextMove = 1;
 	}
 
 	//Esquerda

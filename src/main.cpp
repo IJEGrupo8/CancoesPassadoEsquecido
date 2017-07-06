@@ -168,7 +168,16 @@ int main(int, char**)
     player.nFragments = &fragmentText;
 
     gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 25*32, 6*32, &player, 100);
-    gameplay.get_room("stage_1_room_1")->add_enemy("ghost12", 20*32, 10*32, &player, 100);
+    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost12", 21*32, 6*32, &player, 100);
+    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost13", 22*32, 6*32, &player, 100);
+    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost14", 24*32, 6*32, &player, 100);
+    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost15", 23*32, 6*32, &player, 100);
+    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost16", 25*32, 6*32, &player, 100);
+    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost17", 26*32, 6*32, &player, 100);
+    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost18", 27*32, 6*32, &player, 100);
+    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost19", 28*32, 6*32, &player, 100);
+
+
     gameplay.get_room("stage_1_room_2")->add_enemy("ghost2", 25*32, 6*32, &player, 100);
     gameplay.get_room("stage_1_room_3")->add_enemy("ghost3", 100, 100, &player, 100);
     gameplay.get_room("stage_1_room_4")->add_enemy("ghost41", 3*32, 3*32, &player, 100);
