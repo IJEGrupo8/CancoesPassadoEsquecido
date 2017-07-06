@@ -115,7 +115,7 @@ void Enemy::makeNextMove() {
 }
 
 
-void Enemy::bfs(Vector2D pos){
+void Enemy::minimumPath(Vector2D pos){
 	using ii = pair<int, int>;
 	using iii = pair <ii, int>;
 
@@ -215,7 +215,6 @@ void Enemy::bfs(Vector2D pos){
 
 //0 Parado, 1 Esquerda, 2 Direita, 3 Cima, 4 Baixo
 
-
 void Enemy::discoverNextMove() {
 	using ii = pair<int, int>;
 
@@ -252,6 +251,8 @@ void Enemy::discoverNextMove() {
 	else if(matrixMinimumPath[posEnemy.first + 1][posEnemy.second] == 1) {
 		nextMove = 4;
 	}
+
+	//Parado
 
 	else {
 		nextMove = 0;
