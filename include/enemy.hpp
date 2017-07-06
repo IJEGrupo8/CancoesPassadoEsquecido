@@ -23,15 +23,26 @@ public:
     virtual bool draw();
  	void setTilemap();
     void bfs(Vector2D pos);
+    void discoverNextMove();
+    void hold();
+    void moveDown();
+    void moveUp();
+    void moveLeft();
+    void moveRight();
+    void makeNextMove();
 
     int life;
     bool canMove = true;
     int matrix[22][32];
+    int matrixMinimumPath[22][32];
     int positionX, positionY;
+    //0 Parado, 1 Esquerda, 2 Direita, 3 Cima, 4 Baixo
+    int nextMove = 0;
 
 
 private:
     Player* m_target;
+    int defaultVel = 3;
 };
 
 #endif

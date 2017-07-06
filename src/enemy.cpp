@@ -27,7 +27,7 @@ bool Enemy::draw()
 bool Enemy::update()
 {
     engine::GameObject::update();
-
+    
     positionX = physics.position.getX();
     positionY = physics.position.getY();
 
@@ -35,8 +35,85 @@ bool Enemy::update()
     
     setTilemap();
     bfs(pos);
+    discoverNextMove();
+    makeNextMove();
+
     return true;
 }
+
+void Enemy::hold() {
+	cout << "PAROU O BIXAO" << endl;
+	int componentX = 0;
+    int componentY = 0;
+
+    Vector2D move(componentX,componentY);
+    physics.velocity = move;
+}
+
+void Enemy::moveDown(){
+	cout << "BAIXO O BIXAO" << endl;
+    // Update Velocity
+    int componentX = 0;
+    int componentY = defaultVel;
+
+    Vector2D move(componentX,componentY);
+    physics.velocity = move;
+}
+
+void Enemy::moveUp() {
+	cout << "CIMA O BIXAO" << endl;
+    // Update Velocity
+    int componentX = 0;
+    int componentY = -1*defaultVel;
+
+    Vector2D move(componentX,componentY);
+    physics.velocity = move;
+}
+
+void Enemy::moveLeft() {
+	cout << "ESQUERDA O BIXAO" << endl;
+    // Update Velocity
+    int componentX = -1*defaultVel;
+
+    int componentY = 0;
+
+    Vector2D move(componentX,componentY);
+    physics.velocity = move;
+}
+
+void Enemy::moveRight() {
+	cout << "DIREITA O BIXAO" << endl;
+    // Update Velocity
+
+    int componentX = defaultVel;
+    int componentY = 0;
+
+    Vector2D move(componentX,componentY);
+    physics.velocity = move;
+}
+
+void Enemy::makeNextMove() {
+	//0 Parado, 1 Esquerda, 2 Direita, 3 Cima, 4 Baixo
+
+    switch (nextMove) {
+    	case 0:
+    		hold();
+    	break;
+    	case 1:
+    		moveLeft();
+    	break;
+    	case 2:
+    		moveRight();
+    	break;
+    	case 3:
+    		moveUp();
+    	break;
+    	case 4:
+    		moveDown();
+    	break;
+    }
+}
+
 
 void Enemy::bfs(Vector2D pos){
 	using ii = pair<int, int>;
@@ -50,23 +127,18 @@ void Enemy::bfs(Vector2D pos){
 
     int matrixAux[22][32];
 
-    cout<<"INIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"<<endl;
-
     for (int i=0; i<22; i++){
 		for (int j=0; j<32; j++){
 			matrixAux[i][j] = matrix[i][j];
-			cout << matrixAux[i][j] <<" ";
 		}
-		cout << endl;
 	}
 
-    matrixAux[posEnemy.first][posEnemy.second] = 1;
+    matrixAux[posEnemy.first][posEnemy.second] = 2;
 
     queue<iii> q;
-    q.push(iii(posEnemy, 1));
+    q.push(iii(posEnemy, 2));
 
     while(!q.empty()) {
-    	//cout<<"AAAAAa"<<endl;
     	iii v = q.front();
     	q.pop();
 
@@ -98,17 +170,87 @@ void Enemy::bfs(Vector2D pos){
 
     }
 
-    while(!q.empty()) q.pop();
+    int i = posTarget.first, j = posTarget.second;
+    int distPlayer = matrixAux[i][j];
 
-    cout<<"FIIIIIIIIIIIIIIIIIIIIIIM"<<endl;
+    memset(matrixMinimumPath, 0, sizeof matrixMinimumPath);
+
+    cout << distPlayer << endl;
+
+    cout << i << " " << j << endl;
+
+    matrixMinimumPath[i][j] = 9;
+
+    do {
+    	if(matrixAux[i][j - 1] == distPlayer - 1) {
+    		distPlayer--;
+    		matrixMinimumPath[i][j-1] = 1;
+    		j = j - 1;
+    	}
+    	else if(matrixAux[i][j + 1] == distPlayer - 1) {
+    		distPlayer--;
+    		matrixMinimumPath[i][j+1] = 1;
+    		j = j + 1;
+    	}
+    	else if(matrixAux[i - 1][j] == distPlayer - 1) {
+    		distPlayer--;
+    		matrixMinimumPath[i-1][j] = 1;
+    		i = i - 1;
+    	}
+    	else if(matrixAux[i + 1][j] == distPlayer - 1) {
+    		distPlayer--;
+    		matrixMinimumPath[i+1][j] = 1;
+    		i = i + 1;
+    	}
+    	if(distPlayer == 2)
+    		matrixMinimumPath[i][j] = 9;
+    } while (distPlayer > 2);
+
+    while(!q.empty()) q.pop();
 
     for (int i=0; i<22; i++){
 		for (int j=0; j<32; j++){
-			cout << matrixAux[i][j] <<" ";
+			cout << matrixMinimumPath[i][j] << " ";
 		}
 		cout << endl;
 	}
-	cout << "FIIIIIIIIIIIIIIIIM2" <<endl;
+}
+
+//0 Parado, 1 Esquerda, 2 Direita, 3 Cima, 4 Baixo
+
+
+void Enemy::discoverNextMove() {
+	using ii = pair<int, int>;
+
+	ii posEnemy = ii(positionY/32, positionX/32);
+
+	//Esquerda
+
+	if(matrixMinimumPath[posEnemy.first][posEnemy.second - 1] == 1) {
+		nextMove = 1;
+	}
+
+	//Direita
+
+	else if(matrixMinimumPath[posEnemy.first][posEnemy.second + 1] == 1) {
+		nextMove = 2;
+	}
+
+	//Cima
+
+	else if(matrixMinimumPath[posEnemy.first - 1][posEnemy.second] == 1) {
+		nextMove = 3;
+	}
+
+	//Baixo
+
+	else if(matrixMinimumPath[posEnemy.first + 1][posEnemy.second] == 1) {
+		nextMove = 4;
+	}
+
+	else {
+		nextMove = 0;
+	}
 }
 
 void Enemy::setTilemap(){
@@ -124,11 +266,4 @@ void Enemy::setTilemap(){
 			matrix[i][j] = tilemap->tile_matrix[k++];
 		}
 	}
-
-	/*for (int i=0; i<22; i++){
-		for (int j=0; j<32; j++){
-			cout << matrix[i][j] <<" ";
-		}
-		cout << endl;
-	}*/
 }
