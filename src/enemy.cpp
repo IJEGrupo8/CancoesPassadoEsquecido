@@ -172,12 +172,9 @@ void Enemy::bfs(Vector2D pos){
 
     int i = posTarget.first, j = posTarget.second;
     int distPlayer = matrixAux[i][j];
+    distance = distPlayer;
 
     memset(matrixMinimumPath, 0, sizeof matrixMinimumPath);
-
-    cout << distPlayer << endl;
-
-    cout << i << " " << j << endl;
 
     matrixMinimumPath[i][j] = 9;
 
@@ -224,9 +221,13 @@ void Enemy::discoverNextMove() {
 
 	ii posEnemy = ii(positionY/32, positionX/32);
 
+	if(distance >= 15) {
+		nextMove = 0;
+	}
+
 	//Esquerda
 
-	if(matrixMinimumPath[posEnemy.first][posEnemy.second - 1] == 1) {
+	else if(matrixMinimumPath[posEnemy.first][posEnemy.second - 1] == 1) {
 		nextMove = 1;
 	}
 

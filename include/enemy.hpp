@@ -43,6 +43,7 @@ public:
 private:
     Player* m_target;
     int defaultVel = 3;
+    int distance;
 };
 
 #endif
