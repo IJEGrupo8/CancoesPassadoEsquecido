@@ -1,4 +1,4 @@
-#ifndef __ROOM_SCENE___
+#ifndef __ROOM_SCENE__
 #define __ROOM_SCENE__
 
 #include <string>

@@ -12,6 +12,7 @@
 #include "components/animationcontroller.hpp"
 #include "components/changeroom.hpp"
 #include "components/fragment.hpp"
+#include "components/talknpc.hpp"
 #include "basicspell.hpp"
 #include "slamspell.hpp"
 #include "customimagecomponent.hpp"
@@ -25,6 +26,7 @@
 #include "log.h"
 #include "gameglobals.hpp"
 #include "hudlife.hpp"
+#include "hudbox.hpp"
 #include "hudinstrument.hpp"
 #include "enemy.hpp"
 
@@ -38,8 +40,8 @@ int main(int, char**)
 
     // Setup scenes
     MenuScene menu("Menu");
-    MenuScene GameoverScene("Gameover");
-    MenuScene VictoryScene("Victory");
+    GameOverScene GameoverScene("Gameover");
+    GameOverScene VictoryScene("Victory");
     GameScene gameplay("stage_1");
 
     gameplay.add_room("stage_1_room_1");
@@ -118,13 +120,6 @@ int main(int, char**)
     nFragments.add_component(fragmentText);
     player.nFragments = &fragmentText;
 
-    //add to scene
-    gameplay.add_game_object(spellQBanjo);
-    gameplay.add_game_object(spellWBanjo);
-    gameplay.add_game_object(banjo);
-    gameplay.add_game_object(player);
-    gameplay.add_game_object(nFragments);
-
     /***************************Enemies**********************/
 
     //gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 800, 200);
@@ -157,6 +152,14 @@ int main(int, char**)
     gameplay.get_room("stage_1_room_5")->add_room_transition("goRightRoom5", 0, 925, 320,100,"stage_1_room_4",ChangeRoom::Direction::Right);
 */
 
+    gameplay.add_game_object(spellQBanjo);
+    gameplay.add_game_object(spellQGuitar);
+    gameplay.add_game_object(spellQAccordion);
+    gameplay.add_game_object(accordion);
+    gameplay.add_game_object(eletric_guitar);
+    gameplay.add_game_object(banjo);
+    gameplay.add_game_object(player);
+    gameplay.add_game_object(nFragments);
 
     //Fragmento sala 1
 
@@ -268,7 +271,28 @@ int main(int, char**)
     hudlife.add_component(lifeBar);
     hudlife.add_component(lifeBarContent);
 
-    AudioComponent music(tilemap,"fase.mp3",true, true);
+    GameObject npcjoao("npcjoao", 500, 500);
+    npcjoao.xF = 0; npcjoao.yF = 0;
+    ImageComponent joaoImage(npcjoao, "boy.png",4,4);
+    npcjoao.add_component(joaoImage);
+
+
+    HUDBox npcBox("npc_box",212, 600);
+    npcBox.xF = 0;
+    npcBox.yF = 0;
+    TextComponent joaoline(npcBox,".             Oiiir, eu sou o joao!","font.ttf",20, {255,255,255});
+    ImageComponent boxImage(npcBox, "dialog_box.png",1,1);
+    npcBox.add_component(boxImage);
+    npcBox.add_component(joaoline);
+
+    TalkNpc talkjoao(npcjoao,&npcBox);
+    npcjoao.add_component(talkjoao);
+
+    gameplay.add_game_object_to_room("stage_1_room_1", npcjoao);
+    gameplay.add_game_object_to_room("stage_1_room_1", npcBox);
+
+
+    AudioComponent music(tilemap,"fase.wav",true, true);
     tilemap.add_component(music);
     tilemap2.add_component(music);
     tilemap3.add_component(music);
