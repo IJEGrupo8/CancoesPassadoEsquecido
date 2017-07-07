@@ -35,7 +35,10 @@ bool DamageEnemy::update(){
         player->physics.position.setY(player->getInitialY());
         player->life = 100;
         player->defaultVel = 5;
-        (dynamic_cast<Enemy *>(m_game_object))->defaultVel = 3;
+        Enemy *enemy = (dynamic_cast<Enemy *>(m_game_object));
+        enemy->defaultVel = 3;
+        enemy->physics.position.setX(enemy->getInitialX());
+        enemy->physics.position.setY(enemy->getInitialY());
         player->clearFragments();
 
     }
