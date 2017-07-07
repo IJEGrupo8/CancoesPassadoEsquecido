@@ -30,7 +30,7 @@ public:
     bool useSpell();
 private:
     Timer timer;
-    bool collided;
+    bool collided = false;
 };
 
 #endif

@@ -266,3 +266,7 @@ void Enemy::setTilemap(){
 		}
 	}
 }
+
+int Enemy::getEnemyType(){
+    return m_enemy_type;
+}

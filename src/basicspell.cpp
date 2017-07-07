@@ -8,6 +8,7 @@
 #include "timer.hpp"
 #include "game.hpp"
 #include "enemy.hpp"
+#include "gameglobals.hpp"
 #include "gamescene.hpp"
 
 #define nframes 10
@@ -44,30 +45,43 @@ bool BasicSpell::update()
     for (auto id_obj: x)
     {
         auto obj = id_obj.second;
-        if ((dynamic_cast<Enemy*>(obj))) {
+        auto enemy_obj = (dynamic_cast<Enemy*>(obj));
+        if (enemy_obj) {
 
           physics.collisionBox.x = physics.position.getX();
           physics.collisionBox.y = physics.position.getY();
           physics.collisionBox.w = w;
           physics.collisionBox.h = h;
 
-          obj->physics.collisionBox.x = obj->physics.position.getX();
-          obj->physics.collisionBox.y = obj->physics.position.getY();
-          obj->physics.collisionBox.w = obj->w;
-          obj->physics.collisionBox.h = obj->h;
+          enemy_obj->physics.collisionBox.x = enemy_obj->physics.position.getX();
+          enemy_obj->physics.collisionBox.y = enemy_obj->physics.position.getY();
+          enemy_obj->physics.collisionBox.w = enemy_obj->w;
+          enemy_obj->physics.collisionBox.h = enemy_obj->h;
 
-          if(physics.detectColision(obj))
+          if(physics.detectColision(enemy_obj))
           {
-            obj->physics.velocity =(physics.velocity/2);
-            (dynamic_cast<Enemy*>(obj))->canMove = false;
+            collided = true;
+            if(enemy_obj->getEnemyType() == globals::SAD_ENEMY){ 
+              enemy_obj->physics.velocity = (physics.velocity/2);
+              enemy_obj->canMove = false;
+            }               
+          }
+          else {
+            enemy_obj->canMove = true; 
+          }
 
-            //m_game_object->setState(GameObject::State::disabled);
-          }else{
-            //Bugado
-            (dynamic_cast<Enemy*>(obj))->canMove = true;
+          if(collided){
+            if(enemy_obj->getEnemyType() == globals::MAD_ENEMY){
+              if(timer.getTime() < 5000) {
+                enemy_obj->defaultVel = 5;
+              }
+              else {
+                collided = false;
+                enemy_obj->defaultVel = 3;
+              } 
+            }
           }
         }
-
     }
 
   }else{
@@ -94,6 +108,7 @@ bool BasicSpell::useSpell()
     physics.velocity = player->physics.velocity*3;
 
     durationTimer.startTimer();
+    timer.startTimer();
     countdownTimer.startTimer();
     //timer2.startTimer();
     setup();
