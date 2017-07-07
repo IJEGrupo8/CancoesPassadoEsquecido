@@ -204,13 +204,6 @@ void Enemy::bfs(Vector2D pos){
     } while (distPlayer > 2);
 
     while(!q.empty()) q.pop();
-
-    for (int i=0; i<22; i++){
-		for (int j=0; j<32; j++){
-			cout << matrixMinimumPath[i][j] << " ";
-		}
-		cout << endl;
-	}
 }
 
 //0 Parado, 1 Esquerda, 2 Direita, 3 Cima, 4 Baixo
@@ -221,7 +214,7 @@ void Enemy::discoverNextMove() {
 
 	ii posEnemy = ii(positionY/32, positionX/32);
 
-	if(distance >= 15) {
+	if(distance >= 15 || !canMove) {
 		nextMove = 0;
 	}
 
