@@ -39,8 +39,8 @@ int main(int, char**)
 
     // Setup scenes 
     MenuScene menu("Menu");
-    MenuScene GameoverScene("Gameover");
-    MenuScene VictoryScene("Victory"); 
+    GameOverScene GameoverScene("Gameover");
+    GameOverScene VictoryScene("Victory"); 
     GameScene gameplay("stage_1");
 
     gameplay.add_room("stage_1_room_1");

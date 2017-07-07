@@ -5,6 +5,7 @@
 #include "gamescene.hpp"
 #include "gameglobals.hpp"
 #include "player.hpp"
+#include "enemy.hpp"
 
 bool DamageEnemy::init(){
 
@@ -33,6 +34,8 @@ bool DamageEnemy::update(){
         player->physics.position.setX(player->getInitialX());
         player->physics.position.setY(player->getInitialY());
         player->life = 100;
+        player->defaultVel = 5;
+        (dynamic_cast<Enemy *>(m_game_object))->defaultVel = 3;
         player->clearFragments();
 
     }
