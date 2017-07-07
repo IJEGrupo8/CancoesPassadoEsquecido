@@ -189,6 +189,7 @@ void Player::addFragment(int _id){
         physics.position.setX(getInitialX());
         physics.position.setY(getInitialY());
         life = 100;
+        clearFragments();
 
     }
 

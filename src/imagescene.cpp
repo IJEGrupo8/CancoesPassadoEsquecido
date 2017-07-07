@@ -9,12 +9,12 @@ bool ImageScene::update()
 {
     if(Input::keyPressed(Input::ENTER))
     {
-    	if(name() == "Menu"){
+    	if(name() == "Menu" || name() == "Victory"){
     		engine::Game::instance.change_scene("stage_1");
     	}
-    	else {
+    	else{
     		engine::Game::instance.change_scene("Menu");
-    	}
+        }
     }
     
     return true;

@@ -37,6 +37,7 @@ bool DamageEnemy::update(){
         player->defaultVel = 5;
         Enemy *enemy = (dynamic_cast<Enemy *>(m_game_object));
         enemy->defaultVel = 3;
+        enemy->canMove = true;
         enemy->physics.position.setX(enemy->getInitialX());
         enemy->physics.position.setY(enemy->getInitialY());
         player->clearFragments();

@@ -24,7 +24,7 @@ public:
     ~Player() {}
     
     int life = 100;
-    int defaultVel = 10;
+    int defaultVel = 5;
 
     virtual bool init();
     virtual bool shutdown();
