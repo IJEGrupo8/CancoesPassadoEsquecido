@@ -9,11 +9,11 @@ using namespace engine;
 
 bool HUDInstrument::init()
 {
-    huds["spellQ"]->setState(Component::State::enabled);
-    huds["spellQ"]->xOffset = 10;
-    huds["spellQ"]->yOffset = -200;
-    huds["spellW"]->setState(Component::State::disabled);
-    huds["spellE"]->setState(Component::State::disabled);
+    huds[globals::spellQ]->setState(Component::State::enabled);
+    huds[globals::spellQ]->xOffset = 10;
+    huds[globals::spellQ]->yOffset = -200;
+    huds[globals::spellW]->setState(Component::State::disabled);
+    huds[globals::spellE]->setState(Component::State::disabled);
     engine::GameObject::init();
 
     return true;
@@ -39,8 +39,8 @@ bool HUDInstrument::draw()
         available = "EM COOLDOWN";
     }
     ss << "Q:" << available;
-    huds["spellQ"]->setText(ss.str());
-    huds["spellQ"]->init();
+    huds[globals::spellQ]->setText(ss.str());
+    huds[globals::spellQ]->init();
 
 
 

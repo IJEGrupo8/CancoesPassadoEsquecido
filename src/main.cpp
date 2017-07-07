@@ -106,9 +106,9 @@ int main(int, char**)
     TextComponent eletricGuitarActiveHUD(HUDInstrument, "COOLDOWN W","font.ttf",20);
     TextComponent accordionActiveHUD(HUDInstrument, "COOLDOWN E","font.ttf",20);
 
-    HUDInstrument.addHUD("spellQ", &banjoActiveHUD);
-    HUDInstrument.addHUD("spellW", &eletricGuitarActiveHUD);
-    HUDInstrument.addHUD("spellE", &accordionActiveHUD);
+    HUDInstrument.addHUD(globals::spellQ, &banjoActiveHUD);
+    HUDInstrument.addHUD(globals::spellW, &eletricGuitarActiveHUD);
+    HUDInstrument.addHUD(globals::spellE, &accordionActiveHUD);
 
     HUDInstrument.add_component(banjoActiveHUD);
     HUDInstrument.add_component(eletricGuitarActiveHUD);
