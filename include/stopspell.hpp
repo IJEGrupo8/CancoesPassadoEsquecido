@@ -10,6 +10,7 @@
 #include "gameobject.hpp"
 #include "timer.hpp"
 #include "spell.hpp"
+#include "components/animation.hpp"
 
 using namespace engine;
 

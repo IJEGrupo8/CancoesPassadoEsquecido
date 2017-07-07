@@ -9,6 +9,8 @@
 #include "game.hpp"
 #include "enemy.hpp"
 #include "gamescene.hpp"
+#include "components/animation.hpp"
+
 
 #define nframes 10
 

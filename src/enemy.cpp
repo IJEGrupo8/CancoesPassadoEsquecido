@@ -3,6 +3,7 @@
 #include "tilemap.hpp"
 #include "gamescene.hpp"
 #include "components/animationcontroller.hpp"
+#include "components/animation.hpp"
 #include "gameglobals.hpp"
 #include <queue>
 
@@ -11,6 +12,13 @@ using namespace std;
 bool Enemy::init()
 {
     engine::GameObject::init();
+    moveDownA->init();
+    moveRightA->init();
+    moveLeftA->init();
+    moveUpA->init();
+
+    activeAnimation = moveDownA;
+
     return true;
 }
 
@@ -23,36 +31,28 @@ bool Enemy::shutdown()
 bool Enemy::draw()
 {
     engine::GameObject::draw();
+    activeAnimation->draw(); 
     return true;
 }
 
 bool Enemy::update()
 {
-    engine::GameObject::update();    
+    engine::GameObject::update();
+    activeAnimation->update();
+
     positionX = physics.position.getX();
     positionY = physics.position.getY();
 
     Vector2D pos = m_target->physics.position;
     
-    distance = hypot(pos.getX() - physics.position.getX(), 
-                         pos.getY() - physics.position.getY());
+    distance = hypot(pos.getX()/32 - physics.position.getX()/32, 
+                         pos.getY()/32 - physics.position.getY()/32);
 
-    bool hasMinimum = true;
+    setTilemap();
 
-    if(updateFrame == 5) {
-    	updateFrame = 0;
-    	if (distance < 300) {
-    		setTilemap();
-	    	hasMinimum = minimumPath(pos);
-    	}
-	    if(hasMinimum) {
-	    	discoverNextMove(pos);
-	    }
-    }
+	discoverNextMove(pos);
 
     makeNextMove();
-
-	updateFrame++;
 
     return true;
 }
@@ -72,7 +72,8 @@ void Enemy::moveDown(){
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
-    get_component<AnimationControllerComponent>()->changeAnimation(globals::moveDown);
+    
+    activeAnimation = moveDownA;
 }
 
 void Enemy::moveUp() {
@@ -82,7 +83,8 @@ void Enemy::moveUp() {
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
-    get_component<AnimationControllerComponent>()->changeAnimation(globals::moveUp);
+    
+    activeAnimation = moveUpA;
 }
 
 void Enemy::moveLeft() {
@@ -93,7 +95,8 @@ void Enemy::moveLeft() {
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
-    get_component<AnimationControllerComponent>()->changeAnimation(globals::moveLeft);
+
+    activeAnimation = moveLeftA;
 }
 
 void Enemy::moveRight() {
@@ -104,7 +107,8 @@ void Enemy::moveRight() {
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
-    get_component<AnimationControllerComponent>()->changeAnimation(globals::moveRight);
+
+    activeAnimation = moveRightA;
 }
 
 void Enemy::makeNextMove() {
@@ -130,63 +134,6 @@ void Enemy::makeNextMove() {
 }
 
 
-bool Enemy::minimumPath(Vector2D pos){
-	using ii = pair<int, int>;
-	using iii = pair <ii, int>;
-
-	ii posTarget = ii(pos.getY()/32, pos.getX()/32);
-	ii posEnemy = ii(positionY/32, positionX/32);
-
-	cout<<"X Enemy: " << posEnemy.first << " Y Enemy: "<<posEnemy.second<<endl;
-    cout<<"X Player: " << posTarget.first << " Y Player: "<<posTarget.second<<endl;
-
-	for (int i=0; i<22; i++){
-		for (int j=0; j<32; j++){
-			matrixAux[i][j] = matrix[i][j];
-		}
-	}
-
-	if (matrix[posTarget.first][posTarget.second] == 1) {
-		nextMove = 0;
-		return false;
-	}
-
-    matrixAux[posEnemy.first][posEnemy.second] = 2;
-
-    queue<iii> q;
-    q.push(iii(posEnemy, 2));
-
-    while(!q.empty()) {
-    	iii v = q.front();
-    	q.pop();
-
-    	if(v.first.first == posTarget.first && v.first.second == posTarget.second) {
-    		break;
-    	}
-
-    	if(v.first.first >= 0 && v.first.first <= 22 && v.first.second >= 0 && v.first.second <= 32) {
-			if(v.first.second > 0 && matrixAux[v.first.first][v.first.second - 1] == 0) {
-				q.push(iii(ii(v.first.first, v.first.second - 1), v.second + 1));
-				matrixAux[v.first.first][v.first.second - 1] = v.second + 1;
-			}
-			if(v.first.second < 32 && matrixAux[v.first.first][v.first.second + 1] == 0) {
-				q.push(iii(ii(v.first.first, v.first.second + 1), v.second + 1));
-				matrixAux[v.first.first][v.first.second + 1] = v.second + 1;
-			}
-			if(v.first.first > 0 && matrixAux[v.first.first - 1][v.first.second] == 0) {
-				q.push(iii(ii(v.first.first - 1, v.first.second), v.second + 1));
-				matrixAux[v.first.first - 1][v.first.second] = v.second + 1;
-			}
-			if(v.first.first < 22 && matrixAux[v.first.first + 1][v.first.second] == 0) {
-				q.push(iii(ii(v.first.first + 1, v.first.second), v.second + 1));
-				matrixAux[v.first.first + 1][v.first.second] = v.second + 1;
-			}
-		}
-	}
-
-    return true;
-} 
-
 //0 Parado, 1 Esquerda, 2 Direita, 3 Cima, 4 Baixo
 
 void Enemy::discoverNextMove(Vector2D pos) {
@@ -196,37 +143,38 @@ void Enemy::discoverNextMove(Vector2D pos) {
 	ii posTarget = ii(pos.getY()/32, pos.getX()/32);
 
 	int i = posTarget.first, j = posTarget.second;
-    int distPlayer = matrixAux[i][j];
+	int z = posEnemy.first, q = posEnemy.second;
 
-	if(distance >= 300 || !canMove) {
+
+	if(distance >= 20 || !canMove) {
 		nextMove = 0;
 	}
 
-	else if(distance <= 10) {
+	else if(distance <= 2) {
 		nextMove = nextMove;
 	}
 
 	//Esquerda
 
-	else if(matrixAux[i][j - 1] == distPlayer - 1 && matrix[i][j-1] != 1) {
+	else if(hypot(i - z, j - q - 1) <= distance) {
 		nextMove = 2;
 	}
 
 	//Direita
 
-	else if(matrixAux[i][j + 1] == distPlayer - 1  && matrix[i][j+1] != 1) {
+	else if(hypot(i - z, j - q + 1) <= distance) {
 		nextMove = 1;
 	}
 
 	//Cima
 
-	else if(matrixAux[i - 1][j] == distPlayer - 1  && matrix[i-1][j] != 1) {
+	else if(hypot(i - z - 1, j - q) <= distance) {
 		nextMove = 4;
 	}
 
 	//Baixo
 
-	else if(matrixAux[i + 1][j] == distPlayer - 1  && matrix[i+1][j] != 1) {
+	else if(hypot(i - z + 1, j - q) <= distance) {
 		nextMove = 3;
 	}
 
