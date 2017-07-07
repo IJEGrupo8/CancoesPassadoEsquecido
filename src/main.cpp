@@ -19,6 +19,7 @@
 #include "menuscene.hpp"
 #include "gameover.hpp"
 #include "spell.hpp"
+#include "stopspell.hpp"
 #include "tilemap.hpp"
 #include "tileset.hpp"
 #include "log.h"
@@ -96,14 +97,20 @@ int main(int, char**)
     BasicSpell spellQGuitar("spellQGuitar",&player,0,0,1500,1500);
     BasicSpell spellQAccordion("spellQAccordion",&player,0,0,1500,1500);
 
+    StopSpell spellWBanjo("spellWBanjo",&player,0,0,6000,6000);
+    spellWBanjo.xF = 0; spellWBanjo.yF = 0;
+
     spellQBanjo.xF = 0; spellQBanjo.yF = 0;
     spellQGuitar.xF = 0; spellQGuitar.yF = 0;
     spellQAccordion.xF = 0; spellQAccordion.yF = 0;
+
+    AudioComponent somWBanjo(spellWBanjo,"drumsBasic.wav",false,false);
 
     AudioComponent somQBanjo(spellQBanjo,"drumsBasic.wav",false,false);
     AudioComponent somQGuitar(spellQGuitar,"drumsBasic.wav",false,false);
     AudioComponent somQAccordion(spellQAccordion,"drumsBasic.wav",false,false);
 
+    ImageComponent banjoWImage(spellWBanjo, "musicnote.png", 3, 3);
     ImageComponent banjoQImage(spellQBanjo, "musicnote.png", 3, 3);
     ImageComponent guitarQImage(spellQGuitar, "musicnote.png", 3, 3);
     ImageComponent accordionQImage(spellQAccordion, "musicnote.png", 3, 3);
@@ -113,6 +120,9 @@ int main(int, char**)
     spellQBanjo.add_component(banjoQImage);
     spellQBanjo.add_component(somQBanjo);
 
+    spellWBanjo.add_component(banjoWImage);
+    spellWBanjo.add_component(somWBanjo);
+
     spellQGuitar.add_component(guitarQImage);
     spellQGuitar.add_component(somQGuitar);
 
@@ -121,14 +131,12 @@ int main(int, char**)
 
     //Adicionando spell ao instrumento
     banjo.addSpell(globals::spellQ,&spellQBanjo);
+    banjo.addSpell(globals::spellW,&spellWBanjo);
     eletric_guitar.addSpell(globals::spellQ,&spellQGuitar);
     accordion.addSpell(globals::spellQ,&spellQAccordion);
 
     player.addInstrument(globals::banjo, banjo);
-    player.addInstrument(globals::eletric_guitar, eletric_guitar);
-    player.addInstrument(globals::accordion, accordion);
-
-
+ 
     HUDInstrument HUDInstrument("hudinstrument", globals::window_size.first-250, globals::window_size.second-120, &player);
     HUDInstrument.xF = 0; HUDInstrument.yF = 0;
     ImageComponent banjoActiveHUD(HUDInstrument, "hud_instruments_0.png", 1, 1);
@@ -207,6 +215,7 @@ int main(int, char**)
 
     //add to scene
     gameplay.add_game_object(spellQBanjo);
+    gameplay.add_game_object(spellWBanjo);
     gameplay.add_game_object(spellQGuitar);
     gameplay.add_game_object(spellQAccordion);
     gameplay.add_game_object(accordion);
