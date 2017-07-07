@@ -163,7 +163,7 @@ int main(int, char**)
     nFragments.add_component(fragmentText);
     player.nFragments = &fragmentText;
 
-    gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 25*32, 6*32, &player, 100, globals::SAD_ENEMY);
+    gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 25*32, 6*32, &player, 100, globals::MAD_ENEMY);
     //gameplay.get_room("stage_1_room_1")->add_enemy("ghost12", 21*32, 6*32, &player, 100);
     //gameplay.get_room("stage_1_room_1")->add_enemy("ghost13", 22*32, 6*32, &player, 100);
     //gameplay.get_room("stage_1_room_1")->add_enemy("ghost14", 24*32, 6*32, &player, 100);
@@ -278,7 +278,7 @@ int main(int, char**)
     playbutton.add_component(playImage);
     menu.add_game_object(playbutton);*/
 
-    GameObject gameover("gameover",(globals::window_size.first/2)-100,(globals::window_size.second/2)-100);
+    GameObject gameover("gameover",0,0);
     ImageComponent gameoverImage(gameover,"gameover.png",1,1);
     gameover.xF = 0; gameover.yF = 0;
     gameover.add_component(gameoverImage);
