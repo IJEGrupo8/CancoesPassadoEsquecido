@@ -57,8 +57,8 @@ void AnimationComponent::drawFrame(){
 
   m_game_object->xF = col;
   m_game_object->yF = lin;
-//INFO("X = " << m_game_object->physics.position.getX() << " - Y = " << m_game_object->physics.position.getY());
-	INFO(m_game_object->name()<<"   xF = " << m_game_object->xF << " - yF = " << m_game_object->yF <<"  -mF = "  << m_current_frame);
+  //INFO("X = " << m_game_object->physics.position.getX() << " - Y = " << m_game_object->physics.position.getY());
+	//INFO(m_game_object->name()<<"   xF = " << m_game_object->xF << " - yF = " << m_game_object->yF <<"  -mF = "  << m_current_frame);
 
   ImageComponent::draw();
 }
