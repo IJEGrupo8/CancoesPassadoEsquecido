@@ -23,7 +23,7 @@ public:
     virtual bool draw();
  	void setTilemap();
     bool minimumPath(Vector2D pos);
-    void discoverNextMove();
+    void discoverNextMove(Vector2D pos);
     void hold();
     void moveDown();
     void moveUp();
@@ -34,19 +34,22 @@ public:
 
     int life;
     bool canMove = true;
-    int matrix[22][32];
-    int matrixMinimumPath[22][32];
-    int matrixAux[22][32];
-    int positionX, positionY;
-    //0 Parado, 1 Esquerda, 2 Direita, 3 Cima, 4 Baixo
-    int nextMove = 0;
     int defaultVel = 3;
+
 
 
 private:
     Player* m_target;
     int distance;
     int m_enemy_type;
+    int updateFrame = 5;
+    int matrix[22][32];
+    int matrixAux[22][32];
+    int positionX, positionY;
+    //0 Parado, 1 Esquerda, 2 Direita, 3 Cima, 4 Baixo
+    int nextMove = 0;
+    
+
 };
 
 #endif
