@@ -127,7 +127,7 @@ int main(int, char**)
 
     /***************************Enemies**********************/
 
-    gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 800, 200);
+    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 800, 200);
     gameplay.get_room("stage_1_room_2")->add_enemy("ghost2", 800, 200);
     gameplay.get_room("stage_1_room_3")->add_enemy("ghost3", 100, 100);
     gameplay.get_room("stage_1_room_4")->add_enemy("ghost41", 3*32, 3*32);
@@ -141,15 +141,19 @@ int main(int, char**)
 
     /************************Transitions**********************/
 
-    gameplay.get_room("stage_1_room_1")->add_room_transition("goRightRoom1", 925,200,100,100,"stage_1_room_2",ChangeRoom::Direction::Right);
-    gameplay.get_room("stage_1_room_2")->add_room_transition("goLeftRoom2", 0, 320,100,100,"stage_1_room_1",ChangeRoom::Direction::Left);
-    gameplay.get_room("stage_1_room_2")->add_room_transition("goTopRoom2", 450, 0,70,100,"stage_1_room_3",ChangeRoom::Direction::Top);
-    gameplay.get_room("stage_1_room_3")->add_room_transition("goBottonRoom3", 450, 650,100,100,"stage_1_room_2",ChangeRoom::Direction::Botton);
-    gameplay.get_room("stage_1_room_3")->add_room_transition("goLeftRoom3",0, 320,70,100,"stage_1_room_4",ChangeRoom::Direction::Left);
+    gameplay.get_room("stage_1_room_1")->add_room_transition("goRightRoom1", 925,350,100,100,"stage_1_room_2",ChangeRoom::Direction::Right);
+    gameplay.get_room("stage_1_room_2")->add_room_transition("goLeftRoom2", 0, 370,100,100,"stage_1_room_1",ChangeRoom::Direction::Left); 
+    gameplay.get_room("stage_1_room_2")->add_room_transition("goTopRoom2", 520, -20,100,50,"stage_1_room_3",ChangeRoom::Direction::Top);
+    gameplay.get_room("stage_1_room_2")->add_room_transition("goBottonRoom2", 520, 690,100,50,"stage_1_room_4",ChangeRoom::Direction::Botton);
+    gameplay.get_room("stage_1_room_2")->add_room_transition("goRightRoom2", 925,350,100,100,"stage_1_room_5",ChangeRoom::Direction::Right);
+    gameplay.get_room("stage_1_room_3")->add_room_transition("goBottonRoom3", 520, 690,100,50,"stage_1_room_2",ChangeRoom::Direction::Botton);
+    gameplay.get_room("stage_1_room_4")->add_room_transition("goTopRoom4", 520, -20,100,50,"stage_1_room_2",ChangeRoom::Direction::Top);
+
+    /*gameplay.get_room("stage_1_room_3")->add_room_transition("goLeftRoom3",-30, 500,70,100,"stage_1_room_4",ChangeRoom::Direction::Left);
     gameplay.get_room("stage_1_room_4")->add_room_transition("goRightRoom4",925, 320,70,100,"stage_1_room_3",ChangeRoom::Direction::Right);
     gameplay.get_room("stage_1_room_4")->add_room_transition("goLeftRoom4", 0, 300,70,100,"stage_1_room_5",ChangeRoom::Direction::Left);
     gameplay.get_room("stage_1_room_5")->add_room_transition("goRightRoom5", 0, 925, 320,100,"stage_1_room_4",ChangeRoom::Direction::Right);
-
+*/
 
 
     //Fragmento sala 1
