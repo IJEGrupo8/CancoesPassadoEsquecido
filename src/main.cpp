@@ -93,11 +93,11 @@ int main(int, char**)
     Instrument eletric_guitar(globals::eletric_guitar, 3*32, 3*32);
     Instrument accordion(globals::accordion, 3*32, 3*32);
     //Declaring spells
-    BasicSpell spellQBanjo("spellQBanjo",&player,0,0,1500,1500);
-    BasicSpell spellQGuitar("spellQGuitar",&player,0,0,1500,1500);
-    BasicSpell spellQAccordion("spellQAccordion",&player,0,0,1500,1500);
+    BasicSpell spellQBanjo("spellQBanjo",&player,0,0,1500,6000);
+    BasicSpell spellQGuitar("spellQGuitar",&player,0,0,1500,6000);
+    BasicSpell spellQAccordion("spellQAccordion",&player,0,0,1500,6000);
 
-    StopSpell spellWBanjo("spellWBanjo",&player,0,0,6000,6000);
+    StopSpell spellWBanjo("spellWBanjo",&player,0,0,1500,6000);
     spellWBanjo.xF = 0; spellWBanjo.yF = 0;
 
     spellQBanjo.xF = 0; spellQBanjo.yF = 0;
@@ -175,7 +175,7 @@ int main(int, char**)
     nFragments.add_component(fragmentText);
     player.nFragments = &fragmentText;
 
-    gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 25*32, 6*32, &player, 100);
+    gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 25*32, 6*32, &player, 100, globals::SAD_ENEMY);
     //gameplay.get_room("stage_1_room_1")->add_enemy("ghost12", 21*32, 6*32, &player, 100);
     //gameplay.get_room("stage_1_room_1")->add_enemy("ghost13", 22*32, 6*32, &player, 100);
     //gameplay.get_room("stage_1_room_1")->add_enemy("ghost14", 24*32, 6*32, &player, 100);
@@ -186,16 +186,16 @@ int main(int, char**)
     //gameplay.get_room("stage_1_room_1")->add_enemy("ghost19", 28*32, 6*32, &player, 100);
 
 
-    gameplay.get_room("stage_1_room_2")->add_enemy("ghost2", 25*32, 6*32, &player, 100);
-    gameplay.get_room("stage_1_room_3")->add_enemy("ghost3", 100, 100, &player, 100);
-    gameplay.get_room("stage_1_room_4")->add_enemy("ghost41", 3*32, 3*32, &player, 100);
-    gameplay.get_room("stage_1_room_4")->add_enemy("ghost42", 28*32, 3*32, &player, 100);
-    gameplay.get_room("stage_1_room_4")->add_enemy("ghost43", 3*32, 19*32, &player, 100);
-    gameplay.get_room("stage_1_room_4")->add_enemy("ghost44", 28*32, 15*32, &player, 100);
-    gameplay.get_room("stage_1_room_5")->add_enemy("ghost51", 3*32, 3*32, &player, 100);
-    gameplay.get_room("stage_1_room_5")->add_enemy("ghost52", 28*32, 3*32, &player, 100);
-    gameplay.get_room("stage_1_room_5")->add_enemy("ghost53", 3*32, 19*32, &player, 100);
-    gameplay.get_room("stage_1_room_5")->add_enemy("ghost54", 28*32, 15*32, &player, 100);
+    gameplay.get_room("stage_1_room_2")->add_enemy("ghost2", 25*32, 6*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_3")->add_enemy("ghost3", 100, 100, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_4")->add_enemy("ghost41", 3*32, 3*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_4")->add_enemy("ghost42", 28*32, 3*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_4")->add_enemy("ghost43", 3*32, 19*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_4")->add_enemy("ghost44", 28*32, 15*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_5")->add_enemy("ghost51", 3*32, 3*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_5")->add_enemy("ghost52", 28*32, 3*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_5")->add_enemy("ghost53", 3*32, 19*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_5")->add_enemy("ghost54", 28*32, 15*32, &player, 100, globals::MAD_ENEMY);
 
     //change room handler
 /*    GameObject goRightRoom1("goRightRoom1", 925,200);

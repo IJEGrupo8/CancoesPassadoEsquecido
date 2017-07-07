@@ -29,6 +29,8 @@ public:
     void setup();
     bool useSpell();
 private:
+    Timer timer;
+    bool collided = false;
     
 };
 

@@ -13,8 +13,8 @@ using namespace engine;
 class Enemy : public GameObject {
 public:
     Enemy() : GameObject() {}
-    Enemy(std::string _name, int _x, int _y, Player * target, int enemy_life)
-        : GameObject(_name,_x,_y), m_target(target), life(enemy_life) {}
+    Enemy(std::string _name, int _x, int _y, Player * target, int enemy_life, int enemy_type)
+        : GameObject(_name,_x,_y), m_target(target), life(enemy_life), m_enemy_type(enemy_type) {}
  	
  	~Enemy() {}
     virtual bool init();
@@ -30,6 +30,7 @@ public:
     void moveLeft();
     void moveRight();
     void makeNextMove();
+    int getEnemyType();
 
     int life;
     bool canMove = true;
@@ -38,12 +39,13 @@ public:
     int positionX, positionY;
     //0 Parado, 1 Esquerda, 2 Direita, 3 Cima, 4 Baixo
     int nextMove = 0;
+    int defaultVel = 3;
 
 
 private:
     Player* m_target;
-    int defaultVel = 3;
     int distance;
+    int m_enemy_type;
 };
 
 #endif
