@@ -4,37 +4,38 @@
 #include "log.h"
 #include "vector.hpp"
 #include "spell.hpp"
-#include "stopspell.hpp"
+#include "slowspell.hpp"
 #include "timer.hpp"
 #include "game.hpp"
 #include "enemy.hpp"
 #include "gamescene.hpp"
+#include "gameglobals.hpp"
 
 #define nframes 10
 
 using namespace engine;
 
-bool StopSpell::init()
+bool SlowSpell::init()
 {
   Spell::init();
 
   return true;
 }
 
-bool StopSpell::shutdown()
+bool SlowSpell::shutdown()
 {
   Spell::shutdown();
   return true;
 }
 
-bool StopSpell::draw()
+bool SlowSpell::draw()
 {
   Spell::draw();
 
   return true;
 }
 
-bool StopSpell::update()
+bool SlowSpell::update()
 {
   Spell::update();
 
@@ -64,12 +65,24 @@ bool StopSpell::update()
         }
 
         if(collided){
-          if(timer.getTime() < 5000) {
-            enemy_obj->canMove = false;
+          if(enemy_obj->getEnemyType() == globals:: MAD_ENEMY){
+            if(timer.getTime() < 3000) {
+                enemy_obj->defaultVel = 1;                      
+            }
+            else {
+              collided = false;
+              enemy_obj->defaultVel = 3;
+            }
           }
-          else {
-            collided = false;
-            enemy_obj->canMove = true;
+          else if(enemy_obj->getEnemyType() == globals::SAD_ENEMY){
+            Player *playerObject = (dynamic_cast<Player*>(player));
+            if(timer.getTime() < 3000) {
+                playerObject->defaultVel = 1;                      
+            }
+            else {
+              collided = false;
+              playerObject->defaultVel = 5;
+            }
           }
         }
       }
@@ -82,7 +95,7 @@ bool StopSpell::update()
    return true;
 }
 
-bool StopSpell::useSpell()
+bool SlowSpell::useSpell()
 {
   if(countdownTimer.getTime() > countdown){
     INFO("Start spell");
@@ -105,7 +118,7 @@ bool StopSpell::useSpell()
   }
   return true;
 }
-void StopSpell::setup()
+void SlowSpell::setup()
 {
   Spell::setup();
 }

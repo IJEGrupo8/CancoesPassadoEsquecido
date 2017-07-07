@@ -162,10 +162,10 @@ bool Player::handlePlayer(){
     {
         active_instrument.useSpellW();
     }
-    /*if(Input::keyPressed(Input::E))
+    if(Input::keyPressed(Input::E))
     {
         active_instrument.useSpellE();
-    }*/
+    }
 
     return true;
 }

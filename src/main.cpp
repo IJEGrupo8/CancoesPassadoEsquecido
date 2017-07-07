@@ -20,6 +20,7 @@
 #include "gameover.hpp"
 #include "spell.hpp"
 #include "stopspell.hpp"
+#include "slowspell.hpp"
 #include "tilemap.hpp"
 #include "tileset.hpp"
 #include "log.h"
@@ -90,32 +91,26 @@ int main(int, char**)
 
     //Declaring instruments
     Instrument banjo(globals::banjo, 3*32, 3*32);
-    Instrument eletric_guitar(globals::eletric_guitar, 3*32, 3*32);
-    Instrument accordion(globals::accordion, 3*32, 3*32);
     //Declaring spells
     BasicSpell spellQBanjo("spellQBanjo",&player,0,0,1500,6000);
-    BasicSpell spellQGuitar("spellQGuitar",&player,0,0,1500,6000);
-    BasicSpell spellQAccordion("spellQAccordion",&player,0,0,1500,6000);
+    spellQBanjo.xF = 0; spellQBanjo.yF = 0;
 
     StopSpell spellWBanjo("spellWBanjo",&player,0,0,1500,6000);
     spellWBanjo.xF = 0; spellWBanjo.yF = 0;
 
-    spellQBanjo.xF = 0; spellQBanjo.yF = 0;
-    spellQGuitar.xF = 0; spellQGuitar.yF = 0;
-    spellQAccordion.xF = 0; spellQAccordion.yF = 0;
+    SlowSpell spellEBanjo("spellEBanjo",&player,0,0,1500,4000);
+    spellEBanjo.xF = 0; spellEBanjo.yF = 0;
 
     AudioComponent somWBanjo(spellWBanjo,"drumsBasic.wav",false,false);
-
+    AudioComponent somEBanjo(spellEBanjo,"drumsBasic.wav",false,false);
     AudioComponent somQBanjo(spellQBanjo,"drumsBasic.wav",false,false);
-    AudioComponent somQGuitar(spellQGuitar,"drumsBasic.wav",false,false);
-    AudioComponent somQAccordion(spellQAccordion,"drumsBasic.wav",false,false);
 
+    ImageComponent banjoEImage(spellEBanjo, "musicnote.png", 3, 3);
     ImageComponent banjoWImage(spellWBanjo, "musicnote.png", 3, 3);
     ImageComponent banjoQImage(spellQBanjo, "musicnote.png", 3, 3);
-    ImageComponent guitarQImage(spellQGuitar, "musicnote.png", 3, 3);
-    ImageComponent accordionQImage(spellQAccordion, "musicnote.png", 3, 3);
 
-    //AnimationControllerComponent explosionController();
+    spellEBanjo.add_component(banjoEImage);
+    spellEBanjo.add_component(somEBanjo);
 
     spellQBanjo.add_component(banjoQImage);
     spellQBanjo.add_component(somQBanjo);
@@ -123,17 +118,10 @@ int main(int, char**)
     spellWBanjo.add_component(banjoWImage);
     spellWBanjo.add_component(somWBanjo);
 
-    spellQGuitar.add_component(guitarQImage);
-    spellQGuitar.add_component(somQGuitar);
-
-    spellQAccordion.add_component(accordionQImage);
-    spellQAccordion.add_component(somQGuitar);
-
     //Adicionando spell ao instrumento
     banjo.addSpell(globals::spellQ,&spellQBanjo);
     banjo.addSpell(globals::spellW,&spellWBanjo);
-    eletric_guitar.addSpell(globals::spellQ,&spellQGuitar);
-    accordion.addSpell(globals::spellQ,&spellQAccordion);
+    banjo.addSpell(globals::spellE,&spellEBanjo);
 
     player.addInstrument(globals::banjo, banjo);
  
@@ -216,10 +204,7 @@ int main(int, char**)
     //add to scene
     gameplay.add_game_object(spellQBanjo);
     gameplay.add_game_object(spellWBanjo);
-    gameplay.add_game_object(spellQGuitar);
-    gameplay.add_game_object(spellQAccordion);
-    gameplay.add_game_object(accordion);
-    gameplay.add_game_object(eletric_guitar);
+    gameplay.add_game_object(spellEBanjo);
     gameplay.add_game_object(banjo);
     gameplay.add_game_object(player);
     gameplay.add_game_object(nFragments);

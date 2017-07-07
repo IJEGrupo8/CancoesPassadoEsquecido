@@ -1,5 +1,5 @@
-#ifndef __STOP_SPELL__
-#define __STOP_SPELL__
+#ifndef __SLOW_SPELL__
+#define __SLOW_SPELL__
 
 #include <string>
 #include <list>
@@ -13,13 +13,13 @@
 
 using namespace engine;
 
-class StopSpell : public Spell {
+class SlowSpell : public Spell {
 public:
-    StopSpell() : Spell() {}
-    StopSpell(std::string _name, GameObject * obj, int _x, int _y,int _countdown,int _duration)
+    SlowSpell() : Spell() {}
+    SlowSpell(std::string _name, GameObject * obj, int _x, int _y,int _countdown,int _duration)
         : Spell(_name,obj,_x,_y,_countdown,_duration) {}
 
-    ~StopSpell() {}
+    ~SlowSpell() {}
 
     
     bool init();
