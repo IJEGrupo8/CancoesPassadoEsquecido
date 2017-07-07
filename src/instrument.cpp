@@ -35,6 +35,7 @@ bool Instrument::update()
 {
    return true;
 }
+
 bool Instrument::addSpell(std::string spell_name, Spell * spell)
 {
 	spells[spell_name] = spell;

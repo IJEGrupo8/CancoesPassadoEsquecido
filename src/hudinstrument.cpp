@@ -2,12 +2,20 @@
 #include "log.h"
 #include "hudinstrument.hpp"
 #include "gameglobals.hpp"
-
+#include <string>
+#include <sstream>
+#include <iostream>
 using namespace engine;
 
 bool HUDInstrument::init()
 {
+    huds["spellQ"]->setState(Component::State::enabled);
+    huds["spellQ"]->xOffset = 10;
+    huds["spellQ"]->yOffset = -200;
+    huds["spellW"]->setState(Component::State::disabled);
+    huds["spellE"]->setState(Component::State::disabled);
     engine::GameObject::init();
+
     return true;
 }
 
@@ -19,23 +27,54 @@ bool HUDInstrument::shutdown()
 
 bool HUDInstrument::draw()
 {
-    if(m_player->getActiveInstrument().name() == globals::banjo){
-        active_hud = huds[globals::banjo];
-        huds[globals::eletric_guitar]->setState(Component::State::disabled);
-        huds[globals::accordion]->setState(Component::State::disabled);
+    Spell * spellQ = m_player->getActiveInstrument().getSpell(globals::spellQ);
+    std::stringstream ss;
+    std::string available;
+    if(spellQ->countdownTimer.getTime() > spellQ->countdown)
+    {
+        available = "PRONTO";
     }
-    else if(m_player->getActiveInstrument().name() == globals::eletric_guitar){
-        active_hud = huds[globals::eletric_guitar];
-        huds[globals::banjo]->setState(Component::State::disabled);
-        huds[globals::accordion]->setState(Component::State::disabled);
+    else 
+    {
+        available = "EM COOLDOWN";
     }
-    else if(m_player->getActiveInstrument().name() == globals::accordion){
-        active_hud = huds[globals::accordion];
-        huds[globals::eletric_guitar]->setState(Component::State::disabled);
-        huds[globals::banjo]->setState(Component::State::disabled);
-    }
+    ss << "Q:" << available;
+    huds["spellQ"]->setText(ss.str());
+    huds["spellQ"]->init();
 
-    active_hud->setState(Component::State::enabled);
+
+
+    // Spell * spellW = m_player->getActiveInstrument().getSpell("spellWBanjo");
+    // Spell * spellE = m_player->getActiveInstrument().getSpell("spellEBanjo");
+ 
+    // if(spellQ->countdownTimer.getTime() < spellQ->countdown)
+    // {
+    //     INFO("Q INATIVO");
+    //     huds["spellQ"]->setState(Component::State::enabled);
+    // }
+    // else
+    // {
+    //     INFO("Q ATIVO");
+    //     huds["spellQ"]->setState(Component::State::disabled);
+    // }
+
+    // if(spellW->countdownTimer.getTime() > countdown)
+    // {
+    //     huds["spellW"].setState(Component::State::enabled);
+    // }
+    // else
+    // {
+    //     huds["spellW"].setState(Component::State::disabled);
+    // }
+
+    // if(spellE->countdownTimer.getTime() > countdown)
+    // {
+    //     huds["spellE"].setState(Component::State::enabled);
+    // }
+    // else
+    // {       
+    //     huds["spellE"].setState(Component::State::disabled);
+    // }
 
     engine::GameObject::draw();
 
@@ -48,6 +87,6 @@ bool HUDInstrument::update()
     return true;
 }
 
-void HUDInstrument::addHUD(std::string instrument_name, ImageComponent* hud){
+void HUDInstrument::addHUD(std::string instrument_name, TextComponent* hud){
     huds[instrument_name] = hud;
 }

@@ -102,13 +102,13 @@ int main(int, char**)
 
     HUDInstrument HUDInstrument("hudinstrument", globals::window_size.first-250, globals::window_size.second-120, &player);
     HUDInstrument.xF = 0; HUDInstrument.yF = 0;
-    ImageComponent banjoActiveHUD(HUDInstrument, "hud_instruments_0.png", 1, 1);
-    ImageComponent eletricGuitarActiveHUD(HUDInstrument, "hud_instruments_1.png", 1, 1);
-    ImageComponent accordionActiveHUD(HUDInstrument, "hud_instruments_2.png", 1, 1);
+    TextComponent banjoActiveHUD(HUDInstrument,"COOLDOWN Q","font.ttf",20);
+    TextComponent eletricGuitarActiveHUD(HUDInstrument, "COOLDOWN W","font.ttf",20);
+    TextComponent accordionActiveHUD(HUDInstrument, "COOLDOWN E","font.ttf",20);
 
-    HUDInstrument.addHUD(globals::banjo, &banjoActiveHUD);
-    HUDInstrument.addHUD(globals::eletric_guitar, &eletricGuitarActiveHUD);
-    HUDInstrument.addHUD(globals::accordion, &accordionActiveHUD);
+    HUDInstrument.addHUD("spellQ", &banjoActiveHUD);
+    HUDInstrument.addHUD("spellW", &eletricGuitarActiveHUD);
+    HUDInstrument.addHUD("spellE", &accordionActiveHUD);
 
     HUDInstrument.add_component(banjoActiveHUD);
     HUDInstrument.add_component(eletricGuitarActiveHUD);
