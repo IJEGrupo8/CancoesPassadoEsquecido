@@ -43,11 +43,8 @@ int main(int, char**)
     // Setup scenes 
     MenuScene menu("Menu");
     GameOverScene GameoverScene("Gameover");
-<<<<<<< HEAD
     GameOverScene VictoryScene("Victory"); 
-=======
-    GameOverScene VictoryScene("Victory");
->>>>>>> 3e7661695d7b1edd7956d0fd41085d6988e6501e
+
     GameScene gameplay("stage_1");
 
     gameplay.add_room("stage_1_room_1");
@@ -56,7 +53,6 @@ int main(int, char**)
     gameplay.add_room("stage_1_room_4");
     gameplay.add_room("stage_1_room_5");
     gameplay.add_room("stage_1_room_6");
-
 
     TileMap tilemap("assets/mapa1.txt", "mapa", 0, 0);
     TileSet tileset(32, 32, tilemap, "tilesheet.png", 1, 1);
@@ -83,11 +79,17 @@ int main(int, char**)
     tilemap5.setTileSet(tileset5);
     tilemap5.add_component(tileset5);
 
-    gameplay.add_game_object_to_room("stage_1_room_1", tilemap);
-    gameplay.add_game_object_to_room("stage_1_room_2", tilemap2);
-    gameplay.add_game_object_to_room("stage_1_room_3", tilemap3);
-    gameplay.add_game_object_to_room("stage_1_room_4", tilemap4);
-    gameplay.add_game_object_to_room("stage_1_room_5", tilemap5);
+    TileMap tilemap6("assets/mapa6.txt", "mapa", 0, 0);
+    TileSet tileset6(32, 32, tilemap6, "tilesheet.png", 1, 1);
+    tilemap6.setTileSet(tileset6);
+    tilemap6.add_component(tileset6);
+
+    gameplay.add_game_object_to_room("stage_1_room_1",tilemap);
+    gameplay.add_game_object_to_room("stage_1_room_2",tilemap2);
+    gameplay.add_game_object_to_room("stage_1_room_3",tilemap3);
+    gameplay.add_game_object_to_room("stage_1_room_4",tilemap4);
+    gameplay.add_game_object_to_room("stage_1_room_5",tilemap5);
+    gameplay.add_game_object_to_room("stage_1_room_6",tilemap6);
 
     /* Gamescene*/
     Game::instance.add_scene(menu);
@@ -99,7 +101,6 @@ int main(int, char**)
     player.xF = 0; player.yF = 0;
 
     //Declaring instruments
-<<<<<<< HEAD
     Instrument banjo(globals::banjo, 3*32, 3*32);
     //Declaring spells
     BasicSpell spellQBanjo("spellQBanjo",&player,0,0,1500,6000);
@@ -127,37 +128,14 @@ int main(int, char**)
 
     spellWBanjo.add_component(banjoWImage);
     spellWBanjo.add_component(somWBanjo);
-=======
-    Instrument banjo(globals::banjo, 100,100);
 
-    BasicSpell spellQBanjo("spellQBanjo",&player,0,0,1500,1500);
-    spellQBanjo.xF = 0; spellQBanjo.yF = 0;
-    AudioComponent somQBanjo(spellQBanjo,"drumsBasic.wav",false,false);
-    ImageComponent banjoQImage(spellQBanjo, "musicnote.png", 3, 3);
-    spellQBanjo.add_component(banjoQImage);
-    spellQBanjo.add_component(somQBanjo);
-
-    SlamSpell spellWBanjo("spellWBanjo",&player,0,0,1500,1500);
-    spellWBanjo.xF = 0; spellWBanjo.yF = 0;
-    AudioComponent somWBanjo(spellWBanjo,"drumsBasic.wav",false,false);
-    ImageComponent banjoWImage(spellWBanjo, "musicnote.png", 3, 3);
-    spellWBanjo.add_component(banjoWImage);
-    spellWBanjo.add_component(somWBanjo);
-
->>>>>>> 3e7661695d7b1edd7956d0fd41085d6988e6501e
 
     banjo.addSpell(globals::spellQ,&spellQBanjo);
     banjo.addSpell(globals::spellW,&spellWBanjo);
-<<<<<<< HEAD
     banjo.addSpell(globals::spellE,&spellEBanjo);
 
     player.addInstrument(globals::banjo, banjo);
- 
-=======
-    player.addInstrument(globals::banjo, banjo);
 
-
->>>>>>> 3e7661695d7b1edd7956d0fd41085d6988e6501e
     HUDInstrument HUDInstrument("hudinstrument", globals::window_size.first-250, globals::window_size.second-120, &player);
     HUDInstrument.xF = 0; HUDInstrument.yF = 0;
     ImageComponent banjoActiveHUD(HUDInstrument, "hud_instruments_0.png", 1, 1);
@@ -196,45 +174,6 @@ int main(int, char**)
     nFragments.add_component(fragmentText);
     player.nFragments = &fragmentText;
 
-<<<<<<< HEAD
-    gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 25*32, 6*32, &player, 100, globals::MAD_ENEMY);
-    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost12", 21*32, 6*32, &player, 100);
-    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost13", 22*32, 6*32, &player, 100);
-    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost14", 24*32, 6*32, &player, 100);
-    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost15", 23*32, 6*32, &player, 100);
-    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost16", 25*32, 6*32, &player, 100);
-    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost17", 26*32, 6*32, &player, 100);
-    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost18", 27*32, 6*32, &player, 100);
-    //gameplay.get_room("stage_1_room_1")->add_enemy("ghost19", 28*32, 6*32, &player, 100);
-
-
-    gameplay.get_room("stage_1_room_2")->add_enemy("ghost2", 25*32, 6*32, &player, 100, globals::MAD_ENEMY);
-    gameplay.get_room("stage_1_room_3")->add_enemy("ghost3", 100, 100, &player, 100, globals::MAD_ENEMY);
-    //gameplay.get_room("stage_1_room_4")->add_enemy("ghost41", 3*32, 3*32, &player, 100, globals::MAD_ENEMY);
-    //gameplay.get_room("stage_1_room_4")->add_enemy("ghost42", 28*32, 3*32, &player, 100, globals::MAD_ENEMY);
-    //gameplay.get_room("stage_1_room_4")->add_enemy("ghost43", 3*32, 19*32, &player, 100, globals::MAD_ENEMY);
-    //gameplay.get_room("stage_1_room_4")->add_enemy("ghost44", 28*32, 15*32, &player, 100, globals::MAD_ENEMY);
-    gameplay.get_room("stage_1_room_5")->add_enemy("ghost51", 3*32, 3*32, &player, 100, globals::MAD_ENEMY);
-    gameplay.get_room("stage_1_room_5")->add_enemy("ghost52", 28*32, 3*32, &player, 100, globals::MAD_ENEMY);
-    gameplay.get_room("stage_1_room_5")->add_enemy("ghost53", 3*32, 19*32, &player, 100, globals::MAD_ENEMY);
-    gameplay.get_room("stage_1_room_5")->add_enemy("ghost54", 28*32, 15*32, &player, 100, globals::MAD_ENEMY);
-
-    //change room handler
-/*    GameObject goRightRoom1("goRightRoom1", 925,200);
-    goRightRoom1.xF = 0; goRightRoom1.yF = 0;
-    ChangeRoom goRightRoom1Component(goRightRoom1,"stage_1_room_2",ChangeRoom::Direction::Right);
-    goRightRoom1.add_component(goRightRoom1Component);
-    goRightRoom1.w = 100; goRightRoom1.h = 100;*/
-
-    gameplay.get_room("stage_1_room_1")->add_room_transition("goRightRoom1", 925,200,100,100,"stage_1_room_2",ChangeRoom::Direction::Right);
-    gameplay.get_room("stage_1_room_2")->add_room_transition("goLeftRoom2", 0, 320,100,100,"stage_1_room_1",ChangeRoom::Direction::Left);
-    gameplay.get_room("stage_1_room_2")->add_room_transition("goTopRoom2", 450, 0,70,100,"stage_1_room_3",ChangeRoom::Direction::Top);
-    gameplay.get_room("stage_1_room_3")->add_room_transition("goBottonRoom3", 450, 650,100,100,"stage_1_room_2",ChangeRoom::Direction::Botton);
-    gameplay.get_room("stage_1_room_3")->add_room_transition("goLeftRoom3",0, 320,70,100,"stage_1_room_4",ChangeRoom::Direction::Left);
-    gameplay.get_room("stage_1_room_4")->add_room_transition("goRightRoom4",925, 320,70,100,"stage_1_room_3",ChangeRoom::Direction::Right);
-    gameplay.get_room("stage_1_room_4")->add_room_transition("goLeftRoom4", 0, 300,70,100,"stage_1_room_5",ChangeRoom::Direction::Left);
-    gameplay.get_room("stage_1_room_5")->add_room_transition("goRightRoom5", 0, 925, 320,100,"stage_1_room_4",ChangeRoom::Direction::Right);
-
     //add to scene
     gameplay.add_game_object(spellQBanjo);
     gameplay.add_game_object(spellWBanjo);
@@ -242,32 +181,25 @@ int main(int, char**)
     gameplay.add_game_object(banjo);
     gameplay.add_game_object(player);
     gameplay.add_game_object(nFragments);
-=======
-    //add to scene
-    gameplay.add_game_object(spellQBanjo);
-    gameplay.add_game_object(spellWBanjo);
-    gameplay.add_game_object(banjo);
-    gameplay.add_game_object(player);
-    gameplay.add_game_object(nFragments);
 
     /***************************Enemies**********************/
 
     //gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 800, 200);
-    gameplay.get_room("stage_1_room_2")->add_enemy("ghost2", 800, 200);
-    gameplay.get_room("stage_1_room_3")->add_enemy("ghost31", 100, 100);
-    gameplay.get_room("stage_1_room_3")->add_enemy("ghost32", 800, 100);
+    gameplay.get_room("stage_1_room_2")->add_enemy("ghost2", 800, 200, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_3")->add_enemy("ghost31", 100, 100, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_3")->add_enemy("ghost32", 800, 100, &player, 100, globals::MAD_ENEMY);
 
-    gameplay.get_room("stage_1_room_4")->add_enemy("ghost41", 3*32, 3*32);
-    gameplay.get_room("stage_1_room_4")->add_enemy("ghost42", 28*32, 3*32);
-    gameplay.get_room("stage_1_room_4")->add_enemy("ghost43", 3*32, 19*32);
-    gameplay.get_room("stage_1_room_4")->add_enemy("ghost44", 28*32, 15*32);
-    gameplay.get_room("stage_1_room_5")->add_enemy("ghost51", 3*32, 3*32);
-    gameplay.get_room("stage_1_room_5")->add_enemy("ghost52", 28*32, 3*32);
-    gameplay.get_room("stage_1_room_5")->add_enemy("ghost53", 3*32, 19*32);
-    gameplay.get_room("stage_1_room_5")->add_enemy("ghost54", 28*32, 15*32);
-    gameplay.get_room("stage_1_room_6")->add_enemy("ghost61", 28*32, 3*32);
-    gameplay.get_room("stage_1_room_6")->add_enemy("ghost62", 3*32, 19*32);
-    gameplay.get_room("stage_1_room_6")->add_enemy("ghost63", 28*32, 15*32);
+    gameplay.get_room("stage_1_room_4")->add_enemy("ghost41", 3*32, 3*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_4")->add_enemy("ghost42", 28*32, 3*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_4")->add_enemy("ghost43", 3*32, 19*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_4")->add_enemy("ghost44", 28*32, 15*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_5")->add_enemy("ghost51", 3*32, 3*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_5")->add_enemy("ghost52", 28*32, 3*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_5")->add_enemy("ghost53", 3*32, 19*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_5")->add_enemy("ghost54", 28*32, 15*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_6")->add_enemy("ghost61", 28*32, 3*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_6")->add_enemy("ghost62", 3*32, 19*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_6")->add_enemy("ghost63", 28*32, 15*32, &player, 100, globals::MAD_ENEMY);
     /************************Transitions**********************/
 
     gameplay.get_room("stage_1_room_1")->add_room_transition("goRightRoom1", 925,330,100,100,"stage_1_room_2",ChangeRoom::Direction::Right);
@@ -284,7 +216,6 @@ int main(int, char**)
     gameplay.get_room("stage_1_room_4")->add_room_transition("goLeftRoom4", 0, 300,70,100,"stage_1_room_5",ChangeRoom::Direction::Left);
     gameplay.get_room("stage_1_room_5")->add_room_transition("goRightRoom5", 0, 925, 320,100,"stage_1_room_4",ChangeRoom::Direction::Right);
 */
->>>>>>> 3e7661695d7b1edd7956d0fd41085d6988e6501e
 
     //Fragmento sala 1
 
@@ -367,17 +298,8 @@ int main(int, char**)
     quitButton.add_component(quitImage);
     menu.add_game_object(quitButton);
 
-<<<<<<< HEAD
-    /*GameObject playbutton("playbutton",(globals::window_size.first/2)-50,(globals::window_size.second/2)-50);
-    ImageComponent playImage(playbutton,"playbutton.png",1,1);
-    playbutton.xF = 0; playbutton.yF = 0;
-    playbutton.add_component(playImage);
-    menu.add_game_object(playbutton);*/
 
     GameObject gameover("gameover",0,0);
-=======
-    GameObject gameover("gameover",(globals::window_size.first/2)-100,(globals::window_size.second/2)-100);
->>>>>>> 3e7661695d7b1edd7956d0fd41085d6988e6501e
     ImageComponent gameoverImage(gameover,"gameover.png",1,1);
     gameover.xF = 0; gameover.yF = 0;
     gameover.add_component(gameoverImage);
@@ -388,40 +310,6 @@ int main(int, char**)
     victory.xF = 0; victory.yF = 0;
     victory.add_component(victoryImage);
     VictoryScene.add_game_object(victory);
-
-<<<<<<< HEAD
-=======
-    TileMap tilemap("assets/mapa1.txt", "mapa", 0, 0);
-    TileSet tileset(32, 32, tilemap, "tilesheet.png", 1, 1);
-    tilemap.setTileSet(tileset);
-    tilemap.add_component(tileset);
-
-    TileMap tilemap2("assets/mapa2.txt", "mapa", 0, 0);
-    TileSet tileset2(32, 32, tilemap2, "tilesheet.png", 1, 1);
-    tilemap2.setTileSet(tileset2);
-    tilemap2.add_component(tileset2);
-
-    TileMap tilemap3("assets/mapa3.txt", "mapa", 0, 0);
-    TileSet tileset3(32, 32, tilemap3, "tilesheet.png", 1, 1);
-    tilemap3.setTileSet(tileset3);
-    tilemap3.add_component(tileset3);
-
-    TileMap tilemap4("assets/mapa4.txt", "mapa", 0, 0);
-    TileSet tileset4(32, 32, tilemap4, "tilesheet.png", 1, 1);
-    tilemap4.setTileSet(tileset4);
-    tilemap4.add_component(tileset4);
-
-    TileMap tilemap5("assets/mapa5.txt", "mapa", 0, 0);
-    TileSet tileset5(32, 32, tilemap5, "tilesheet.png", 1, 1);
-    tilemap5.setTileSet(tileset5);
-    tilemap5.add_component(tileset5);
-
-    TileMap tilemap6("assets/mapa6.txt", "mapa", 0, 0);
-    TileSet tileset6(32, 32, tilemap6, "tilesheet.png", 1, 1);
-    tilemap6.setTileSet(tileset6);
-    tilemap6.add_component(tileset6);
-
->>>>>>> 3e7661695d7b1edd7956d0fd41085d6988e6501e
 
     HUDLife hudlife("hudlife", 0, 0, &player);
     hudlife.xF = 0; hudlife.yF = 0;
@@ -483,18 +371,6 @@ int main(int, char**)
 
     gameplay.add_game_object(hudlife);
     gameplay.add_game_object(HUDInstrument);
-
-<<<<<<< HEAD
-=======
-    gameplay.add_game_object_to_room("stage_1_room_1",tilemap);
-    gameplay.add_game_object_to_room("stage_1_room_2",tilemap2);
-    gameplay.add_game_object_to_room("stage_1_room_3",tilemap3);
-    gameplay.add_game_object_to_room("stage_1_room_4",tilemap4);
-    gameplay.add_game_object_to_room("stage_1_room_5",tilemap5);
-    gameplay.add_game_object_to_room("stage_1_room_6",tilemap6);
-
-
->>>>>>> 3e7661695d7b1edd7956d0fd41085d6988e6501e
 
     // Game loop
     Game::instance.run();
