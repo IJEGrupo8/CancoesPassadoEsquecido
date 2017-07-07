@@ -24,7 +24,7 @@ public:
     ~Player() {}
     
     int life = 100;
-    int defaultVel = 5;
+    int defaultVel = 10;
 
     virtual bool init();
     virtual bool shutdown();
@@ -52,7 +52,6 @@ private:
     std::unordered_map<std::string, AnimationControllerComponent *> sprites;
     Instrument active_instrument;
     std::vector<int> fragments;
-    int defaultVel = 10;
 };
 
 #endif

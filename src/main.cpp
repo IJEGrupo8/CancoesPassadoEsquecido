@@ -18,8 +18,7 @@
 #include "customimagecomponent.hpp"
 #include "player.hpp"
 #include "gamescene.hpp"
-#include "menuscene.hpp"
-#include "gameover.hpp"
+#include "imagescene.hpp"
 #include "spell.hpp"
 #include "stopspell.hpp"
 #include "slowspell.hpp"
@@ -41,9 +40,9 @@ int main(int, char**)
     Game::instance.set_properties(globals::game_name, globals::window_size);
 
     // Setup scenes 
-    MenuScene menu("Menu");
-    GameOverScene GameoverScene("Gameover");
-    GameOverScene VictoryScene("Victory"); 
+    ImageScene menu("Menu");
+    ImageScene GameoverScene("Gameover");
+    ImageScene VictoryScene("Victory"); 
 
     GameScene gameplay("stage_1");
 
@@ -280,32 +279,13 @@ int main(int, char**)
     menuBackground.add_component(backgroundImage);
     menu.add_game_object(menuBackground);
 
-    GameObject playButton("playbutton", 50, 150);
-    playButton.xF = 0; playButton.yF = 0;
-    ImageComponent playImage(playButton,"play_button.png", 1, 1);
-    playButton.add_component(playImage);
-    menu.add_game_object(playButton);
-
-    GameObject optionsButton("optionsbutton", 150, 300);
-    optionsButton.xF = 0; optionsButton.yF = 0;
-    ImageComponent optionsImage(optionsButton,"options_button.png", 1, 1);
-    optionsButton.add_component(optionsImage);
-    menu.add_game_object(optionsButton);
-
-    GameObject quitButton("quitbutton", 250, 450);
-    quitButton.xF = 0; quitButton.yF = 0;
-    ImageComponent quitImage(quitButton,"quit_button.png", 1, 1);
-    quitButton.add_component(quitImage);
-    menu.add_game_object(quitButton);
-
-
     GameObject gameover("gameover",0,0);
     ImageComponent gameoverImage(gameover,"gameover.png",1,1);
     gameover.xF = 0; gameover.yF = 0;
     gameover.add_component(gameoverImage);
     GameoverScene.add_game_object(gameover);
 
-    GameObject victory("victory",(globals::window_size.first/2)-100,(globals::window_size.second/2)-100);
+    GameObject victory("victory",0,0);
     ImageComponent victoryImage(victory,"victory.png",1,1);
     victory.xF = 0; victory.yF = 0;
     victory.add_component(victoryImage);
