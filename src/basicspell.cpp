@@ -63,11 +63,7 @@ bool BasicSpell::update()
             collided = true;
             if(enemy_obj->getEnemyType() == globals::SAD_ENEMY){ 
               enemy_obj->physics.velocity = (physics.velocity/2);
-              enemy_obj->canMove = false;
             }               
-          }
-          else {
-            enemy_obj->canMove = true; 
           }
 
           if(collided){

@@ -37,6 +37,8 @@ bool Spell::update()
 {
   GameObject::update();
 
+  
+
   return true;
 }
 

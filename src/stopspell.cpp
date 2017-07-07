@@ -67,11 +67,11 @@ bool StopSpell::update()
 
         if(collided){
           if(timer.getTime() < 5000) {
-            enemy_obj->canMove = false;
+            enemy_obj->defaultVel = 0;
           }
           else {
             collided = false;
-            enemy_obj->canMove = true;
+            enemy_obj->defaultVel = 5;
           }
         }
       }

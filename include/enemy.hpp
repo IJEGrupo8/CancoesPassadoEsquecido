@@ -36,7 +36,7 @@ public:
     int life;
     AnimationComponent *moveRightA, *moveLeftA, *moveUpA, *moveDownA, *activeAnimation;
     bool canMove = true;
-    int defaultVel = 3;
+    float defaultVel = 3;
 
 
 

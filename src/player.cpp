@@ -190,7 +190,6 @@ void Player::addFragment(int _id){
         physics.position.setY(getInitialY());
         life = 100;
         clearFragments();
-
     }
 
     std::stringstream ss;

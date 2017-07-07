@@ -68,12 +68,10 @@ bool SlowSpell::update()
           if(enemy_obj->getEnemyType() == globals::MAD_ENEMY){
             if(timer.getTime() < 3000) {
                 enemy_obj->defaultVel = 1;
-
             }
             else {
               collided = false;
               enemy_obj->defaultVel = 3;
-
             }
           }
           else if(enemy_obj->getEnemyType() == globals::SAD_ENEMY){

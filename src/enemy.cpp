@@ -45,11 +45,11 @@ bool Enemy::update()
     distance = hypot(pos.getX()/32 - physics.position.getX()/32, 
                          pos.getY()/32 - physics.position.getY()/32);
 
-    setTilemap();
+    //setTilemap();
 
-	discoverNextMove(pos);
+	//discoverNextMove(pos);
 
-    makeNextMove();
+    //makeNextMove();
 
     return true;
 }
@@ -84,7 +84,6 @@ void Enemy::moveUp() {
 void Enemy::moveLeft() {
     // Update Velocity
     int componentX = -1*defaultVel;
-
     int componentY = 0;
 
     Vector2D move(componentX,componentY);
