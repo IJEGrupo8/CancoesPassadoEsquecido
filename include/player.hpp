@@ -49,7 +49,7 @@ private:
     std::unordered_map<std::string, AnimationControllerComponent *> sprites;
     Instrument active_instrument;
     std::vector<int> fragments;
-    int defaultVel = 5;
+    int defaultVel = 10;
 };
 
 #endif

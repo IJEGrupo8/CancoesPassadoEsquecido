@@ -129,7 +129,9 @@ int main(int, char**)
 
     //gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 800, 200);
     gameplay.get_room("stage_1_room_2")->add_enemy("ghost2", 800, 200);
-    gameplay.get_room("stage_1_room_3")->add_enemy("ghost3", 100, 100);
+    gameplay.get_room("stage_1_room_3")->add_enemy("ghost31", 100, 100);
+    gameplay.get_room("stage_1_room_3")->add_enemy("ghost32", 800, 100);
+
     gameplay.get_room("stage_1_room_4")->add_enemy("ghost41", 3*32, 3*32);
     gameplay.get_room("stage_1_room_4")->add_enemy("ghost42", 28*32, 3*32);
     gameplay.get_room("stage_1_room_4")->add_enemy("ghost43", 3*32, 19*32);
@@ -142,7 +144,7 @@ int main(int, char**)
     /************************Transitions**********************/
 
     gameplay.get_room("stage_1_room_1")->add_room_transition("goRightRoom1", 925,350,100,100,"stage_1_room_2",ChangeRoom::Direction::Right);
-    gameplay.get_room("stage_1_room_2")->add_room_transition("goLeftRoom2", 0, 370,100,100,"stage_1_room_1",ChangeRoom::Direction::Left); 
+    gameplay.get_room("stage_1_room_2")->add_room_transition("goLeftRoom2", 0, 370,100,100,"stage_1_room_1",ChangeRoom::Direction::Left);
     gameplay.get_room("stage_1_room_2")->add_room_transition("goTopRoom2", 520, -20,100,50,"stage_1_room_3",ChangeRoom::Direction::Top);
     gameplay.get_room("stage_1_room_2")->add_room_transition("goBottonRoom2", 520, 690,100,50,"stage_1_room_4",ChangeRoom::Direction::Botton);
     gameplay.get_room("stage_1_room_2")->add_room_transition("goRightRoom2", 925,350,100,100,"stage_1_room_5",ChangeRoom::Direction::Right);
@@ -178,7 +180,7 @@ int main(int, char**)
 
     //Fragmento sala 3
 
-    GameObject fragmento3("fragmento",20*32,6*32);
+    GameObject fragmento3("fragmento",16*32,5*32);
     fragmento3.xF = 0; fragmento3.yF = 0;
     FragmentComponent obtainFrag3(fragmento3,1);
     ImageComponent guitarFrag3(fragmento3, "guitar.png", 1, 3);
