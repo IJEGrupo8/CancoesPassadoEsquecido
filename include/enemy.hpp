@@ -36,6 +36,7 @@ public:
     bool canMove = true;
     int matrix[22][32];
     int matrixMinimumPath[22][32];
+    int matrixAux[22][32];
     int positionX, positionY;
     //0 Parado, 1 Esquerda, 2 Direita, 3 Cima, 4 Baixo
     int nextMove = 0;

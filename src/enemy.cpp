@@ -125,9 +125,32 @@ void Enemy::minimumPath(Vector2D pos){
 	cout<<"X Enemy: " << posEnemy.first << " Y Enemy: "<<posEnemy.second<<endl;
     cout<<"X Player: " << posTarget.first << " Y Player: "<<posTarget.second<<endl;
 
-    int matrixAux[22][32];
+	if (matrix[posTarget.first][posTarget.second] == 1) {
+		queue<ii> q;
+		q.push(posTarget);
 
-    for (int i=0; i<22; i++){
+		while(!q.empty()) {
+	    	ii v = q.front();
+	    	q.pop();
+
+	    	if(matrix[v.first][v.second] == 0) {
+	    		posTarget.first = v.first;
+	    		posTarget.second = v.second;
+	    		break;
+	    	}
+
+	    	if(v.second > 0 && v.second < 32) {
+				q.push(ii(v.first, v.second - 1));
+				q.push(ii(v.first, v.second + 1));
+			}
+			if(v.first > 0 && v.first < 22) {
+				q.push(ii(v.first - 1, v.second));
+				q.push(ii(v.first + 1, v.second));
+			}
+	    }
+	}
+
+	for (int i=0; i<22; i++){
 		for (int j=0; j<32; j++){
 			matrixAux[i][j] = matrix[i][j];
 		}
@@ -167,8 +190,7 @@ void Enemy::minimumPath(Vector2D pos){
 				matrixAux[v.first.first + 1][v.first.second] = v.second + 1;
 			}
 		}
-
-    }
+	}
 
     int i = posTarget.first, j = posTarget.second;
     int distPlayer = matrixAux[i][j];

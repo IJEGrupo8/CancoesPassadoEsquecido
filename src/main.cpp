@@ -36,10 +36,10 @@ int main(int, char**)
     // Configure game
     Game::instance.set_properties(globals::game_name, globals::window_size);
 
-    // Setup scenes
+    // Setup scenes 
     MenuScene menu("Menu");
     MenuScene GameoverScene("Gameover");
-    MenuScene VictoryScene("Victory");
+    MenuScene VictoryScene("Victory"); 
     GameScene gameplay("stage_1");
 
     gameplay.add_room("stage_1_room_1");
@@ -84,7 +84,7 @@ int main(int, char**)
     Game::instance.add_scene(gameplay);
     Game::instance.add_scene(GameoverScene);
     Game::instance.add_scene(VictoryScene);
-
+ 
     Player player(globals::player, 3*32, 3*32);
     player.xF = 0; player.yF = 0;
 
