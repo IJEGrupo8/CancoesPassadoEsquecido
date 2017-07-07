@@ -22,7 +22,10 @@ public:
         : GameObject(_name,_x,_y) {}
 
     ~Player() {}
+    
     int life = 100;
+    int defaultVel = 5;
+
     virtual bool init();
     virtual bool shutdown();
     virtual bool update();
@@ -49,7 +52,6 @@ private:
     std::unordered_map<std::string, AnimationControllerComponent *> sprites;
     Instrument active_instrument;
     std::vector<int> fragments;
-    int defaultVel = 5;
 };
 
 #endif

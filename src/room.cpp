@@ -24,9 +24,9 @@ bool Room::draw()
     return Scene::draw();
 }
 
-bool Room::add_enemy(std::string enemy_id, int x, int y)
+bool Room::add_enemy(std::string enemy_id, int x, int y, Player * target, int enemy_life, int enemy_type)
 {
-    Enemy * newEnemy = new Enemy(enemy_id,x,y);
+    Enemy * newEnemy = new Enemy(enemy_id, x, y, target, enemy_life, enemy_type);
     newEnemy->xF = 0; newEnemy->yF = 0;
     AnimationComponent * enemyAnimation = new AnimationComponent(*newEnemy, "ghost.png", 4, 4, 500, 0, 3 ,-1);
     FollowPlayer * moveEnemy = new FollowPlayer(*newEnemy);

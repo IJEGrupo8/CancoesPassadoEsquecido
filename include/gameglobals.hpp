@@ -19,6 +19,8 @@ namespace globals {
     const std::string moveRight = "moveRight";
     const std::string moveUp = "moveUp";
     const std::string moveDown = "moveDown";
+    const int MAD_ENEMY = 1;
+    const int SAD_ENEMY = 2;
 
 
 }

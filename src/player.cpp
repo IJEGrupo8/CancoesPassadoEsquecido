@@ -69,12 +69,6 @@ bool Player::moveDown(){
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
-    // Update Frame
-    /*int xFrame = (((xF/w)+1)%nframes)*w;
-    int yFrame = 0*h;
-
-    xF = xFrame;
-    yF = yFrame;*/
     active_sprite->changeAnimation(globals::moveDown);
     active_sprite->activeAnimation->clock.resumeTimer();
     return true;
@@ -87,12 +81,6 @@ bool Player::moveUp(){
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
-    // Update Frame
-    /*int xFrame = (((xF/w)+1)%nframes)*w;
-    int yFrame = 3*h;
-
-    xF = xFrame;
-    yF = yFrame;*/
     active_sprite->changeAnimation(globals::moveUp);
     active_sprite->activeAnimation->clock.resumeTimer();
     return true;
@@ -106,12 +94,6 @@ bool Player::moveLeft(){
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
-    // Update Frame
-    /*int xFrame = (((xF/w)+1)%nframes)*w;
-    int yFrame = 1*h;
-
-    xF = xFrame;
-    yF = yFrame;*/
     active_sprite->changeAnimation(globals::moveLeft);
     active_sprite->activeAnimation->clock.resumeTimer();
     return true;
@@ -125,12 +107,6 @@ bool Player::moveRight(){
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
-    // Update Frame
-    /*int xFrame = (((xF/w)+1)%nframes)*w;
-    int yFrame = 2*h;
-
-    xF = xFrame;
-    yF = yFrame;*/
     active_sprite->changeAnimation(globals::moveRight);
     active_sprite->activeAnimation->clock.resumeTimer();
     return true;
@@ -186,10 +162,10 @@ bool Player::handlePlayer(){
     {
         active_instrument.useSpellW();
     }
-    /*if(Input::keyPressed(Input::E))
+    if(Input::keyPressed(Input::E))
     {
         active_instrument.useSpellE();
-    }*/
+    }
 
     return true;
 }

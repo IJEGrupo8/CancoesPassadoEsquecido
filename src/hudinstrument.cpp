@@ -10,10 +10,11 @@ using namespace engine;
 bool HUDInstrument::init()
 {
     huds[globals::spellQ]->setState(Component::State::enabled);
-    huds[globals::spellQ]->xOffset = 10;
-    huds[globals::spellQ]->yOffset = -200;
-    huds[globals::spellW]->setState(Component::State::disabled);
-    huds[globals::spellE]->setState(Component::State::disabled);
+    huds[globals::spellQ]->yOffset = -100;
+    huds[globals::spellW]->setState(Component::State::enabled);
+    huds[globals::spellW]->yOffset = -80;
+    huds[globals::spellE]->setState(Component::State::enabled);
+    huds[globals::spellE]->yOffset = -60;
     engine::GameObject::init();
 
     return true;
@@ -42,39 +43,35 @@ bool HUDInstrument::draw()
     huds[globals::spellQ]->setText(ss.str());
     huds[globals::spellQ]->init();
 
+    Spell * spellW = m_player->getActiveInstrument().getSpell(globals::spellW);
+    std::stringstream ssW;
+    std::string availableW;
+    if(spellW->countdownTimer.getTime() > spellW->countdown)
+    {
+        availableW = "PRONTO";
+    }
+    else 
+    {
+        availableW = "EM COOLDOWN";
+    }
+    ssW << "W:" << availableW;
+    huds[globals::spellW]->setText(ssW.str());
+    huds[globals::spellW]->init();
 
-
-    // Spell * spellW = m_player->getActiveInstrument().getSpell("spellWBanjo");
-    // Spell * spellE = m_player->getActiveInstrument().getSpell("spellEBanjo");
- 
-    // if(spellQ->countdownTimer.getTime() < spellQ->countdown)
-    // {
-    //     INFO("Q INATIVO");
-    //     huds["spellQ"]->setState(Component::State::enabled);
-    // }
-    // else
-    // {
-    //     INFO("Q ATIVO");
-    //     huds["spellQ"]->setState(Component::State::disabled);
-    // }
-
-    // if(spellW->countdownTimer.getTime() > countdown)
-    // {
-    //     huds["spellW"].setState(Component::State::enabled);
-    // }
-    // else
-    // {
-    //     huds["spellW"].setState(Component::State::disabled);
-    // }
-
-    // if(spellE->countdownTimer.getTime() > countdown)
-    // {
-    //     huds["spellE"].setState(Component::State::enabled);
-    // }
-    // else
-    // {       
-    //     huds["spellE"].setState(Component::State::disabled);
-    // }
+    Spell * spellE = m_player->getActiveInstrument().getSpell(globals::spellE);
+    std::stringstream ssE;
+    std::string availableE;
+    if(spellE->countdownTimer.getTime() > spellE->countdown)
+    {
+        availableE = "PRONTO";
+    }
+    else 
+    {
+        availableE = "EM COOLDOWN";
+    }
+    ssE << "E:" << availableE;
+    huds[globals::spellE]->setText(ssE.str());
+    huds[globals::spellE]->init();
 
     engine::GameObject::draw();
 
