@@ -34,7 +34,7 @@ bool Enemy::update()
     Vector2D pos = m_target->physics.position;
     
     setTilemap();
-    bfs(pos);
+    minimumPath(pos);
     discoverNextMove();
     makeNextMove();
 
