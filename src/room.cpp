@@ -40,21 +40,15 @@ bool Room::add_enemy(std::string enemy_id, int x, int y, Player * target, int en
 
     //AnimationControllerComponent *enemyController = new AnimationControllerComponent(*newEnemy);
 
-    AnimationComponent *enemyMoveRight = new AnimationComponent(*newEnemy,spritePath,8,4,1000,24,31,-1);
-    AnimationComponent *enemyMoveLeft = new AnimationComponent(*newEnemy,"enemyRedLeft.png",8,1,2000,0,7,-1);
-    AnimationComponent *enemyMoveDown = new AnimationComponent(*newEnemy,"enemyRedDown.png",4,1,2000,0,3,-1);
-    AnimationComponent *enemyMoveUp = new AnimationComponent(*newEnemy,spritePath,6,4,2000,12,15,-1);
+    AnimationComponent *enemyMoveDown = new AnimationComponent(*newEnemy,spritePath, 6, 4, 2000, 0, 3, -1);
 
     /*enemyController->addAnimation(globals::moveLeft,*enemyMoveLeft);
     enemyController->addAnimation(globals::moveRight,*enemyMoveRight);
     enemyController->addAnimation(globals::moveDown,*enemyMoveDown);
     enemyController->addAnimation(globals::moveUp,*enemyMoveUp);*/
     
-    newEnemy->moveRightA = enemyMoveRight;
-    newEnemy->moveUpA = enemyMoveUp;
+
     newEnemy->moveDownA = enemyMoveDown;
-    
-    newEnemy->moveLeftA = enemyMoveLeft;
 
     FollowPlayer * moveEnemy = new FollowPlayer(*newEnemy);
     DamageEnemy * damagePlayer = new DamageEnemy(*newEnemy);

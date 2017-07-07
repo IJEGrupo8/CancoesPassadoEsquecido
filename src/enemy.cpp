@@ -13,9 +13,6 @@ bool Enemy::init()
 {
     engine::GameObject::init();
     moveDownA->init();
-    moveRightA->init();
-    moveLeftA->init();
-    moveUpA->init();
 
     activeAnimation = moveDownA;
 
@@ -72,8 +69,7 @@ void Enemy::moveDown(){
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
-    
-    activeAnimation = moveDownA;
+
 }
 
 void Enemy::moveUp() {
@@ -83,8 +79,6 @@ void Enemy::moveUp() {
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
-    
-    activeAnimation = moveUpA;
 }
 
 void Enemy::moveLeft() {
@@ -96,7 +90,6 @@ void Enemy::moveLeft() {
     Vector2D move(componentX,componentY);
     physics.velocity = move;
 
-    activeAnimation = moveLeftA;
 }
 
 void Enemy::moveRight() {
@@ -107,8 +100,6 @@ void Enemy::moveRight() {
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
-
-    activeAnimation = moveRightA;
 }
 
 void Enemy::makeNextMove() {
@@ -146,7 +137,7 @@ void Enemy::discoverNextMove(Vector2D pos) {
 	int z = posEnemy.first, q = posEnemy.second;
 
 
-	if(distance >= 20 || !canMove) {
+	if(distance >= 100 || !canMove) {
 		nextMove = 0;
 	}
 

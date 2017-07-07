@@ -188,16 +188,16 @@ int main(int, char**)
     //gameplay.get_room("stage_1_room_1")->add_enemy("ghost", 800, 200);
     gameplay.get_room("stage_1_room_2")->add_enemy("ghost2", 800, 200, &player, 100, globals::MAD_ENEMY);
     gameplay.get_room("stage_1_room_3")->add_enemy("ghost31", 100, 100, &player, 100, globals::MAD_ENEMY);
-    gameplay.get_room("stage_1_room_3")->add_enemy("ghost32", 800, 100, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_3")->add_enemy("ghost32", 800, 100, &player, 100, globals::SAD_ENEMY);
 
-    gameplay.get_room("stage_1_room_4")->add_enemy("ghost41", 3*32, 3*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_4")->add_enemy("ghost41", 3*32, 3*32, &player, 100, globals::SAD_ENEMY);
     gameplay.get_room("stage_1_room_4")->add_enemy("ghost42", 28*32, 3*32, &player, 100, globals::MAD_ENEMY);
-    gameplay.get_room("stage_1_room_4")->add_enemy("ghost43", 3*32, 19*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_4")->add_enemy("ghost43", 3*32, 19*32, &player, 100, globals::SAD_ENEMY);
     gameplay.get_room("stage_1_room_4")->add_enemy("ghost44", 28*32, 15*32, &player, 100, globals::MAD_ENEMY);
-    gameplay.get_room("stage_1_room_5")->add_enemy("ghost51", 3*32, 3*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_5")->add_enemy("ghost51", 3*32, 3*32, &player, 100, globals::SAD_ENEMY);
     gameplay.get_room("stage_1_room_5")->add_enemy("ghost52", 28*32, 3*32, &player, 100, globals::MAD_ENEMY);
     gameplay.get_room("stage_1_room_5")->add_enemy("ghost53", 3*32, 19*32, &player, 100, globals::MAD_ENEMY);
-    gameplay.get_room("stage_1_room_5")->add_enemy("ghost54", 28*32, 15*32, &player, 100, globals::MAD_ENEMY);
+    gameplay.get_room("stage_1_room_5")->add_enemy("ghost54", 28*32, 15*32, &player, 100, globals::SAD_ENEMY);
     gameplay.get_room("stage_1_room_6")->add_enemy("ghost61", 28*32, 3*32, &player, 100, globals::MAD_ENEMY);
     gameplay.get_room("stage_1_room_6")->add_enemy("ghost62", 3*32, 19*32, &player, 100, globals::MAD_ENEMY);
     gameplay.get_room("stage_1_room_6")->add_enemy("ghost63", 28*32, 15*32, &player, 100, globals::MAD_ENEMY);
