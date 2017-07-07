@@ -6,6 +6,8 @@
 #include "tilemap.hpp"
 #include "gamescene.hpp"
 
+using namespace std;
+
 bool MoveDirectionals::update(){
 
 	bool keyFlag = false;
@@ -22,6 +24,7 @@ bool MoveDirectionals::update(){
     }
     if(Input::keyPressed(Input::DOWN))
     {
+        cout << "AQUI???" << endl;
 
         auto map = (dynamic_cast<GameScene *>(Game::instance.m_scene))->get_active_room()->get_game_object("mapa");
         if((dynamic_cast<TileMap *>(map))->at(((m_game_object->physics.position.getX()+20)/32),((m_game_object->physics.position.getY()+42)/32),2)==1)
@@ -30,6 +33,8 @@ bool MoveDirectionals::update(){
             keyFlag = true;
         }
         (dynamic_cast<Player *>(m_game_object))->moveDown();
+
+        cout << "OU AQUI???" << endl;
     }
     if(Input::keyPressed(Input::RIGHT))
     {

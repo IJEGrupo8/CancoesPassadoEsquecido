@@ -22,7 +22,7 @@ public:
     virtual bool update();
     virtual bool draw();
  	void setTilemap();
-    void minimumPath(Vector2D pos);
+    bool minimumPath(Vector2D pos);
     void discoverNextMove();
     void hold();
     void moveDown();

@@ -33,8 +33,14 @@ bool Enemy::update()
 
     Vector2D pos = m_target->physics.position;
     
-    setTilemap();
-    minimumPath(pos);
+    distance = hypot(pos.getX() - physics.position.getX(), 
+                         pos.getY() - physics.position.getY());
+
+    if (distance < 300) {
+    	setTilemap();
+	    minimumPath(pos);
+    }
+
     discoverNextMove();
     makeNextMove();
 
@@ -42,7 +48,6 @@ bool Enemy::update()
 }
 
 void Enemy::hold() {
-	cout << "PAROU O BIXAO" << endl;
 	int componentX = 0;
     int componentY = 0;
 
@@ -51,7 +56,6 @@ void Enemy::hold() {
 }
 
 void Enemy::moveDown(){
-	cout << "BAIXO O BIXAO" << endl;
     // Update Velocity
     int componentX = 0;
     int componentY = defaultVel;
@@ -61,7 +65,6 @@ void Enemy::moveDown(){
 }
 
 void Enemy::moveUp() {
-	cout << "CIMA O BIXAO" << endl;
     // Update Velocity
     int componentX = 0;
     int componentY = -1*defaultVel;
@@ -71,7 +74,6 @@ void Enemy::moveUp() {
 }
 
 void Enemy::moveLeft() {
-	cout << "ESQUERDA O BIXAO" << endl;
     // Update Velocity
     int componentX = -1*defaultVel;
 
@@ -82,7 +84,6 @@ void Enemy::moveLeft() {
 }
 
 void Enemy::moveRight() {
-	cout << "DIREITA O BIXAO" << endl;
     // Update Velocity
 
     int componentX = defaultVel;
@@ -115,7 +116,7 @@ void Enemy::makeNextMove() {
 }
 
 
-void Enemy::minimumPath(Vector2D pos){
+bool Enemy::minimumPath(Vector2D pos){
 	using ii = pair<int, int>;
 	using iii = pair <ii, int>;
 
@@ -125,35 +126,14 @@ void Enemy::minimumPath(Vector2D pos){
 	cout<<"X Enemy: " << posEnemy.first << " Y Enemy: "<<posEnemy.second<<endl;
     cout<<"X Player: " << posTarget.first << " Y Player: "<<posTarget.second<<endl;
 
-	if (matrix[posTarget.first][posTarget.second] == 1) {
-		queue<ii> q;
-		q.push(posTarget);
-
-		while(!q.empty()) {
-	    	ii v = q.front();
-	    	q.pop();
-
-	    	if(matrix[v.first][v.second] == 0) {
-	    		posTarget.first = v.first;
-	    		posTarget.second = v.second;
-	    		break;
-	    	}
-
-	    	if(v.second > 0 && v.second < 32) {
-				q.push(ii(v.first, v.second - 1));
-				q.push(ii(v.first, v.second + 1));
-			}
-			if(v.first > 0 && v.first < 22) {
-				q.push(ii(v.first - 1, v.second));
-				q.push(ii(v.first + 1, v.second));
-			}
-	    }
-	}
-
 	for (int i=0; i<22; i++){
 		for (int j=0; j<32; j++){
 			matrixAux[i][j] = matrix[i][j];
 		}
+	}
+
+	if (matrix[posTarget.first][posTarget.second] == 1) {
+		return false;
 	}
 
     matrixAux[posEnemy.first][posEnemy.second] = 2;
@@ -194,7 +174,6 @@ void Enemy::minimumPath(Vector2D pos){
 
     int i = posTarget.first, j = posTarget.second;
     int distPlayer = matrixAux[i][j];
-    distance = distPlayer;
 
     memset(matrixMinimumPath, 0, sizeof matrixMinimumPath);
 
@@ -226,6 +205,8 @@ void Enemy::minimumPath(Vector2D pos){
     } while (distPlayer > 2);
 
     while(!q.empty()) q.pop();
+
+    return true;
 }
 
 //0 Parado, 1 Esquerda, 2 Direita, 3 Cima, 4 Baixo
@@ -235,11 +216,11 @@ void Enemy::discoverNextMove() {
 
 	ii posEnemy = ii(positionY/32, positionX/32);
 
-	if(distance >= 15 || !canMove) {
+	if(distance >= 300 || !canMove) {
 		nextMove = 0;
 	}
 
-	else if(distance <= 2) {
+	else if(distance <= 10) {
 		nextMove = 1;
 	}
 
