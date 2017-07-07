@@ -2,6 +2,8 @@
 #include "enemy.hpp"
 #include "tilemap.hpp"
 #include "gamescene.hpp"
+#include "components/animationcontroller.hpp"
+#include "gameglobals.hpp"
 #include <queue>
 
 using namespace std;
@@ -70,6 +72,7 @@ void Enemy::moveDown(){
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
+    get_component<AnimationControllerComponent>()->changeAnimation(globals::moveDown);
 }
 
 void Enemy::moveUp() {
@@ -79,6 +82,7 @@ void Enemy::moveUp() {
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
+    get_component<AnimationControllerComponent>()->changeAnimation(globals::moveUp);
 }
 
 void Enemy::moveLeft() {
@@ -89,6 +93,7 @@ void Enemy::moveLeft() {
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
+    get_component<AnimationControllerComponent>()->changeAnimation(globals::moveLeft);
 }
 
 void Enemy::moveRight() {
@@ -99,6 +104,7 @@ void Enemy::moveRight() {
 
     Vector2D move(componentX,componentY);
     physics.velocity = move;
+    get_component<AnimationControllerComponent>()->changeAnimation(globals::moveRight);
 }
 
 void Enemy::makeNextMove() {
