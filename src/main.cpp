@@ -162,7 +162,7 @@ int main(int, char**)
     player.add_component(move);
 
     GameObject nFragments("nFragments",10,40);
-    TextComponent fragmentText(nFragments,"Numero de fragmentos: ", "font.ttf",20);
+    TextComponent fragmentText(nFragments,"Numero de fragmentos: ", "font.ttf",20, {255,255,255});
     nFragments.add_component(fragmentText);
     player.nFragments = &fragmentText;
 
