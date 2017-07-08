@@ -6,6 +6,7 @@
 
 #include "scene.hpp"
 #include "components/changeroom.hpp"
+#include "player.hpp"
 
 using namespace engine;
 
@@ -20,7 +21,7 @@ public:
     bool draw();
     bool update();
     bool init();
-    bool add_enemy(std::string enemy_id, int x, int y);
+    bool add_enemy(std::string enemy_id, int x, int y, Player * target, int enemy_life, int enemy_type);
     bool add_room_transition(std::string id_transition, int x, int y,
          int w, int h, std::string target_room, ChangeRoom::Direction direction);
 

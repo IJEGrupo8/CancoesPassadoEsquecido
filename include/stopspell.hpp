@@ -1,5 +1,5 @@
-#ifndef __BASIC_SPELL__
-#define __BASIC_SPELL__
+#ifndef __STOP_SPELL__
+#define __STOP_SPELL__
 
 #include <string>
 #include <list>
@@ -10,16 +10,17 @@
 #include "gameobject.hpp"
 #include "timer.hpp"
 #include "spell.hpp"
+#include "components/animation.hpp"
 
 using namespace engine;
 
-class BasicSpell : public Spell {
+class StopSpell : public Spell {
 public:
-    BasicSpell() : Spell() {}
-    BasicSpell(std::string _name, GameObject * obj, int _x, int _y,int _countdown,int _duration)
+    StopSpell() : Spell() {}
+    StopSpell(std::string _name, GameObject * obj, int _x, int _y,int _countdown,int _duration)
         : Spell(_name,obj,_x,_y,_countdown,_duration) {}
 
-    ~BasicSpell() {}
+    ~StopSpell() {}
 
     
     bool init();
@@ -31,7 +32,6 @@ public:
 private:
     Timer timer;
     bool collided = false;
-    
 };
 
 #endif

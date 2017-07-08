@@ -12,6 +12,7 @@ bool ChangeRoom::init(){
 
     return true;
 }
+
 bool ChangeRoom::update(){
     m_game_object->physics.collisionBox.x = m_game_object->physics.position.getX();
     m_game_object->physics.collisionBox.y = m_game_object->physics.position.getY();
@@ -23,7 +24,6 @@ bool ChangeRoom::update(){
     if(m_game_object->physics.detectColision(player))
     {
         (dynamic_cast<GameScene *>(Game::instance.m_scene))->change_room(room_name);
-
         if(dir == Direction::Right)
         {
             INFO("DIRECTION  RIGHT");

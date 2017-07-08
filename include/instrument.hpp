@@ -29,6 +29,10 @@ public:
     bool useSpellW();
     bool useSpellE();
 
+    inline Spell * getSpell(std::string spell_name)
+    {
+        return spells[spell_name];
+    }
 private:
     std::unordered_map<std::string, Spell*> spells;
 };

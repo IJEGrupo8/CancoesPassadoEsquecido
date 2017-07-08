@@ -20,12 +20,11 @@ public:
     virtual bool shutdown();
     virtual bool update();
     virtual bool draw();
-    void addHUD(std::string instrument_name, ImageComponent* hud);
+    void addHUD(std::string instrument_name, TextComponent* hud);
 
 private:
-    std::unordered_map<std::string, ImageComponent*> huds;
+    std::unordered_map<std::string, TextComponent*> huds;
     Player *m_player;
-    ImageComponent *active_hud;
 };
 
 #endif
