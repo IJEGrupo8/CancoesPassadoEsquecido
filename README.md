@@ -1,6 +1,51 @@
 [![Build Status](https://travis-ci.org/IJEGrupo8/CancoesPassadoEsquecido.svg?branch=devel)](https://travis-ci.org/IJEGrupo8/CancoesPassadoEsquecido)
 
-Para informações sobre o jogo veja a [WIKI](https://github.com/IJEGrupo8/CancoesPassadoEsquecido/wiki).
+# Canções de passado esquecido
+Uma garota possui um instrumento que quando tocado provoca reações nas pessoas, encantando-as, irritando-as, dentre outros. Ela perde a memória em um conflito na vila em que ela mora, quando tentam roubar seu instrumento a fim de obterem seus poderes.
+
+
+Ela acorda perdida e se lembra somente de uma canção.
+
+## Equipe
+
+### Desenvolvedores
+- Marcelo Augusto
+- Izabela Cristina
+- Lucas Brilhante
+- Matheus Bernardo
+
+### Artistas
+- Gabriela Maciel
+
+### Músico
+- Luiz Fernando
+
+## Gênero
+- Story teller / Aventura
+- 1 Jogador
+
+## Objetivo
+Coletar os fragmentos do seu instrumento mágico (que toca a música que ela lembra), a fim de recuperar suas memórias.
+
+## Descrição do Jogo
+
+### Controle
+- 'A' fala com NPC
+- Habilidade especial 1 (Tecla Q)
+- Habilidade especial 2 (Tecla W)
+- Habilidade especial 2 (Tecla E)
+- Sair dos menus 'Enter'
+
+### Personagens
+- Personagem Principal: Música que toca caixa
+- Aldeões Inimigos
+- NPCs
+
+#### Outros
+- Personagens tem vida e sofrem dano
+- Personagem principal perde o jogo ao acabar a vida
+
+
 
 ## Para compilar (Linux):
 
