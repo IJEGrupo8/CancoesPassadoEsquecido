@@ -86,8 +86,8 @@ bool TextComponent::shutdown()
 void TextComponent::draw()
 {
     SDL_Rect renderQuad = {
-        (int) m_game_object->physics.position.getX(),
-        (int) m_game_object->physics.position.getY(),
+        (int) m_game_object->physics.position.getX() + xOffset,
+        (int) m_game_object->physics.position.getY() + yOffset,
         m_w,
         m_h
     };

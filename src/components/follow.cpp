@@ -10,13 +10,12 @@ bool FollowPlayer::init(){
     return true;
 }
 bool FollowPlayer::update(){
-    if ((dynamic_cast<Enemy*>(m_game_object))->canMove) {
-
-	    player = Game::instance.m_scene->get_game_object("Player1");
+		auto enemy = (dynamic_cast<Enemy*>(m_game_object));
+    	player = Game::instance.m_scene->get_game_object("Player1");
 	    Vector2D pos = player->physics.position;
 	    m_game_object->physics.velocity = pos - m_game_object->physics.position;
 	    m_game_object->physics.velocity.normalize();
-	    m_game_object->physics.velocity *=2;
-	}//else dança
+	    m_game_object->physics.velocity *= enemy->defaultVel;
+	
     return true;
 }

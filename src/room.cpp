@@ -6,6 +6,7 @@
 #include "components/damageEnemy.hpp"
 #include "components/follow.hpp"
 #include "components/animation.hpp"
+#include "gameglobals.hpp"
 #include "log.h"
 
 using namespace engine;
@@ -24,17 +25,34 @@ bool Room::draw()
     return Scene::draw();
 }
 
-bool Room::add_enemy(std::string enemy_id, int x, int y)
+bool Room::add_enemy(std::string enemy_id, int x, int y, Player * target, int enemy_life, int enemy_type)
 {
-    Enemy * newEnemy = new Enemy(enemy_id,x,y);
+    Enemy * newEnemy = new Enemy(enemy_id, x, y, target, enemy_life, enemy_type);
     newEnemy->xF = 0; newEnemy->yF = 0;
-    AnimationComponent * enemyAnimation = new AnimationComponent(*newEnemy, "ghost.png", 4, 4, 500, 0, 3 ,-1);
+   
+    std::string spritePath = "";
+    if(enemy_type == globals::MAD_ENEMY){
+        spritePath = "enemy.png";
+    }
+    else if(enemy_type == globals::SAD_ENEMY){
+        spritePath = "sad_enemy.png";
+    }
+
+    //AnimationControllerComponent *enemyController = new AnimationControllerComponent(*newEnemy);
+
+    AnimationComponent *enemyMoveDown = new AnimationComponent(*newEnemy,spritePath, 6, 4, 2000, 0, 3, -1);
+
+    /*enemyController->addAnimation(globals::moveLeft,*enemyMoveLeft);
+    enemyController->addAnimation(globals::moveRight,*enemyMoveRight);
+    enemyController->addAnimation(globals::moveDown,*enemyMoveDown);
+    enemyController->addAnimation(globals::moveUp,*enemyMoveUp);*/
+    
+
+    newEnemy->moveDownA = enemyMoveDown;
+
     FollowPlayer * moveEnemy = new FollowPlayer(*newEnemy);
-    AnimationControllerComponent * animationController = new AnimationControllerComponent(*newEnemy);
-    animationController->addAnimation("iddle", *enemyAnimation);
     DamageEnemy * damagePlayer = new DamageEnemy(*newEnemy);
     newEnemy->add_component(*damagePlayer);
-    newEnemy->add_component(*animationController);
     newEnemy->add_component(*moveEnemy);
 
     add_game_object(*newEnemy);

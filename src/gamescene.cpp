@@ -10,6 +10,7 @@ using namespace engine;
 bool GameScene::init(){
 
     Scene::init();
+    active_room = rooms["stage_1_room_1"];
     for (auto room: rooms)
     {
         auto obj = room.second;

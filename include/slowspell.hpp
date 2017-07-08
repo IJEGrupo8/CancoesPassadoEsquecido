@@ -1,5 +1,5 @@
-#ifndef __BASIC_SPELL__
-#define __BASIC_SPELL__
+#ifndef __SLOW_SPELL__
+#define __SLOW_SPELL__
 
 #include <string>
 #include <list>
@@ -13,13 +13,13 @@
 
 using namespace engine;
 
-class BasicSpell : public Spell {
+class SlowSpell : public Spell {
 public:
-    BasicSpell() : Spell() {}
-    BasicSpell(std::string _name, GameObject * obj, int _x, int _y,int _countdown,int _duration)
+    SlowSpell() : Spell() {}
+    SlowSpell(std::string _name, GameObject * obj, int _x, int _y,int _countdown,int _duration)
         : Spell(_name,obj,_x,_y,_countdown,_duration) {}
 
-    ~BasicSpell() {}
+    ~SlowSpell() {}
 
     
     bool init();
@@ -31,7 +31,6 @@ public:
 private:
     Timer timer;
     bool collided = false;
-    
 };
 
 #endif

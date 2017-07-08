@@ -2,12 +2,21 @@
 #include "log.h"
 #include "hudinstrument.hpp"
 #include "gameglobals.hpp"
-
+#include <string>
+#include <sstream>
+#include <iostream>
 using namespace engine;
 
 bool HUDInstrument::init()
 {
+    huds[globals::spellQ]->setState(Component::State::enabled);
+    huds[globals::spellQ]->yOffset = -100;
+    huds[globals::spellW]->setState(Component::State::enabled);
+    huds[globals::spellW]->yOffset = -80;
+    huds[globals::spellE]->setState(Component::State::enabled);
+    huds[globals::spellE]->yOffset = -60;
     engine::GameObject::init();
+
     return true;
 }
 
@@ -19,23 +28,50 @@ bool HUDInstrument::shutdown()
 
 bool HUDInstrument::draw()
 {
-    if(m_player->getActiveInstrument().name() == globals::banjo){
-        active_hud = huds[globals::banjo];
-        huds[globals::eletric_guitar]->setState(Component::State::disabled);
-        huds[globals::accordion]->setState(Component::State::disabled);
+    Spell * spellQ = m_player->getActiveInstrument().getSpell(globals::spellQ);
+    std::stringstream ss;
+    std::string available;
+    if(spellQ->countdownTimer.getTime() > spellQ->countdown)
+    {
+        available = "PRONTO";
     }
-    else if(m_player->getActiveInstrument().name() == globals::eletric_guitar){
-        active_hud = huds[globals::eletric_guitar];
-        huds[globals::banjo]->setState(Component::State::disabled);
-        huds[globals::accordion]->setState(Component::State::disabled);
+    else 
+    {
+        available = "EM COOLDOWN";
     }
-    else if(m_player->getActiveInstrument().name() == globals::accordion){
-        active_hud = huds[globals::accordion];
-        huds[globals::eletric_guitar]->setState(Component::State::disabled);
-        huds[globals::banjo]->setState(Component::State::disabled);
-    }
+    ss << "Q:" << available;
+    huds[globals::spellQ]->setText(ss.str());
+    huds[globals::spellQ]->init();
 
-    active_hud->setState(Component::State::enabled);
+    Spell * spellW = m_player->getActiveInstrument().getSpell(globals::spellW);
+    std::stringstream ssW;
+    std::string availableW;
+    if(spellW->countdownTimer.getTime() > spellW->countdown)
+    {
+        availableW = "PRONTO";
+    }
+    else 
+    {
+        availableW = "EM COOLDOWN";
+    }
+    ssW << "W:" << availableW;
+    huds[globals::spellW]->setText(ssW.str());
+    huds[globals::spellW]->init();
+
+    Spell * spellE = m_player->getActiveInstrument().getSpell(globals::spellE);
+    std::stringstream ssE;
+    std::string availableE;
+    if(spellE->countdownTimer.getTime() > spellE->countdown)
+    {
+        availableE = "PRONTO";
+    }
+    else 
+    {
+        availableE = "EM COOLDOWN";
+    }
+    ssE << "E:" << availableE;
+    huds[globals::spellE]->setText(ssE.str());
+    huds[globals::spellE]->init();
 
     engine::GameObject::draw();
 
@@ -48,6 +84,6 @@ bool HUDInstrument::update()
     return true;
 }
 
-void HUDInstrument::addHUD(std::string instrument_name, ImageComponent* hud){
+void HUDInstrument::addHUD(std::string instrument_name, TextComponent* hud){
     huds[instrument_name] = hud;
 }
